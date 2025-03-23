@@ -1,5 +1,5 @@
 <x-layouts.web>
     <main>
-        <p>Starter HTML</p>
+        <p>Starter Laravel</p>
     </main>
 </x-layouts.web>
