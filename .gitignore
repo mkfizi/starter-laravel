@@ -1,3 +1,5 @@
+# Prevent files from being pushed to git repository.
+# Extended .gitignore templates: https://github.com/github/gitignore
 /.phpunit.cache
 /node_modules
 /public/build
@@ -21,3 +23,12 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
