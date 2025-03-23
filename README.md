@@ -1,5 +1,5 @@
 # Starter Laravel
-Boilerplate for HTML and TailwindCSS projects.
+Boilerplate for Laravel and TailwindCSS projects.
 
 ## Usage
 This barebone boilerplate serves as starting point when developing web applications or sites. It eliminates the need for base configuration for Laravel and Tailwind. By default, this project is utilizing [Vite](https://vitejs.dev/) for source code bundling but can be switch to any bundling tools.
