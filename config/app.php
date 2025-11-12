@@ -13,7 +13,20 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Starter Laravel'),
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Application Metadata
+    |--------------------------------------------------------------------------
+    |
+    | This value is the description of your application, which can be used
+    | for SEO purposes or general metadata about the application.
+    |
+    */
+    'metadata' => [
+        'description' => 'Starter Kit for Laravel Projects',
+    ],
 
     /*
     |--------------------------------------------------------------------------

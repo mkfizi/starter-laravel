@@ -9,3 +9,12 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* Use manual selector instead of media query for dark theme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/**
+* Hide elements with x-cloak attribute.
+* This is useful for Alpine.js components that should not be visible before Alpine.js is initialized.
+*/
+[x-cloak] { display: none !important; }
