@@ -5,12 +5,12 @@
             <x-text-title class="text-center">{{ __('Sign Up') }}</x-text-title>
             <div class="space-y-1">
                 <x-label for="name">{{ __('Name') }}</x-label>
-                <x-input type="text" id="name" name="name" value="" placeholder="{{ __('Enter name') }}" required />
+                <x-input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="{{ __('Enter name') }}" required />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
             <div class="space-y-1">
                 <x-label for="email">{{ __('Email') }}</x-label>
-                <x-input type="email" id="email" name="email" value="" placeholder="{{ __('Enter email') }}" required />
+                <x-input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="{{ __('Enter email') }}" required />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
             <div class="space-y-1">

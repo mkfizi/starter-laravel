@@ -1,7 +1,12 @@
 <x-auth-layout>
-    <x-text class="mt-4">{{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}</x-text>
-    <x-text>test</x-text>
-    <div class="space-y-1 mt-8 mb-4">
+    <x-text class="my-4">{{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}</x-text>
+    @php
+        $statusMessage = session('status') === 'verification-link-sent'
+            ? __('A new verification link has been sent to the your email address.')
+            : session('status');
+    @endphp
+    <x-text-status :status="$statusMessage" />
+    <div class="space-y-2 mt-8 mb-4">
         <form method="POST" action="{{ route('verification.send') }}">
             @csrf
             <x-button class="w-full">{{ __('Resend Verification Email') }}</x-button>
