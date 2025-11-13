@@ -1,7 +1,9 @@
 {
-    "$schema": "https://json.schemastore.org/package.json",
-    "private": true,
-    "type": "module",
+    "name": "@mkfizi/starter-laravel",
+	"version": "0.1.0",
+	"description": "Starter kit for Laravel projects.",
+	"license": "MIT",
+	"type": "module",
     "scripts": {
         "build": "vite build",
         "dev": "vite"

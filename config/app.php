@@ -25,7 +25,7 @@ return [
     |
     */
     'metadata' => [
-        'description' => 'Starter Kit for Laravel Projects',
+        'description' => 'Starter kit for Laravel projects.',
     ],
 
     /*
