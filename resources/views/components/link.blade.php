@@ -1,3 +1,1 @@
-<a {{ $attributes->class(['font-medium text-neutral-500 hover:dark:text-white hover:text-black focus:dark:text-white focus:text-black visited:text-neutral-700 dark:text-neutral-400 dark:visited:text-neutral-200 text-sm cursor-pointer'])->merge() }}>
-    {{ $slot }}
-</a>
+<a {{ $attributes->class(['font-medium text-neutral-500 hover:dark:text-white hover:text-black focus:dark:text-white focus:text-black visited:text-neutral-700 dark:text-neutral-400 dark:visited:text-neutral-200 text-sm cursor-pointer'])->merge() }}>{{ $slot }}</a>
