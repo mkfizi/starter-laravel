@@ -2,7 +2,7 @@
     <div class="flex justify-between">
         <x-text>Copyright © {{ date('Y') }}</x-text>
         <span>
-            <span class="text-neutral-800 dark:text-neutral-200 text-sm">{{ __('Developed by') }}&nbsp;</span><x-link href="https://mkfizi.dev" target="_blank">mkfizi</x-link>
+            <span class="text-neutral-800 dark:text-neutral-200 text-sm">{{ __('Developed by') }}</span><x-link href="https://mkfizi.dev" target="_blank">mkfizi</x-link>
         </span>
     </div>
 </footer>

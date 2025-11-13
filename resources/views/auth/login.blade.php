@@ -1,0 +1,31 @@
+<x-auth-layout>
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
+        <div class="space-y-4">
+            <x-text-title class="text-center">{{ __('Login') }}</x-text-title>
+            <div class="space-y-1">
+                <x-label for="email">{{ __('Email') }}</x-label>
+                <x-input type="email" id="email" name="email" value="" placeholder="{{ __('Enter email') }}" required />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
+            <div class="space-y-1">
+                <x-label for="password">{{ __('Password') }}</x-label>
+                <x-input type="password" id="password" name="password" value="" placeholder="{{ __('Enter password') }}" required />
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <div class="flex justify-between items-center">
+                    <x-label for="input-checkbox">
+                        <x-checkbox id="input-checkbox" name="checkbox" value="" />
+                        <span>{{ __('Remember me') }}</span>
+                    </x-label>
+                    <x-link href="#">{{ __('Forgot password?') }}</x-link>
+                </div>
+            </div>
+        </div>
+        <div class="space-y-1 mt-8 mb-4">
+            <x-button type="submit">
+                <span>{{ __('Login') }}</span>
+            </x-button>
+            <x-link href="{{ route('register') }}" class="block mx-auto w-fit underline">{{ __('Register as New User') }}</x-link>
+        </div>
+    </form>
+</x-auth-layout>
