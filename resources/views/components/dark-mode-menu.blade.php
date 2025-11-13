@@ -1,4 +1,10 @@
-<x-dropdown id="dark-mode-menu" position="right"
+@props([
+    'position' => 'right',
+])
+
+<x-dropdown 
+    id="dark-mode-menu"
+    position="{{ $position }}"
     extra-data="{
         theme: localStorage.theme || 'system',
         toggleTheme(newTheme) {

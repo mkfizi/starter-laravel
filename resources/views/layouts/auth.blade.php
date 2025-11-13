@@ -1,7 +1,7 @@
 <x-app-layout>
     <nav class="w-full">
         <div class="flex justify-between items-center mx-auto px-4 sm:px-8 py-2 lg:py-4 max-w-screen-xl">
-            <x-link href="{{ route('web.home') }}" class="!text-base">{{ config('app.name') }}</x-link>
+            <x-link href="{{ route('web.index') }}" class="!text-base">{{ config('app.name') }}</x-link>
             <x-dark-mode-menu />
         </div>
     </nav>

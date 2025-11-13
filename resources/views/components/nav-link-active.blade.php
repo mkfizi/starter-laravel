@@ -1,3 +1,0 @@
-<a {{ $attributes->class(['inline-block lg:hover:bg-transparent lg:dark:hover:bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 lg:p-0 px-3 py-2 rounded w-full font-medium text-black lg:hover:dark:text-white lg:hover:text-black lg:focus:dark:text-white lg:focus:text-black lg:visited:text-neutral-700 lg:dark:text-neutral-400 lg:dark:visited:text-neutral-200 lg:text-neutral-500 dark:text-white text-sm text-left cursor-pointer'])->merge() }}>
-    {{ $slot }}
-</a>

@@ -21,8 +21,8 @@
                 </div>
             </div>
         </div>
-        <div class="space-y-1 mt-8 mb-4">
-            <x-button type="submit">
+        <div class="space-y-2 mt-8 mb-4">
+            <x-button type="submit" class="w-full">
                 <span>{{ __('Login') }}</span>
             </x-button>
             <x-link href="{{ route('register') }}" class="block mx-auto w-fit underline">{{ __('Register as New User') }}</x-link>

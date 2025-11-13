@@ -15,7 +15,7 @@
         : 'bg-transparent dark:bg-transparent border-transparent'"
 >
     <div class="flex justify-between items-center mx-auto px-4 sm:px-8 py-2 max-w-screen-xl">
-        <x-link href="{{ route('web.home') }}" class="!text-base">{{ config('app.name') }}</x-link>
+        <a href="{{ route('web.index') }}" class="font-medium text-neutral-800 dark:text-neutral-200 text-base">{{ config('app.name') }}</a>
         <div class="flex items-center gap-2 lg:gap-6">
             {{-- Navbar Menu --}}
             <div id="navbar-menu" class="hidden invisible lg:visible lg:block top-0 lg:top-auto left-0 lg:left-auto z-10 lg:z-auto fixed lg:relative bg-black/80 lg:bg-transparent w-dvw lg:w-auto h-dvh lg:h-auto"
@@ -40,9 +40,9 @@
                         @foreach(config('route.web') as $link)
                             <li>
                                 @if (request()->is(ltrim($link['href'], '/')))
-                                    <x-nav-link-active href="{{ $link['href'] }}">{{ $link['name'] }}</x-nav-link-active>
+                                    <a href="{{ $link['href'] }}" class="font-medium text-black hover:dark:text-neutral-200 hover:text-neutral-700 focus:dark:text-neutral-200 focus:text-neutral-700 dark:text-white text-sm cursor-pointer">{{ $link['name'] }}</a>
                                 @else
-                                    <x-nav-link href="{{ $link['href'] }}">{{ $link['name'] }}</x-nav-link>
+                                    <a href="{{ $link['href'] }}" class="inline-block lg:hover:bg-transparent lg:dark:hover:bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 lg:p-0 px-3 py-2 rounded w-full font-medium text-black lg:hover:dark:text-white lg:hover:text-black lg:focus:dark:text-white lg:focus:text-black lg:visited:text-neutral-700 lg:dark:text-neutral-400 lg:dark:visited:text-neutral-200 lg:text-neutral-500 dark:text-white text-sm text-left cursor-pointer">{{ $link['name'] }}</a>
                                 @endif
                             </li>
                         @endforeach
