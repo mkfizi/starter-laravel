@@ -1,8 +1,8 @@
 <x-auth-layout>
-    <x-text class="my-4">{{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}</x-text>
+    <x-text class="my-4">{{ __('Please verify your email address by clicking on the link we just emailed to you.') }}</x-text>
     @php
         $statusMessage = session('status') === 'verification-link-sent'
-            ? __('A new verification link has been sent to the your email address.')
+            ? __('A new verification link has been sent to the email address you provided during registration.')
             : session('status');
     @endphp
     <x-text-status :status="$statusMessage" />

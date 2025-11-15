@@ -1,15 +1,18 @@
 <x-auth-layout>
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
-        <div class="space-y-4">
-            <x-text>{{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}</x-text>
-            <div class="space-y-2">
+        <div class="space-y-1">
+            <x-text-title class="text-center">{{ __('Forgot password') }}</x-text-title>
+            <x-text class="text-center">{{ __('Enter your email to receive a password reset link') }}</x-text>
+        </div>
+        <div class="space-y-4 mt-8">
+            <div class="space-y-1">
+                <x-label for="email">{{ __('Email') }}</x-label>
                 <x-input type="email" id="email" name="email" value="" placeholder="{{ __('Enter email') }}" required />
                 {{-- Uncomment below to display error messages. --}}
-                {{-- <x-input-error :messages="$errors->get('email')" /> --}}
+                {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
             </div>
             <x-text-status :status="session('status')" />
-
             {{-- This is a trick for when the email is not found but still shows the success message for security purposes. --}}
             @if ($errors->has('email'))
                 @php
@@ -17,7 +20,6 @@
                 @endphp
                 <x-text-status :status="$statusMessage" />
             @endif
-
         </div>
         <div class="space-y-2 mt-8">
             <x-button type="submit" class="w-full">

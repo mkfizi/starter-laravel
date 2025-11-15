@@ -9,7 +9,7 @@
         'bg-transparent dark:bg-transparent border-transparent': !isScrolled
     }"
 >
-    <div class="flex justify-between lg:justify-end items-center mx-auto px-4 sm:px-8 py-2">
+    <div class="flex justify-between lg:justify-end items-center mx-auto px-4 sm:px-8 py-3">
         <div class="lg:hidden lg:invisible flex items-center gap-4">
             {{-- Sidebar Open --}}
             <x-button-ghost type="button" class="!p-2" aria-controls="sidebar" aria-label="Open sidebar."
@@ -21,7 +21,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/></svg>
             </x-button-ghost>
             {{-- END Sidebar Open --}}
-            <a href="{{ route('dashboard') }}" class="font-medium text-neutral-800 dark:text-neutral-200 text-base">Title</a>
+            <a href="{{ route('dashboard') }}" class="font-medium text-neutral-800 dark:text-neutral-200 text-lg">Title</a>
         </div>
         <div class="flex gap-2">
             {{-- Notification Menu Component --}}

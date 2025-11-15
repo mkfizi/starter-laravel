@@ -1,5 +1,5 @@
 <x-dashboard-layout>
     <x-card>
-        Welcome to your dashboard!
+        <x-text>Welcome to your dashboard!</x-text>
     </x-card>
 </x-dashboard-layout>

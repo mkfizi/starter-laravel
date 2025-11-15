@@ -1,8 +1,11 @@
 <x-auth-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
-        <div class="space-y-4">
-            <x-text-title class="text-center">{{ __('Sign Up') }}</x-text-title>
+        <div class="space-y-1">
+            <x-text-title class="text-center">{{ __('Create an account') }}</x-text-title>
+            <x-text class="text-center">{{ __('Enter your details below to create your account') }}</x-text>
+        </div>
+        <div class="space-y-4 mt-8">
             <div class="space-y-1">
                 <x-label for="name">{{ __('Name') }}</x-label>
                 <x-input type="text" id="name" name="name" value="{{ old('name') }}" placeholder="{{ __('Enter name') }}" required />
@@ -28,7 +31,10 @@
             <x-button type="submit" class="w-full">
                 <span>{{ __('Sign Up') }}</span>
             </x-button>
-            <x-link href="{{ route('login') }}" class="block mx-auto w-fit underline">{{ __('Already have an account? Log in') }}</x-link>
+            <div class="flex justify-center gap-1">
+                <x-text>{{ __('Already have an account?') }}</x-text>
+                <x-link href="{{ route('login') }}" class="underline">{{ __('Log in') }}</x-link>
+            </div>
         </div>
     </form>
 </x-auth-layout>

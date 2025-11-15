@@ -32,19 +32,30 @@ return [
 
     'dashboard' => [
         [
-            'route' => 'dashboard',
             'title' => 'Dashboard'
+        ],
+        [
+            'route' => 'dashboard',
+            'title' => 'Home'
+        ],
+        [
+            'route' => 'dashboard.layouts.collapsible',
+            'title' => 'Collapsible'
+        ],
+        [
+            'route' => 'dashboard.layouts.navbar',
+            'title' => 'Navbar'
         ],
         [
             'title' => 'Pages'
         ],
         [
-            'route' => 'dashboard.pages.blank',
-            'title' => 'Blank Page'
+            'route' => 'dashboard.pages.styleguide',
+            'title' => 'Styleguide'
         ],
         [
-            'route' => 'dashboard.pages.404',
-            'title' => '404 Page'
+            'route' => 'dashboard.pages.blank',
+            'title' => 'Blank'
         ],
         [
             'route' => 'dashboard.components.',

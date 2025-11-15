@@ -14,8 +14,8 @@
         ? 'bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800'
         : 'bg-transparent dark:bg-transparent border-transparent'"
 >
-    <div class="flex justify-between items-center mx-auto px-4 sm:px-8 py-2 max-w-screen-xl">
-        <a href="{{ route('web.index') }}" class="font-medium text-neutral-800 dark:text-neutral-200 text-base">{{ config('app.name') }}</a>
+    <div class="flex justify-between items-center mx-auto px-4 sm:px-8 py-3 max-w-screen-xl">
+        <a href="{{ route('web.index') }}" class="font-medium text-neutral-800 dark:text-neutral-200 text-lg">{{ config('app.name') }}</a>
         <div class="flex items-center gap-2 lg:gap-6">
             {{-- Navbar Menu --}}
             <div id="navbar-menu" class="hidden invisible lg:visible lg:block top-0 lg:top-auto left-0 lg:left-auto z-10 lg:z-auto fixed lg:relative bg-black/80 lg:bg-transparent w-dvw lg:w-auto h-dvh lg:h-auto"
