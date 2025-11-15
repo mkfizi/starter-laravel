@@ -37,12 +37,16 @@
                     {{-- END Navbar Menu Close --}}
                     {{-- Navbar Menu Links --}}
                     <ul class="lg:flex lg:items-center lg:gap-8 space-y-1 lg:space-y-0 mt-8 lg:mt-0 leading-0">
-                        @foreach(config('route.web') as $link)
+                        @foreach(config('routes.web') as $link)
                             <li>
-                                @if (request()->is(ltrim($link['href'], '/')))
-                                    <a href="{{ $link['href'] }}" class="font-medium text-black hover:dark:text-neutral-200 hover:text-neutral-700 focus:dark:text-neutral-200 focus:text-neutral-700 dark:text-white text-sm cursor-pointer">{{ $link['name'] }}</a>
-                                @else
-                                    <a href="{{ $link['href'] }}" class="inline-block lg:hover:bg-transparent lg:dark:hover:bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 lg:p-0 px-3 py-2 rounded w-full font-medium text-black lg:hover:dark:text-white lg:hover:text-black lg:focus:dark:text-white lg:focus:text-black lg:visited:text-neutral-700 lg:dark:text-neutral-400 lg:dark:visited:text-neutral-200 lg:text-neutral-500 dark:text-white text-sm text-left cursor-pointer">{{ $link['name'] }}</a>
+                                @if (isset($link['route']))
+                                    @if (request()->routeIs($link['route']))
+                                        <a href="{{ route($link['route']) }}" class="font-medium text-black hover:dark:text-neutral-200 hover:text-neutral-700 focus:dark:text-neutral-200 focus:text-neutral-700 dark:text-white text-sm cursor-pointer">{{ $link['title'] }}</a>
+                                    @else
+                                        <a href="{{ route($link['route']) }}" class="inline-block lg:hover:bg-transparent lg:dark:hover:bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 lg:p-0 px-3 py-2 rounded w-full font-medium text-black lg:hover:dark:text-white lg:hover:text-black lg:focus:dark:text-white lg:focus:text-black lg:visited:text-neutral-700 lg:dark:text-neutral-400 lg:dark:visited:text-neutral-200 lg:text-neutral-500 dark:text-white text-sm text-left cursor-pointer">{{ $link['title'] }}</a>
+                                    @endif
+                                @elseif (isset($link['href']))
+                                    <a href="{{ $link['href'] }}" target="_blank" rel="noopener" class="inline-block lg:hover:bg-transparent lg:dark:hover:bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 lg:p-0 px-3 py-2 rounded w-full font-medium text-black lg:hover:dark:text-white lg:hover:text-black lg:focus:dark:text-white lg:focus:text-black lg:visited:text-neutral-700 lg:dark:text-neutral-400 lg:dark:visited:text-neutral-200 lg:text-neutral-500 dark:text-white text-sm text-left cursor-pointer">{{ $link['title'] }}</a>
                                 @endif
                             </li>
                         @endforeach

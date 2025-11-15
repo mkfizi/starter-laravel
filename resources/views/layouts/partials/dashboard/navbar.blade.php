@@ -14,7 +14,7 @@
             {{-- Sidebar Open --}}
             <x-button-ghost type="button" class="!p-2" aria-controls="sidebar" aria-label="Open sidebar."
                 x-data="{ isSidebarOpen: false }"
-                @click="$dispatch('open-sidebar');"
+                @click="$dispatch('open-sidebar')"
                 @set-sidebar-expanded.window="isSidebarOpen = $event.detail"
                 ::aria-expanded="isSidebarOpen"
             >
@@ -81,7 +81,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"/><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"/></svg>
                     </x-button-ghost>
                 </x-slot>
-                <x-dropdown-link href="#">{{ __('Profile') }}</x-dropdown-link>
+                <x-dropdown-link href="{{ route('dashboard.profile.index') }}">{{ __('Profile') }}</x-dropdown-link>
                 <x-dropdown-link href="#">{{ __('Settings') }}</x-dropdown-link>
                 <x-dropdown-divider />
                 <form method="POST" action="{{ route('logout') }}">

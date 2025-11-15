@@ -27,15 +27,15 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg>
         </x-button-ghost>
         {{-- END Sidebar Close --}}
-        <a href="{{ route('dashboard') }}" class="py-4 pr-4 sm:pr-8 pl-6.5 sm:pl-10.5 font-medium text-neutral-800 dark:text-neutral-200 text-base">{{ config('app.name') }}</a>
-        <ul class="space-y-1 px-4 sm:px-8 pb-4 overflow-y-auto">
-            @foreach(config('route.dashboard') as $link)
-                @if(isset($link['href']))
+        <a href="{{ route('dashboard') }}" class="px-4 sm:px-8 py-4 font-medium text-neutral-800 dark:text-neutral-200 text-base">{{ config('app.name') }}</a>
+        <ul class="space-y-1 px-2 sm:px-6 pb-4 overflow-y-auto">
+            @foreach(config('routes.dashboard') as $link)
+                @if(isset($link['route']) && !isset($link['links']))
                     <li>
-                        @if (request()->is(ltrim($link['href'], '/')) || request()->is(ltrim($link['href'], '/') . '/*'))
-                            <a href="{{ $link['href'] }}" class="inline-block bg-neutral-100 dark:bg-neutral-800 px-3 py-2 rounded w-full font-medium text-black dark:text-white text-sm text-left cursor-pointer">{{ $link['name'] }}</a>
+                        @if (request()->routeIs($link['route']))
+                            <x-button-link-secondary href="{{ route($link['route']) }}" class="inline-block w-full">{{ $link['title'] }}</x-button-link-secondary>
                         @else
-                            <a href="{{ $link['href'] }}" class="inline-block hover:bg-neutral-100 dark:hover:bg-neutral-800 px-3 py-2 rounded w-full font-medium text-black dark:text-white text-sm text-left cursor-pointer">{{ $link['name'] }}</a>
+                            <x-button-link-ghost href="{{ route($link['route']) }}" class="inline-block w-full">{{ $link['title'] }}</x-button-link-ghost>
                         @endif
                     </li>
                 @elseif(isset($link['links']))
@@ -43,13 +43,23 @@
                         <div class="space-y-1 mt-2"
                             x-data="{ isModuleMenuOpen: false }"
                         >
-                            <button type="button" class="flex justify-between items-center hover:bg-neutral-100 dark:hover:bg-neutral-800 px-3 py-2 rounded w-full font-semibold text-black dark:text-white text-sm text-left uppercase cursor-pointer" aria-label="Toggle module menu."
-                                @click="isModuleMenuOpen = !isModuleMenuOpen" 
-                                :aria-expanded="isModuleMenuOpen"
-                            >
-                                <span>{{ $link['name'] }}</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-black dark:stroke-white w-5 h-5"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l4 -4l4 4"/><path d="M16 15l-4 4l-4 -4"/></svg>
-                            </button>
+                            @if (request()->routeIs($link['route'].'*'))
+                                <x-button-secondary type="button" class="flex justify-between items-center w-full !font-semibold uppercase tracking-wide" aria-label="Toggle module menu."
+                                    @click="isModuleMenuOpen = !isModuleMenuOpen" 
+                                    ::aria-expanded="isModuleMenuOpen"
+                                >
+                                    <span>{{ $link['title'] }}</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-black dark:stroke-white w-5 h-5"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l4 -4l4 4"/><path d="M16 15l-4 4l-4 -4"/></svg>
+                                </x-button-secondary>
+                            @else
+                                <x-button-ghost type="button" class="flex justify-between items-center w-full !font-semibold uppercase tracking-wide" aria-label="Toggle module menu."
+                                    @click="isModuleMenuOpen = !isModuleMenuOpen" 
+                                    ::aria-expanded="isModuleMenuOpen"
+                                >
+                                    <span>{{ $link['title'] }}</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-black dark:stroke-white w-5 h-5"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l4 -4l4 4"/><path d="M16 15l-4 4l-4 -4"/></svg>
+                                </x-button-ghost>
+                            @endif
                             <div class="overflow-hidden"
                                 x-show="isModuleMenuOpen"
                                 x-cloak
@@ -58,10 +68,10 @@
                                 <ul class="space-y-1 leading-0">
                                     @foreach ($link['links'] as $sublink)
                                         <li>
-                                            @if (request()->is(ltrim($sublink['href'], '/')) || request()->is(ltrim($sublink['href'], '/') . '/*'))
-                                                <a href="{{ $sublink['href'] }}" class="inline-block bg-neutral-100 dark:bg-neutral-800 px-3 py-2 rounded w-full font-medium text-black dark:text-white text-sm text-left cursor-pointer">{{ $link['name'] }}</a>
+                                            @if (request()->routeIs($sublink['route']))
+                                                <x-button-link-secondary href="{{ route($sublink['route']) }}" class="inline-block w-full">{{ $sublink['title'] }}</x-button-link-secondary>
                                             @else
-                                                <a href="{{ $sublink['href'] }}" class="inline-block hover:bg-neutral-100 dark:hover:bg-neutral-800 px-3 py-2 rounded w-full font-medium text-black dark:text-white text-sm text-left cursor-pointer">{{ $sublink['name'] }}</a>
+                                                <x-button-link-ghost href="{{ route($sublink['route']) }}" class="inline-block w-full">{{ $sublink['title'] }}</x-button-link-ghost>
                                             @endif
                                         </li>
                                     @endforeach
@@ -71,7 +81,7 @@
                     </li>
                 @else
                     <li>
-                        <p class="mt-2 py-2 pl-2.5 font-semibold text-neutral-800 dark:text-neutral-200 text-sm uppercase">{{ $link['name'] }}</p>
+                        <p class="mt-2 py-2 pl-2.5 font-semibold text-black dark:text-white text-sm uppercase tracking-wide">{{ $link['title'] }}</p>
                     </li>
                 @endif
             @endforeach
