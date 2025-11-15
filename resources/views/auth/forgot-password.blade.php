@@ -1,5 +1,4 @@
 <x-auth-layout>
-    
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
         <div class="space-y-4">
