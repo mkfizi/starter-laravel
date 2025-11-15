@@ -1,4 +1,4 @@
-<x-dashboard-layout title="Styleguide">
+<x-dashboard-layout title="{{ __('Style Guide') }}">
     <x-card>
         <x-text-title>{{ __('Typography') }}</x-text-title>
         <div class="space-y-4 mt-4">

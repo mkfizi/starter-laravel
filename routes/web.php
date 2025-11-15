@@ -25,16 +25,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::delete('/destroy', [Profile::class, 'destroy'])->name('destroy');
         });
 
+        Route::prefix('layouts')->name('layouts.')->group(function () {
+            Route::get('/collapse', fn() => view('dashboard.layouts.collapse'))->name('collapse');
+            Route::get('/stacked', fn() => view('dashboard.layouts.stacked'))->name('stacked');
+        });
+
         Route::prefix('pages')->name('pages.')->group(function () {
             Route::get('/styleguide', fn() => view('dashboard.pages.styleguide'))->name('styleguide');
             Route::get('/blank', fn() => view('dashboard.pages.blank'))->name('blank');
-            Route::get('/404', fn() => view('dashboard.pages.404'))->name('404');
-        });
-
-        Route::prefix('layouts')->name('layouts.')->group(function () {
-            Route::get('/collapsible', fn() => view('dashboard.layouts.collapsible'))->name('collapsible');
-            Route::get('/navbar', fn() => view('dashboard.layouts.navbar'))->name('navbar');
-            Route::get('/404', fn() => view('dashboard.pages.404'))->name('404');
         });
 
         Route::prefix('components')->name('components.')->group(function () {

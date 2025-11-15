@@ -1,10 +1,6 @@
-@props([
-    'position' => 'right',
-])
-
 <x-dropdown 
     id="dark-mode-menu"
-    position="{{ $position }}"
+    position="right"
     extra-data="{
         theme: localStorage.theme || 'system',
         toggleTheme(newTheme) {
@@ -19,12 +15,8 @@
         },
     }"
 >
-    <x-slot name="custom">
-        <x-button-ghost type="button" class="!p-2" aria-controls="dark-mode-menu" aria-label="Toggle dark mode menu."
-            x-ref="button"
-            @click="isDropdownOpen = !isDropdownOpen"
-            ::aria-expanded="isDropdownOpen"
-        >
+    <x-slot name="trigger">
+        <x-button-ghost type="button" class="!p-2" aria-controls="dark-mode-menu" aria-label="Toggle dark mode menu.">
             <svg xmlns="http://www.w3.org/2000/svg" class="dark:hidden stroke-black w-5 h-5" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z"/><path d="M6.343 17.657l-1.414 1.414"/><path d="M6.343 6.343l-1.414 -1.414"/><path d="M17.657 6.343l1.414 -1.414"/><path d="M17.657 17.657l1.414 1.414"/><path d="M4 12h-2"/><path d="M12 4v-2"/><path d="M20 12h2"/><path d="M12 20v2"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" class="hidden dark:block stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/></svg>
         </x-button-ghost>

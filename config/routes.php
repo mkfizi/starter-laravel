@@ -39,19 +39,19 @@ return [
             'title' => 'Home'
         ],
         [
-            'route' => 'dashboard.layouts.collapsible',
-            'title' => 'Collapsible'
+            'route' => 'dashboard.layouts.collapse',
+            'title' => 'Collapse'
         ],
         [
-            'route' => 'dashboard.layouts.navbar',
-            'title' => 'Navbar'
+            'route' => 'dashboard.layouts.stacked',
+            'title' => 'Stacked'
         ],
         [
             'title' => 'Pages'
         ],
         [
             'route' => 'dashboard.pages.styleguide',
-            'title' => 'Styleguide'
+            'title' => 'Style Guide'
         ],
         [
             'route' => 'dashboard.pages.blank',
