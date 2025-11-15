@@ -24,7 +24,7 @@
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
             </div>
         </div>
-        <div class="space-y-2 mt-8 mb-4">
+        <div class="space-y-2 mt-8">
             <x-button type="submit" class="w-full">
                 <span>{{ __('Sign Up') }}</span>
             </x-button>

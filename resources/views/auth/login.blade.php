@@ -24,7 +24,7 @@
                 <x-text-status :status="session('status')" />
             @endif
         </div>
-        <div class="space-y-2 mt-8 mb-4">
+        <div class="space-y-2 mt-8">
             <x-button type="submit" class="w-full">
                 <span>{{ __('Login') }}</span>
             </x-button>

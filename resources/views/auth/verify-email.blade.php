@@ -6,7 +6,7 @@
             : session('status');
     @endphp
     <x-text-status :status="$statusMessage" />
-    <div class="space-y-2 mt-8 mb-4">
+    <div class="space-y-2 mt-8">
         <form method="POST" action="{{ route('verification.send') }}">
             @csrf
             <x-button class="w-full">{{ __('Resend Verification Email') }}</x-button>

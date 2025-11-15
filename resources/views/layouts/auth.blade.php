@@ -7,9 +7,9 @@
     </nav>
     <main class="mx-auto px-4 sm:px-8 py-16 w-full max-w-screen-xl">
         <div class="mx-auto pt-32 max-w-sm">
-            <div class="p-4 border border-neutral-200 dark:border-neutral-800 rounded overflow-hidden">
+            <x-card>
                 {{ $slot }}
-            </div>
+            </x-card>
         </div>
     </main>
     @include('layouts.partials.footer')
