@@ -32,7 +32,7 @@ return [
 
     'dashboard' => [
         [
-            'title' => 'Layouts'
+            'title' => 'Dashboard'
         ],
         [
             'route' => 'dashboard',
@@ -47,31 +47,46 @@ return [
             'title' => 'Stacked'
         ],
         [
-            'route' => 'dashboard.components.',
+            'title' => 'UI Styleguide'
+        ],
+        [
+            'route' => 'dashboard.ui.typography',
+            'title' => 'Typography'
+        ],
+        [
+            'route' => 'dashboard.ui.element',
+            'title' => 'Element'
+        ],
+        [
+            'route' => 'dashboard.ui.form',
+            'title' => 'Form'
+        ],
+        [
+            'route' => 'dashboard.ui.components.',
             'title' => 'Components',
             'links' => [
                 [
-                    'route' => 'dashboard.components.alert',
+                    'route' => 'dashboard.ui.components.alert',
                     'title' => 'Alert'
                 ],
                 [
-                    'route' => 'dashboard.components.button',
+                    'route' => 'dashboard.ui.components.button',
                     'title' => 'Button'
                 ],
                 [
-                    'route' => 'dashboard.components.dropdown',
+                    'route' => 'dashboard.ui.components.dropdown',
                     'title' => 'Dropdown'
                 ],
                 [
-                    'route' => 'dashboard.components.modal',
+                    'route' => 'dashboard.ui.components.modal',
                     'title' => 'Modal'
                 ],
                 [
-                    'route' => 'dashboard.components.typography',
+                    'route' => 'dashboard.ui.components.typography',
                     'title' => 'Typography'
                 ],
                 [
-                    'route' => 'dashboard.components.offcanvas',
+                    'route' => 'dashboard.ui.components.offcanvas',
                     'title' => 'Offcanvas'
                 ],
             ],

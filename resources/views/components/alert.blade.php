@@ -6,7 +6,7 @@
     x-data
 >
     <div class="grow">
-        {{ $slot }}
+        <x-text>{{ $slot }}</x-text>
     </div>
     <x-button-ghost type="button" class="!p-2" aria-controls="{{ $id }}" aria-label="Close alert."
         @click="$root.remove()"

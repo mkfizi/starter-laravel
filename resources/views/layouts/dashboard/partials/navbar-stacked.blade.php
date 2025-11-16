@@ -125,6 +125,6 @@
             </div>  
             {{-- END Navbar Menu --}}
         </div>
-        @include('layouts.dashboard.partials.navbar-buttons')
+        @include('layouts.dashboard.partials.navbar-dropdowns')
     </div>
 </nav>

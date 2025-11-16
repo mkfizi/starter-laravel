@@ -1,7 +1,9 @@
 @props([
     'id' => 'modal-' . \Illuminate\Support\Str::random(8),
     'width' => 'sm',
-    'title' => 'Modal Title'
+    'title' => 'Modal Title',
+    'action' => null,
+    'method' => 'POST',
 ])
 
 @php
@@ -31,19 +33,31 @@
         >
             <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg>
         </x-button-ghost>
-        <div class="space-y-2">
-            @if(isset($title))
-                <x-text-title>{{ $title }}</x-text-title>
-            @endif
-            {{ $slot }}
-        </div>
-        <div class="flex flex-wrap justify-end gap-2 mt-8">
-            <x-button type="button" aria-controls="{{ $id}}"
-                @click="isModalOpen = false"
-                ::aria-expanded="isModalOpen"
-            >
-                <span>{{ __('Okay') }}</span>
-            </x-button>
-        </div>
+        
+            <form action="{{ $action }}" method="POST">
+                @csrf
+                @method($method)
+                <div class="space-y-2">
+                    @if(isset($title))
+                        <x-text-title>{{ $title }}</x-text-title>
+                    @endif
+                    {{ $slot }}
+                </div>
+            <div class="flex flex-wrap justify-end gap-2 mt-8">
+                    <x-button-outline type="button" aria-controls="{{ $id}}"
+                        @click="isModalOpen = false"
+                        ::aria-expanded="isModalOpen"
+                    >
+                        <span>{{ __('Cancel') }}</span>
+                    </x-button-outline>
+                    @isset($submitButton)
+                        {{ $submitButton }}
+                    @else
+                        <x-button type="submit">
+                            <span>{{ __('Confirm') }}</span>
+                        </x-button>
+                    @endif
+            </div>
+        </form>
     </div>  
 </div>

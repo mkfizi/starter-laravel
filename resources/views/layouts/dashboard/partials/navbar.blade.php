@@ -23,6 +23,6 @@
             {{-- END Sidebar Open --}}
             <a href="{{ route('dashboard') }}" class="font-medium text-neutral-800 dark:text-neutral-200 text-lg">Title</a>
         </div>
-        @include('layouts.dashboard.partials.navbar-buttons')
+        @include('layouts.dashboard.partials.navbar-dropdowns')
     </div>
 </nav>
