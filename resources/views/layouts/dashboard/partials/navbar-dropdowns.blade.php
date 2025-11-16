@@ -3,7 +3,7 @@
     <x-dropdown 
         id="notification-menu"
         width="lg"
-        position="-right-22"
+        position="!-right-22 mt-2"
     >
         <x-slot name="trigger">
             <x-button-ghost type="button" class="relative !p-2" aria-controls="dark-mode-menu" aria-label="Toggle dark mode menu.">   
@@ -36,12 +36,12 @@
     </x-dropdown>
     {{-- END Notification Menu --}} 
     {{-- Dark Mode Menu --}}
-    <x-dark-mode-menu position="-right-11" />
+    <x-dark-mode-menu position="!-right-11 mt-2" />
     {{-- END Dark Mode Menu --}}
     {{-- Settings Menu --}}
     <x-dropdown 
         id="settings-menu"
-        position="right"
+        position="right-0 mt-2"
     >
         <x-slot name="trigger">
             <x-button-ghost type="button" class="!p-2" aria-controls="dark-mode-menu" aria-label="Toggle dark mode menu.">

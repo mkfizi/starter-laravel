@@ -36,17 +36,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
 
         Route::prefix('ui')->name('ui.')->group(function () {
-            Route::get('/typography', fn() => view('dashboard.ui.styleguide'))->name('typography');
-            Route::get('/element', fn() => view('dashboard.ui.element'))->name('element');
-            Route::get('/form', fn() => view('dashboard.ui.form'))->name('form');
+            Route::get('/styleguide', fn() => view('dashboard.ui.styleguide'))->name('styleguide');
             
             Route::prefix('components')->name('components.')->group(function () {
-                Route::get('/alert', fn() => view('dashboard.components.alert'))->name('alert');
-                Route::get('/button', fn() => view('dashboard.components.button'))->name('button');
-                Route::get('/dropdown', fn() => view('dashboard.components.dropdown'))->name('dropdown');
-                Route::get('/modal', fn() => view('dashboard.components.modal'))->name('modal');
-                Route::get('/typography', fn() => view('dashboard.components.typography'))->name('typography');
-                Route::get('/offcanvas', fn() => view('dashboard.components.offcanvas'))->name('offcanvas'); 
+                Route::get('/alert', fn() => view('dashboard.ui.components.alert'))->name('alert');
+                Route::get('/dropdown', fn() => view('dashboard.ui.components.dropdown'))->name('dropdown');
+                Route::get('/modal', fn() => view('dashboard.ui.components.modal'))->name('modal');
+                Route::get('/typography', fn() => view('dashboard.ui.components.typography'))->name('typography');
+                Route::get('/offcanvas', fn() => view('dashboard.ui.components.offcanvas'))->name('offcanvas');
             });
         });
     });

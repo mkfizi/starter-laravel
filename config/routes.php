@@ -47,19 +47,11 @@ return [
             'title' => 'Stacked'
         ],
         [
-            'title' => 'UI Styleguide'
+            'title' => 'UI'
         ],
         [
-            'route' => 'dashboard.ui.typography',
-            'title' => 'Typography'
-        ],
-        [
-            'route' => 'dashboard.ui.element',
-            'title' => 'Element'
-        ],
-        [
-            'route' => 'dashboard.ui.form',
-            'title' => 'Form'
+            'route' => 'dashboard.ui.styleguide',
+            'title' => 'Styleguide'
         ],
         [
             'route' => 'dashboard.ui.components.',
@@ -70,25 +62,13 @@ return [
                     'title' => 'Alert'
                 ],
                 [
-                    'route' => 'dashboard.ui.components.button',
-                    'title' => 'Button'
-                ],
-                [
                     'route' => 'dashboard.ui.components.dropdown',
                     'title' => 'Dropdown'
                 ],
                 [
                     'route' => 'dashboard.ui.components.modal',
                     'title' => 'Modal'
-                ],
-                [
-                    'route' => 'dashboard.ui.components.typography',
-                    'title' => 'Typography'
-                ],
-                [
-                    'route' => 'dashboard.ui.components.offcanvas',
-                    'title' => 'Offcanvas'
-                ],
+                ]
             ],
         ],
     ],

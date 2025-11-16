@@ -55,7 +55,7 @@
                 @elseif(isset($link['links']))
                     <li>
                         <div class="space-y-1"
-                            x-data="{ isModuleMenuOpen: false }"
+                            x-data="{ isModuleMenuOpen: {{ request()->routeIs($link['route'].'*') ? 'true' : 'false' }} }"
                         >
                             @if (request()->routeIs($link['route'].'*'))
                                 <x-button-secondary type="button" class="flex justify-between items-center w-full" aria-label="Toggle module menu."

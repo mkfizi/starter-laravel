@@ -33,23 +33,24 @@
             <div class="flex gap-2 mt-8">
                 <x-button-danger
                     x-data="{ isModalOpen: false }"
-                    @click="$dispatch('open-modal')"
-                    @set-modal-expanded.window="isModalOpen = $event.detail"
+                    @click="$dispatch('open-modal-delete-account')"
+                    @set-modal-delete-account.window="isModalOpen = $event.detail"
                     ::aria-expanded="isModalOpen"
+                    aria-controls="modal-delete-account"
                 >{{ __('Delete Account' )}}</x-button-danger>
             </div>
         </x-card>
     </div>
     <x-modal-form
+        id="modal-delete-account"
         title="{{ __('Delete Account') }}" 
-        route="#"
         route="{{ route('dashboard.settings.destroy', $user) }}"
         method="DELETE"
     >
-        <x-slot name="submitButton">
+        <x-text>{{ __('Please enter your password to proceed with account deletion.') }}</x-text>
+        <x-input id="password" name="password" type="password" placeholder="{{ __('Enter your password') }}" required />
+        <x-slot name="submit">
             <x-button-danger type="submit">{{ __('Confirm') }}</x-button-danger>
         </x-slot>
-        <x-text>{{ __('Please enter your password to proceed with account deletion.') }}</x-text>
-        <x-input id="password" name="password" type="password" class="mt-2" placeholder="{{ __('Enter your password') }}" required />
     </x-modal-form>
 @endsection

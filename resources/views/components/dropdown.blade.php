@@ -2,7 +2,6 @@
     'id' => 'dropdown-' . \Illuminate\Support\Str::random(8),  
     'width' => 'sm', 
     'position' => 'left',
-    'extraData' => '{}'
 ])
 
 @php
@@ -20,8 +19,8 @@
 
 @endphp
 
-<div class="relative"
-    x-data="{ isDropdownOpen: false, ...{{ $extraData }} }"
+<div class="relative w-fit"
+    x-data="{ isDropdownOpen: false }"
     @click.outside="isDropdownOpen = false"
     @keydown.escape.window="isDropdownOpen = false"
 >

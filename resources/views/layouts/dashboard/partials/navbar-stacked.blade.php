@@ -58,10 +58,17 @@
                                 <li class="hidden invisible lg:visible lg:block">
                                     <x-dropdown>
                                         <x-slot name="trigger">
-                                            <x-button-ghost type="button" class="flex items-center gap-2" aria-controls="dark-mode-menu" aria-label="Toggle dark mode menu.">
-                                                <span>{{ $link['title'] }}</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6"/></svg>
-                                            </x-button-ghost>
+                                            @if (request()->routeIs($link['route'].'*'))
+                                                <x-button-secondary type="button" class="flex items-center gap-2" aria-controls="dark-mode-menu" aria-label="Toggle dark mode menu.">
+                                                    <span>{{ $link['title'] }}</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6"/></svg>
+                                                </x-button-secondary>
+                                            @else
+                                                <x-button-ghost type="button" class="flex items-center gap-2" aria-controls="dark-mode-menu" aria-label="Toggle dark mode menu.">
+                                                    <span>{{ $link['title'] }}</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6"/></svg>
+                                                </x-button-ghost>
+                                            @endif
                                         </x-slot>
                                         @foreach($link['links'] as $sublink)
                                             <x-dropdown-link href="{{ route($sublink['route']) }}">{{ $sublink['title'] }}</x-dropdown-link>
@@ -70,7 +77,7 @@
                                 </li>
                                 <li class="lg:hidden lg:invisible">
                                     <div class="space-y-1"
-                                        x-data="{ isModuleMenuOpen: false }"
+                                        x-data="{ isModuleMenuOpen: {{ request()->routeIs($link['route'].'*') ? 'true' : 'false' }} }"
                                     >
                                         @if (request()->routeIs($link['route'].'*'))
                                             <x-button-secondary type="button" class="flex justify-between items-center w-full" aria-label="Toggle module menu."
