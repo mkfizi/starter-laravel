@@ -1,4 +1,4 @@
-<x-auth-layout>
+<x-layouts.auth>
     <form method="POST" action="{{ route('password.update') }}">
         @csrf
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
@@ -30,4 +30,4 @@
             <x-link href="{{ route('login') }}" class="block mx-auto w-fit underline">{{ __('Back to login') }}</x-link>
         </div>
     </form>
-</x-auth-layout>
+</x-layouts.auth>

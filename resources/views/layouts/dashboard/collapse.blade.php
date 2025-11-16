@@ -2,7 +2,7 @@
     'title' =>  __('Dashboard'),
 ])
 
-<x-app-layout>
+<x-layouts.app>
     <div class="flex">
         @include('layouts.dashboard.partials.sidebar-collapse')
         <div class="relative flex-1 w-full min-h-dvh">
@@ -21,4 +21,4 @@
             @include('layouts.dashboard.partials.footer')
         </div>
     </div>
-</x-app-layout>
+</x-layouts.app>

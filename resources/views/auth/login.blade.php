@@ -1,4 +1,4 @@
-<x-auth-layout>
+<x-layouts.auth>
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="space-y-1">
@@ -37,4 +37,4 @@
             </div>
         </div>
     </form>
-</x-auth-layout>
+</x-layouts.auth>

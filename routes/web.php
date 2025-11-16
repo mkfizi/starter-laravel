@@ -30,11 +30,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/stacked', fn() => view('dashboard.layouts.stacked'))->name('stacked');
         });
 
-        Route::prefix('pages')->name('pages.')->group(function () {
-            Route::get('/styleguide', fn() => view('dashboard.pages.styleguide'))->name('styleguide');
-            Route::get('/blank', fn() => view('dashboard.pages.blank'))->name('blank');
-        });
-
         Route::prefix('components')->name('components.')->group(function () {
             Route::get('/alert', fn() => view('dashboard.components.alert'))->name('alert');
             Route::get('/button', fn() => view('dashboard.components.button'))->name('button');

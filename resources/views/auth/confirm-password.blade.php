@@ -1,4 +1,4 @@
-<x-auth-layout>
+<x-layouts.auth>
     <form method="POST" action="{{ route('password.confirm') }}">
         @csrf
         <div class="space-y-4">
@@ -15,4 +15,4 @@
             <x-link href="{{ url()->previous() }}" class="block mx-auto w-fit underline">{{ __('Back') }}</x-link>
         </div>
     </form>
-</x-auth-layout>
+</x-layouts.auth>

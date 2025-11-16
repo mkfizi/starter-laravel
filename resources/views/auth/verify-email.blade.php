@@ -1,4 +1,4 @@
-<x-auth-layout>
+<x-layouts.auth>
     <x-text class="my-4">{{ __('Please verify your email address by clicking on the link we just emailed to you.') }}</x-text>
     @php
         $statusMessage = session('status') === 'verification-link-sent'
@@ -16,4 +16,4 @@
             <x-button-outline class="w-full">{{ __('Log Out') }}</x-button-outline>
         </form>
     </div>
-</x-auth-layout>
+</x-layouts.auth>

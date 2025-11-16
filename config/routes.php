@@ -32,7 +32,7 @@ return [
 
     'dashboard' => [
         [
-            'title' => 'Dashboard'
+            'title' => 'Layouts'
         ],
         [
             'route' => 'dashboard',
@@ -45,17 +45,6 @@ return [
         [
             'route' => 'dashboard.layouts.stacked',
             'title' => 'Stacked'
-        ],
-        [
-            'title' => 'Pages'
-        ],
-        [
-            'route' => 'dashboard.pages.styleguide',
-            'title' => 'Style Guide'
-        ],
-        [
-            'route' => 'dashboard.pages.blank',
-            'title' => 'Blank'
         ],
         [
             'route' => 'dashboard.components.',
