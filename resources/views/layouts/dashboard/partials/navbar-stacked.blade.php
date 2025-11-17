@@ -4,12 +4,12 @@
         isNavbarMenuOpen: false,
         isScrolled: window.scrollY > 0
     }"
-    @resize.window="
+    x-on:resize.window="
         if (window.innerWidth >= breakpoint) {
             isNavbarMenuOpen = false;
         }
     "
-    @scroll.window="isScrolled = window.scrollY > 0;"
+    x-on:scroll.window="isScrolled = window.scrollY > 0;"
     :class="isScrolled
         ? 'bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800'
         : 'bg-transparent dark:bg-transparent border-transparent'"
@@ -18,18 +18,18 @@
         <div class="flex items-center gap-4">
             {{-- Navbar Menu Open --}}
             <button type="button" class="lg:hidden lg:invisible hover:bg-neutral-100 focus:bg-neutral-100 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 disabled:opacity-60 p-2 rounded font-medium text-black dark:text-white text-sm cursor-pointer disabled:pointer-events-none" aria-controls="navbar-menu" aria-label="Open navbar menu."
-                @click="isNavbarMenuOpen = true"
+                x-on:click="isNavbarMenuOpen = true"
                 :aria-expanded="isNavbarMenuOpen"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/></svg>
             </button>
             {{-- END Navbar Menu Open --}}
-            <a href="{{ route('dashboard') }}" class="font-medium text-neutral-800 dark:text-neutral-200 text-lg">{{ config('app.name') }}</a>
+            <x-nav-title />
             {{-- Navbar Menu --}}
             <div id="navbar-menu" class="hidden invisible lg:visible lg:block top-0 lg:top-auto left-0 lg:left-auto !z-20 z-10 lg:z-auto fixed lg:relative bg-black/80 lg:bg-transparent lg:ml-8 w-dvw lg:w-auto h-dvh lg:h-auto"
                 x-trap.noautofocus.noscroll="isNavbarMenuOpen && window.innerWidth < breakpoint"
-                @click.self="isNavbarMenuOpen = false"
-                @keydown.escape.window="isNavbarMenuOpen = false"
+                x-on:click.self="isNavbarMenuOpen = false"
+                x-on:keydown.escape.window="isNavbarMenuOpen = false"
                 :class="{ 'hidden invisible' : !isNavbarMenuOpen || window.innerWidth >= breakpoint }"
                 :inert="!isNavbarMenuOpen && window.innerWidth < breakpoint"
             >
@@ -37,7 +37,7 @@
                 <div class="top-0 left-0 fixed lg:relative bg-white lg:bg-transparent dark:bg-neutral-950 px-4 sm:px-8 lg:px-0 py-4 lg:py-0 border-neutral-200 lg:border-0 dark:border-neutral-800 border-r w-full sm:w-64 lg:w-auto h-full lg:h-auto overflow-y-auto lg:overflow-y-visible">
                     {{-- Navbar Menu Close --}}
                     <button type="button" class="lg:hidden lg:invisible top-2 right-2 absolute hover:bg-neutral-100 focus:bg-neutral-100 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 disabled:opacity-60 p-2 rounded font-medium text-black dark:text-white text-sm cursor-pointer disabled:pointer-events-none" aria-controls="navbar-menu" aria-label="Close navbar menu."
-                        @click="isNavbarMenuOpen = false"
+                        x-on:click="isNavbarMenuOpen = false"
                         :aria-expanded="isNavbarMenuOpen"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg>
@@ -81,7 +81,7 @@
                                     >
                                         @if (request()->routeIs($link['route'].'*'))
                                             <x-button-secondary type="button" class="flex justify-between items-center w-full" aria-label="Toggle module menu."
-                                                @click="isCollapseOpen = !isCollapseOpen" 
+                                                x-on:click="isCollapseOpen = !isCollapseOpen" 
                                                 ::aria-expanded="isCollapseOpen"
                                             >
                                                 @isset($link['icon'])
@@ -96,7 +96,7 @@
                                             </x-button-secondary>
                                         @else
                                             <x-button-ghost type="button" class="flex justify-between items-center w-full" aria-label="Toggle module menu."
-                                                @click="isCollapseOpen = !isCollapseOpen" 
+                                                x-on:click="isCollapseOpen = !isCollapseOpen" 
                                                 ::aria-expanded="isCollapseOpen"
                                             >
                                                 @isset($link['icon'])
@@ -143,6 +143,6 @@
             </div>  
             {{-- END Navbar Menu --}}
         </div>
-        @include('layouts.dashboard.partials.navbar-dropdowns')
+        @include('layouts.dashboard.partials.navbar-buttons')
     </div>
 </nav>

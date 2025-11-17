@@ -21,12 +21,12 @@
 
 <div class="relative w-fit"
     x-data="{ isDropdownOpen: false }"
-    @click.outside="isDropdownOpen = false"
-    @keydown.escape.window="isDropdownOpen = false"
+    x-on:click.outside="isDropdownOpen = false"
+    x-on:keydown.escape.window="isDropdownOpen = false"
 >
     <div 
         x-ref="button"
-        @click="isDropdownOpen = !isDropdownOpen" 
+        x-on:click="isDropdownOpen = !isDropdownOpen" 
         :aria-expanded="isDropdownOpen"
     >
         {{ $trigger }}

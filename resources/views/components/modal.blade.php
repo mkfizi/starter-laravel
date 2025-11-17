@@ -17,15 +17,15 @@
     x-show="isModalOpen"
     x-cloak
     x-trap.noautofocus.noscroll="isModalOpen"
-    @click.self="isModalOpen = false"
-    @keydown.escape.window="isModalOpen = false"
-    @open-modal.window="$event.detail.id === '{{ $id }}' ? isModalOpen = true : null"
-    @close-modal.window="$event.detail.id === '{{ $id }}' ? isModalOpen = false : null"
+    x-on:click.self="isModalOpen = false"
+    x-on:keydown.escape.window="isModalOpen = false"
+    x-on:open-modal.window="$event.detail.id === '{{ $id }}' ? isModalOpen = true : null"
+    x-on:close-modal.window="$event.detail.id === '{{ $id }}' ? isModalOpen = false : null"
     :inert="!isModalOpen"
 >
     <div class="top-1/2 left-1/2 fixed bg-white dark:bg-neutral-950 p-8 border border-neutral-200 dark:border-neutral-800 rounded w-80 sm:w-full {{ $widthClass[$width] }} -translate-x-1/2 -translate-y-1/2 transform">
         <x-button-ghost type="button" class="top-2 right-2 absolute !p-2" aria-controls="{{ $id }}" aria-label="Close modal."
-            @click="$dispatch('close-modal', { id: '{{ $id }}' })"
+            x-on:click="$dispatch('close-modal', { id: '{{ $id }}' })"
             ::aria-expanded="isModalOpen"
             aria-controls="{{ $id }}"
         >

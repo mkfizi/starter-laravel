@@ -24,7 +24,7 @@
                 <x-input-error :messages="$errors->get('code')" class="mt-2" />
                 <div class="flex justify-end items-center mt-2">
                     <button type="button" class="font-medium text-neutral-500 hover:dark:text-white hover:text-black focus:dark:text-white focus:text-black visited:text-neutral-700 dark:text-neutral-400 dark:visited:text-neutral-200 text-sm cursor-pointer"
-                        @click="showOtp = false"
+                        x-on:click="showOtp = false"
                     >
                     {{ __('Login using a recovery code') }}
                     </button>
@@ -38,7 +38,7 @@
                 <x-input-error :messages="$errors->get('recovery_code')" class="mt-2" />
                 <div class="flex justify-end items-center mt-2">
                     <button type="button" class="font-medium text-neutral-500 hover:dark:text-white hover:text-black focus:dark:text-white focus:text-black visited:text-neutral-700 dark:text-neutral-400 dark:visited:text-neutral-200 text-sm cursor-pointer"
-                        @click="showOtp = true"
+                        x-on:click="showOtp = true"
                     >
                     {{ __('Login using a authentication code') }}
                     </button>

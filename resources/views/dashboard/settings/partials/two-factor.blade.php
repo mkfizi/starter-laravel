@@ -53,7 +53,7 @@
                                 x-ref="recovery_code_{{ $index }}" 
                             />
                             <button type="button" class="top-2 right-2 absolute" aria-label="Copy recovery code to clipboard."
-                                @click="
+                                x-on:click="
                                     if (navigator.clipboard) {
                                         isCopied = true;
                                         navigator.clipboard.writeText($refs.recovery_code_{{ $index }}.value).then(() => {

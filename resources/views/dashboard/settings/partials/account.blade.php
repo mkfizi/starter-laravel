@@ -33,8 +33,8 @@
             <div class="flex gap-2 mt-8">
                 <x-button-danger
                     x-data="{ isModalOpen: false }"
-                    @click="$dispatch('open-modal', { id: 'modal-delete-account' })"
-                    @set-modal-delete-account.window="isModalOpen = $event.detail"
+                    x-on:click="$dispatch('open-modal', { id: 'modal-delete-account' })"
+                    x-on:modal-delete-account.window="isModalOpen = $event.detail"
                     ::aria-expanded="isModalOpen"
                     aria-controls="modal-delete-account"
                 >{{ __('Delete Account' )}}</x-button-danger>
@@ -52,7 +52,7 @@
             </div>
             <div class="flex flex-wrap justify-end gap-2 mt-8">
                 <x-button-secondary type="button"
-                    @click="$dispatch('close-modal', { id: 'modal-delete-account' })"
+                    x-on:click="$dispatch('close-modal', { id: 'modal-delete-account' })"
                     ::aria-expanded="isModalOpen"
                     aria-controls="modal-delete-account"
                 >{{ __('Cancel') }}</x-button-secondary>
