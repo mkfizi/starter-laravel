@@ -21,7 +21,9 @@
                 x-on:click="isNavbarMenuOpen = true"
                 :aria-expanded="isNavbarMenuOpen"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/></svg>
+                <span class="stroke-black dark:stroke-white [&>svg]:w-5 [&>svg]:h-5 shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/></svg>
+                </span>
             </button>
             {{-- END Navbar Menu Open --}}
             <x-nav-title />
@@ -40,7 +42,9 @@
                         x-on:click="isNavbarMenuOpen = false"
                         :aria-expanded="isNavbarMenuOpen"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg>
+                        <span class="stroke-black dark:stroke-white [&>svg]:w-5 [&>svg]:h-5 shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg>
+                        </span>
                     </button>
                     {{-- END Navbar Menu Close --}}
                     {{-- Navbar Menu Links --}}
@@ -53,22 +57,25 @@
                                     @else
                                         <x-button-link-ghost href="{{ route($link['route']) }}" class="inline-block w-full">{{ $link['title'] }}</x-button-link-ghost>
                                     @endif
-                                </li>                
+                                </li>  
+                            @elseif(isset($link['href']))
+                                <li>
+                                    <x-button-link-ghost href="{{ $link['href'] }}" class="inline-block w-full" target="_blank" rel="noopener noreferrer">{{ $link['title'] }}</x-button-link-ghost>
+                                </li>              
                             @elseif(isset($link['links']))
                                 <li class="hidden invisible lg:visible lg:block">
                                     <x-dropdown>
                                         <x-slot name="trigger">
-                                            @if (request()->routeIs($link['route'].'*'))
-                                                <x-button-secondary type="button" class="flex items-center gap-2" aria-controls="dark-mode-menu" aria-label="Toggle dark mode menu.">
-                                                    <span>{{ $link['title'] }}</span>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6"/></svg>
-                                                </x-button-secondary>
-                                            @else
-                                                <x-button-ghost type="button" class="flex items-center gap-2" aria-controls="dark-mode-menu" aria-label="Toggle dark mode menu.">
-                                                    <span>{{ $link['title'] }}</span>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6"/></svg>
-                                                </x-button-ghost>
-                                            @endif
+                                            @php
+                                                $isActive = request()->routeIs($link['route'].'*');
+                                                $component = $isActive ? 'button-secondary' : 'button-ghost';
+                                            @endphp
+                                            <x-dynamic-component :component="$component" type="button" class="flex items-center gap-2" aria-controls="dark-mode-menu" aria-label="Toggle dark mode menu.">
+                                                <span>{{ $title }}</span>
+                                                <div class="stroke-black dark:stroke-white [&>svg]:w-5 [&>svg]:h-5 shrink-0">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6"/></svg>
+                                                </div>
+                                            </x-dynamic-component>
                                         </x-slot>
                                         @foreach($link['links'] as $sublink)
                                             <x-dropdown-link href="{{ route($sublink['route']) }}">{{ $sublink['title'] }}</x-dropdown-link>
@@ -76,58 +83,12 @@
                                     </x-dropdown>
                                 </li>
                                 <li class="lg:hidden lg:invisible">
-                                    <div class="space-y-1"
-                                        x-data="{ isCollapseOpen: {{ request()->routeIs($link['route'].'*') ? 'true' : 'false' }} }"
-                                    >
-                                        @if (request()->routeIs($link['route'].'*'))
-                                            <x-button-secondary type="button" class="flex justify-between items-center w-full" aria-label="Toggle module menu."
-                                                x-on:click="isCollapseOpen = !isCollapseOpen" 
-                                                ::aria-expanded="isCollapseOpen"
-                                            >
-                                                @isset($link['icon'])
-                                                    <span class="flex items-center gap-2">
-                                                        <span class="stroke-black dark:stroke-white">{!! $link['icon'] !!}</span>
-                                                        <span>{{ $link['title'] }}</span>
-                                                    </span>
-                                                @else
-                                                    {{ $link['title'] }}
-                                                @endisset
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-black dark:stroke-white w-5 h-5"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l4 -4l4 4"/><path d="M16 15l-4 4l-4 -4"/></svg>
-                                            </x-button-secondary>
-                                        @else
-                                            <x-button-ghost type="button" class="flex justify-between items-center w-full" aria-label="Toggle module menu."
-                                                x-on:click="isCollapseOpen = !isCollapseOpen" 
-                                                ::aria-expanded="isCollapseOpen"
-                                            >
-                                                @isset($link['icon'])
-                                                    <span class="flex items-center gap-2">
-                                                        <span class="stroke-black dark:stroke-white">{!! $link['icon'] !!}</span>
-                                                        <span>{{ $link['title'] }}</span>
-                                                    </span>
-                                                @else
-                                                    {{ $link['title'] }}
-                                                @endisset
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-black dark:stroke-white w-5 h-5"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l4 -4l4 4"/><path d="M16 15l-4 4l-4 -4"/></svg>
-                                            </x-button-ghost>
-                                        @endif
-                                        <div class="overflow-hidden"
-                                            x-show="isCollapseOpen"
-                                            x-cloak
-                                            :inert="!isCollapseOpen"
-                                        >
-                                            <ul class="space-y-1 leading-0">
-                                                @foreach ($link['links'] as $sublink)
-                                                    <li>
-                                                        @if (request()->routeIs($sublink['route']))
-                                                            <x-button-link-secondary href="{{ route($sublink['route']) }}" class="inline-block w-full">{{ $sublink['title'] }}</x-button-link-secondary>
-                                                        @else
-                                                            <x-button-link-ghost href="{{ route($sublink['route']) }}" class="inline-block w-full">{{ $sublink['title'] }}</x-button-link-ghost>
-                                                        @endif
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    <x-sidebar-nav-collapse
+                                        :icon="isset($link['icon']) ? $link['icon'] : null"
+                                        :links="$link['links']"
+                                        :title="$link['title']"
+                                        :route="$link['route']"
+                                    />
                                 </li>
                             @else
                                 <li>
