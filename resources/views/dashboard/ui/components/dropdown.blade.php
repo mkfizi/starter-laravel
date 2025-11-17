@@ -2,7 +2,7 @@
     <x-card class="!pb-64 max-w-screen-sm">
         <div class="space-y-8">
             <div class="space-y-4">
-                <x-text-title>{{ __('Dropdown Sizes') }}</x-text-title>
+                <x-title>{{ __('Dropdown Sizes') }}</x-text-title>
                 <div class="space-y-16">
                     <x-dropdown>
                         <x-slot name="trigger">
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="space-y-4">
-                <x-text-title>{{ __('Dropdown Positions') }}</x-text-title>
+                <x-title>{{ __('Dropdown Positions') }}</x-text-title>
                 <div class="space-y-16">
                     <x-dropdown>
                         <x-slot name="trigger">

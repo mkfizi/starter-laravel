@@ -34,7 +34,7 @@
                 :inert="!isNavbarMenuOpen && window.innerWidth < breakpoint"
             >
                 {{-- Navbar Menu Drawer --}}
-                <div class="top-0 right-0 fixed lg:relative bg-white lg:bg-transparent dark:bg-neutral-950 px-4 sm:px-8 lg:px-0 py-4 lg:py-0 border-neutral-200 lg:border-0 dark:border-neutral-800 border-r w-full sm:w-64 lg:w-auto h-full lg:h-auto overflow-y-auto lg:overflow-y-visible">
+                <div class="top-0 left-0 fixed lg:relative bg-white lg:bg-transparent dark:bg-neutral-950 px-4 sm:px-8 lg:px-0 py-4 lg:py-0 border-neutral-200 lg:border-0 dark:border-neutral-800 border-r w-full sm:w-64 lg:w-auto h-full lg:h-auto overflow-y-auto lg:overflow-y-visible">
                     {{-- Navbar Menu Close --}}
                     <button type="button" class="lg:hidden lg:invisible top-2 right-2 absolute hover:bg-neutral-100 focus:bg-neutral-100 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 disabled:opacity-60 p-2 rounded font-medium text-black dark:text-white text-sm cursor-pointer disabled:pointer-events-none" aria-controls="navbar-menu" aria-label="Close navbar menu."
                         @click="isNavbarMenuOpen = false"
@@ -77,32 +77,43 @@
                                 </li>
                                 <li class="lg:hidden lg:invisible">
                                     <div class="space-y-1"
-                                        x-data="{ isModuleMenuOpen: {{ request()->routeIs($link['route'].'*') ? 'true' : 'false' }} }"
+                                        x-data="{ isCollapseOpen: {{ request()->routeIs($link['route'].'*') ? 'true' : 'false' }} }"
                                     >
                                         @if (request()->routeIs($link['route'].'*'))
                                             <x-button-secondary type="button" class="flex justify-between items-center w-full" aria-label="Toggle module menu."
-                                                @click="isModuleMenuOpen = !isModuleMenuOpen" 
-                                                ::aria-expanded="isModuleMenuOpen"
+                                                @click="isCollapseOpen = !isCollapseOpen" 
+                                                ::aria-expanded="isCollapseOpen"
                                             >
-                                                <span>{{ $link['title'] }}</span>
+                                                @isset($link['icon'])
+                                                    <span class="flex items-center gap-2">
+                                                        <span class="stroke-black dark:stroke-white">{!! $link['icon'] !!}</span>
+                                                        <span>{{ $link['title'] }}</span>
+                                                    </span>
+                                                @else
+                                                    {{ $link['title'] }}
+                                                @endisset
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-black dark:stroke-white w-5 h-5"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l4 -4l4 4"/><path d="M16 15l-4 4l-4 -4"/></svg>
                                             </x-button-secondary>
                                         @else
                                             <x-button-ghost type="button" class="flex justify-between items-center w-full" aria-label="Toggle module menu."
-                                                @click="isModuleMenuOpen = !isModuleMenuOpen" 
-                                                ::aria-expanded="isModuleMenuOpen"
+                                                @click="isCollapseOpen = !isCollapseOpen" 
+                                                ::aria-expanded="isCollapseOpen"
                                             >
-                                                <span>{{ $link['title'] }}</span>
+                                                @isset($link['icon'])
+                                                    <span class="flex items-center gap-2">
+                                                        <span class="stroke-black dark:stroke-white">{!! $link['icon'] !!}</span>
+                                                        <span>{{ $link['title'] }}</span>
+                                                    </span>
+                                                @else
+                                                    {{ $link['title'] }}
+                                                @endisset
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-black dark:stroke-white w-5 h-5"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l4 -4l4 4"/><path d="M16 15l-4 4l-4 -4"/></svg>
                                             </x-button-ghost>
                                         @endif
-                                        <div>
-                                            
-                                        </div>
                                         <div class="overflow-hidden"
-                                            x-show="isModuleMenuOpen"
+                                            x-show="isCollapseOpen"
                                             x-cloak
-                                            :inert="!isModuleMenuOpen"
+                                            :inert="!isCollapseOpen"
                                         >
                                             <ul class="space-y-1 leading-0">
                                                 @foreach ($link['links'] as $sublink)
@@ -120,7 +131,7 @@
                                 </li>
                             @else
                                 <li>
-                                    <p class="lg:hidden lg:invisible mt-4 py-2 font-semibold text-black dark:text-white text-sm uppercase tracking-wide">{{ $link['title'] }}</p>
+                                    <p class="lg:hidden lg:invisible mt-4 py-2 font-semibold text-black dark:text-white text-xs uppercase tracking-wide">{{ $link['title'] }}</p>
                                     <div class="hidden invisible lg:visible lg:block bg-neutral-300 dark:bg-neutral-700 w-px h-6"></div>
                                 </li>
                             @endif

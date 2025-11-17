@@ -2,7 +2,7 @@
     <x-card>
         <div class="space-y-8">
             <div class="space-y-4">
-                <x-text-title>{{ __('Modal Sizes') }}</x-text-title>
+                <x-title>{{ __('Modal Sizes') }}</x-text-title>
                 <div class="flex flex-wrap gap-16">
                     <x-button
                         x-data="{ isModalOpen: false }"
@@ -26,7 +26,7 @@
                         aria-controls="modal-lg"
                     >{{ __('Modal Large') }}</x-button>
                 </div>
-                <x-text-title>{{ __('Modal Form') }}</x-text-title>
+                <x-title>{{ __('Modal Form') }}</x-text-title>
                 <div class="flex flex-wrap gap-16">
                     <x-button
                         x-data="{ isModalOpen: false }"

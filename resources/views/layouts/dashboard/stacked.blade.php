@@ -6,11 +6,17 @@
     @include('layouts.dashboard.partials.navbar-stacked')
     <main class="space-y-8 mx-auto px-4 sm:px-8 pt-16 pb-32 w-full max-w-screen-xl overflow-hidden"> 
         <p class="font-bold text-black dark:text-white text-2xl sm:text-3xl lg:text-4xl">{{ $title }}</p>
-        @if(session('status'))
+        @if(session('status') || $errors->any())
             <x-alert id="dashboard-alert">
                 {{ session('status') }}
+                @if($errors->any())
+                    @php
+                        count($errors->all()) > 1 ? $bullet = true : $bullet = false;
+                    @endphp
+                    <x-input-error :messages="$errors->all()" :bullet="$bullet" />
+                @endif
             </x-alert>
-        @endsession
+        @endif
         <div class="space-y-8">
             {{ $slot }}
         </div>

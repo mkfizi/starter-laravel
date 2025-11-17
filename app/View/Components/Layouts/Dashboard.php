@@ -21,6 +21,6 @@ class Dashboard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.dashboard.default');
+        return view('layouts.dashboard.index');
     }
 }

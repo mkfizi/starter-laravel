@@ -2,7 +2,7 @@
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
         <div class="space-y-1">
-            <x-text-title class="text-center">{{ __('Forgot password') }}</x-text-title>
+            <x-title class="text-center">{{ __('Forgot password') }}</x-text-title>
             <x-text class="text-center">{{ __('Enter your email to receive a password reset link') }}</x-text>
         </div>
         <div class="space-y-4 mt-8">

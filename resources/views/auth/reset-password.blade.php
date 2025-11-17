@@ -3,7 +3,7 @@
         @csrf
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
         <div class="space-y-1">
-            <x-text-title class="text-center">{{ __('Reset password') }}</x-text-title>
+            <x-title class="text-center">{{ __('Reset password') }}</x-text-title>
             <x-text class="text-center">{{ __('Please enter your new password below') }}</x-text>
         </div>
         <div class="space-y-4 mt-8">

@@ -6,13 +6,13 @@
         <div class="space-y-1"
             :class="{ 'hidden invisible': !showOtp }"
         >
-            <x-text-title class="text-center">{{ __('Authentication Code') }}</x-text-title>
+            <x-title class="text-center">{{ __('Authentication Code') }}</x-text-title>
             <x-text class="text-center">{{ __('Enter the authentication code provided by your authenticator application.') }}</x-text>
         </div>
         <div class="hidden invisible space-y-1"
             :class="{ 'hidden invisible': showOtp }"
         >
-            <x-text-title class="text-center">{{ __('Recovery Code') }}</x-text-title>
+            <x-title class="text-center">{{ __('Recovery Code') }}</x-text-title>
             <x-text class="text-center">{{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}</x-text>
         </div>
         <div class="space-y-4 mt-8">

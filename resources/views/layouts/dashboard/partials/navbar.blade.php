@@ -14,8 +14,8 @@
             {{-- Sidebar Open --}}
             <x-button-ghost type="button" class="!p-2" aria-controls="sidebar" aria-label="Open sidebar."
                 x-data="{ isSidebarOpen: false }"
-                @click="$dispatch('open-sidebar')"
-                @set-sidebar-expanded.window="isSidebarOpen = $event.detail"
+                @click="$dispatch('open-sidebar', { id: 'sidebar' })"
+                @sidebar-expanded.window="$event.detail.id === 'sidebar' ? isSidebarOpen = $event.detail.isSidebarOpen : null"
                 ::aria-expanded="isSidebarOpen"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/></svg>

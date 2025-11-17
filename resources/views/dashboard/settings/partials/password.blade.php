@@ -6,7 +6,7 @@
             @csrf
             @method('PUT')
             <div class="space-y-4">
-                <x-text-title>{{ __('Update Password') }}</x-text-title>
+                <x-title>{{ __('Update Password') }}</x-text-title>
                 <div class="space-y-1">
                     <x-label for="current_password">{{ __('Current Password') }}</x-label>
                     <x-input id="current_password" name="current_password" type="password" class="w-full" required />

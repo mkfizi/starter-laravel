@@ -2,7 +2,7 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="space-y-1">
-            <x-text-title class="text-center">{{ __('Log in to your account') }}</x-text-title>
+            <x-title class="text-center">{{ __('Log in to your account') }}</x-text-title>
             <x-text class="text-center">{{ __('Enter your email and password below to log in') }}</x-text>
         </div>
         <div class="space-y-4 mt-8">

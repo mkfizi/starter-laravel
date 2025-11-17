@@ -1,9 +1,16 @@
-@props(['messages'])
+@props([
+    'messages',
+    'bullet' => false,
+])
+
+@php
+    $bullet = $bullet ? 'disc' : 'none';
+@endphp
 
 @if ($messages && count($messages) > 0)
-    <ul class="space-y-1 text-red-600 dark:text-red-400 text-sm">
+    <x-list class="!dark:marker:text-red-200 !marker:text-red-800" type="{{ $bullet }}">
         @foreach ((array) $messages as $message)
-            <li>{{ $message }}</li>
+            <x-list-item class="!text-red-600 !dark:text-red-400">{{ $message }}</x-list-item>
         @endforeach
-    </ul>
+    </x-list>
 @endif
