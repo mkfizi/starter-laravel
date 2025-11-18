@@ -1,6 +1,6 @@
 <x-layouts.dashboard title="{{ __('Profile') }}">
-    <div class="max-w-screen-md">
-        <x-card>
+    <x-card>
+        <div class="max-w-screen-sm">
             <div class="space-y-4">
                 <x-title>{{ __('Profile Information') }}</x-text-title>
                 <div class="space-y-1">
@@ -15,6 +15,6 @@
             <div class="flex gap-2 mt-8">
                 <x-button-link href="{{ route('dashboard.settings.account') }}">{{ __('Edit Profile' )}}</x-button-link>
             </div>
-        </x-card>
-    </div>
+        </div>
+    </x-card>
 </x-layouts.dashboard>

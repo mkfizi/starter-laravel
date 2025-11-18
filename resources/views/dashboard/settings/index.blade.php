@@ -26,7 +26,7 @@
                 @endif
             @endforeach
         </div>
-        <div class="max-w-screen-sm grow">
+        <div class="grow">
             @yield('content')
         </div>
     </div>
