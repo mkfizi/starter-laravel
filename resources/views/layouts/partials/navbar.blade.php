@@ -43,7 +43,7 @@
                             <li>
                                 @if (isset($link['route']))
                                     @if (request()->routeIs($link['route']))
-                                        <a href="{{ route($link['route']) }}" class="font-medium text-black hover:dark:text-neutral-200 hover:text-neutral-700 focus:dark:text-neutral-200 focus:text-neutral-700 dark:text-white text-sm cursor-pointer">{{ $link['title'] }}</a>
+                                        <a href="{{ route($link['route']) }}" class="inline-block font-medium text-black hover:dark:text-neutral-200 hover:text-neutral-700 focus:dark:text-neutral-200 focus:text-neutral-700 dark:text-white text-sm cursor-pointer">{{ $link['title'] }}</a>
                                     @else
                                         <a href="{{ route($link['route']) }}" class="inline-block lg:hover:bg-transparent lg:dark:hover:bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 lg:p-0 px-3 py-2 rounded w-full font-medium text-black lg:hover:dark:text-white lg:hover:text-black lg:focus:dark:text-white lg:focus:text-black lg:visited:text-neutral-700 lg:dark:text-neutral-400 lg:dark:visited:text-neutral-200 lg:text-neutral-500 dark:text-white text-sm text-left cursor-pointer">{{ $link['title'] }}</a>
                                     @endif
@@ -64,10 +64,10 @@
             {{-- Login Button --}}
             <x-button-link-ghost class="lg:hidden lg:invisible !p-2" href="{{ route('login') }}">
                 <span class="stroke-black dark:stroke-white [&>svg]:w-5 [&>svg]:h-5 shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icons-tabler-outline icon icon-tabler icon-tabler-login"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" /><path d="M21 12h-13l3 -3" /><path d="M11 15l-3 -3" /></svg>
                 </span>
             </x-button-link-ghost>
-            <x-button-link class="hidden invisible lg:visible lg:block" href="{{ route('login') }}">{{ __('Login') }}</x-button-link>
+            <x-button-link class="!hidden invisible lg:visible lg:!block" href="{{ route('login') }}">{{ __('Login') }}</x-button-link>
             {{-- END Login Button --}}
             {{-- Navbar Menu Open --}}
             <x-button-ghost type="button" class="lg:hidden lg:invisible !p-2" aria-controls="navbar-menu" aria-label="Open navbar menu."

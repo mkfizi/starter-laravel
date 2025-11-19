@@ -17,7 +17,7 @@
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 <div class="flex justify-between items-center mt-2">
                     <x-label for="remember_me" class="flex items-center gap-1">
-                        <x-checkbox id="remember_me" name="remember" value="1" />
+                        <x-input-checkbox id="remember_me" name="remember" value="1" />
                         <span>{{ __('Remember me') }}</span>
                     </x-label>
                     <x-link href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</x-link>

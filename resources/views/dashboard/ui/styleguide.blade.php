@@ -47,7 +47,7 @@
                     <x-input-textarea id="textarea_example" name="textarea_example" class="w-full" rows="4" placeholder="{{ __('Textarea placeholder') }}"></x-input-textarea>
                 </div>
                 <x-label for="input-checkbox" class="flex items-center gap-1">
-                    <x-checkbox id="input-checkbox" name="checkbox" value="" />
+                    <x-input-checkbox id="input-checkbox" name="checkbox" value="" />
                     <span>{{ __('Checkbox Label') }}</span>
                 </x-label>
             </div>

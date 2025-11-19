@@ -53,14 +53,14 @@
                             @if(isset($link['route']) && !isset($link['links']))
                                 <li>
                                     @if (request()->routeIs($link['route']))
-                                        <x-button-link-secondary href="{{ route($link['route']) }}" class="inline-block w-full">{{ $link['title'] }}</x-button-link-secondary>
+                                        <x-button-link-secondary href="{{ route($link['route']) }}">{{ $link['title'] }}</x-button-link-secondary>
                                     @else
-                                        <x-button-link-ghost href="{{ route($link['route']) }}" class="inline-block w-full">{{ $link['title'] }}</x-button-link-ghost>
+                                        <x-button-link-ghost href="{{ route($link['route']) }}">{{ $link['title'] }}</x-button-link-ghost>
                                     @endif
                                 </li>  
                             @elseif(isset($link['href']))
                                 <li>
-                                    <x-button-link-ghost href="{{ $link['href'] }}" class="inline-block w-full" target="_blank" rel="noopener noreferrer">{{ $link['title'] }}</x-button-link-ghost>
+                                    <x-button-link-ghost href="{{ $link['href'] }}" target="_blank">{{ $link['title'] }}</x-button-link-ghost>
                                 </li>              
                             @elseif(isset($link['links']))
                                 <li class="hidden invisible lg:visible lg:block">

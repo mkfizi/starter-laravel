@@ -4,7 +4,7 @@
     'href',
 ])
 
-<x-button-link-ghost href="{{ $href }}" class="inline-block w-full">
+<x-button-link-ghost href="{{ $href }}">
     <span class="flex items-center gap-2">
         @isset($icon)
             <span class="stroke-black dark:stroke-white [&>svg]:w-5 [&>svg]:h-5">{!! $icon !!}</span>

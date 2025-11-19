@@ -18,7 +18,7 @@
             @if(isset($link['route']) && !isset($link['links']))
                 <li>
                     <x-sidebar-nav-link
-                        :active="request()->routeIs($link['route'])"
+                        :active="request()->routeIs($link['active'] ?? $link['route'])"
                         :icon="isset($link['icon']) ? $link['icon'] : null"
                         :title="$link['title']"
                         :route="route($link['route'])"

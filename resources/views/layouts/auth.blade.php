@@ -1,6 +1,6 @@
 <x-layouts.app>
     <nav class="w-full">
-        <div class="flex justify-between items-center mx-auto px-4 sm:px-8 py-2 lg:py-4 max-w-screen-xl">
+        <div class="flex justify-between items-center mx-auto px-4 sm:px-8 py-3 max-w-screen-xl">
             <x-nav-title />
             <x-dark-mode-menu />
         </div>
