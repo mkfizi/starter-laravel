@@ -5,6 +5,7 @@
 
 @php
     $bullet = $bullet ? 'disc' : 'none';
+    $messages = Arr::flatten((array) $messages);
 @endphp
 
 @if ($messages && count($messages) > 0)

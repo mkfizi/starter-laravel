@@ -21,8 +21,8 @@
                         </div>
                     </div>
                     <div class="flex gap-2 mt-8">
-                        <x-button type="submit">{{ __('Save' )}}</x-button>
                         <x-button-outline type="reset">{{ __('Reset' )}}</x-button-outline>
+                        <x-button type="submit">{{ __('Save' )}}</x-button>
                     </div>
                 </form>
             </div>
@@ -37,7 +37,7 @@
                     <x-button-danger
                         x-data="{ isModalOpen: false }"
                         x-on:click="$dispatch('open-modal', { id: 'modal-delete-account' })"
-                        x-on:modal-delete-account.window="isModalOpen = $event.detail"
+                        x-on:modal-delete-account-expanded.window="$event.detail.id === 'modal-delete-account' ? isModalOpen = $event.detail.isModalOpen : null"
                         ::aria-expanded="isModalOpen"
                         aria-controls="modal-delete-account"
                     >{{ __('Delete Account' )}}</x-button-danger>

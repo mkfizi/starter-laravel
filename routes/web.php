@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController as Dashboard;
 use App\Http\Controllers\ProfileController as Profile;
 use App\Http\Controllers\SettingsController as Settings;
+use App\Http\Controllers\RolesController as Roles;
 use Illuminate\Support\Facades\Route;
 
 Route::name('web.')->group(function () {
@@ -28,6 +29,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::put('/update-profile', [Settings::class, 'updateProfile'])->name('update-profile')->middleware('password.confirm');
             Route::put('/update-password', [Settings::class, 'updatePassword'])->name('update-password');
             Route::delete('/destroy', [Settings::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('admin')->name('admin.')->group(function () {
+            Route::get('/user', fn() => view('dashboard.admin.user'))->name('user');
+            Route::prefix('roles')->name('roles.')->group(function () {
+                Route::get('/', [Roles::class, 'index'])->name('index');
+                Route::get('/show/{id}', [Roles::class, 'show'])->name('show');
+                Route::get('/create', [Roles::class, 'create'])->name('create');
+                Route::post('/store', [Roles::class, 'store'])->name('store');
+                Route::get('/edit/{id}', [Roles::class, 'edit'])->name('edit');
+                Route::put('/update/{id}', [Roles::class, 'update'])->name('update');
+                Route::delete('/destroy/{id}', [Roles::class, 'destroy'])->name('destroy');
+            });
+            Route::get('/activity-logs', fn() => view('dashboard.admin.activity-logs'))->name('activity-logs');
+            Route::get('/session-history', fn() => view('dashboard.admin.session-history'))->name('session-history');
         });
 
         Route::prefix('layouts')->name('layouts.')->group(function () {

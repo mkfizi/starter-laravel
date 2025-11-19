@@ -13,7 +13,7 @@
 
 <div id="{{ $id }}" class="top-0 left-0 z-10 fixed bg-black/80 w-dvw h-dvh"
     x-data="{ isModalOpen: false }"
-    x-init="$watch('isModalOpen', isModalOpen => $dispatch('modal-expanded', { id: '{{ $id }}', isModalOpen: isModalOpen }))"
+    x-init="$watch('isModalOpen', isModalOpen => $dispatch('{{ $id }}-expanded', { id: '{{ $id }}', isModalOpen: isModalOpen }))"
     x-show="isModalOpen"
     x-cloak
     x-trap.noautofocus.noscroll="isModalOpen"

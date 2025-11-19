@@ -10,6 +10,6 @@
     };
 @endphp
 
-<ul {{ $attributes->merge(['class' => 'space-y-2 leading-0 ' . $typeClasses]) }}>
+<ul {{ $attributes->merge(['class' => 'space-y-1 leading-0 ' . $typeClasses]) }}>
     {{  $slot }}
 </ul>

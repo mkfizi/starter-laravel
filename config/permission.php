@@ -199,4 +199,127 @@ return [
 
         'store' => 'default',
     ],
+
+    /*
+     * The default guard names to be used by the HasRoles and HasPermissions traits.
+     *
+     * You may specify multiple guards as a comma separated string.
+     * Or you may specify an array of guard names.
+     */
+    'role_permission' => [
+
+        /* Define Permissions for seeding the database. This is also used in Roles and Permissions modules. */
+        'permissions' => [
+            [
+                'module' => 'Dashboard Admin',
+                'permissions' => [
+                    [
+                        'type' => 'read',
+                        'name' => 'dashboard-admin:read',
+                        'description' => 'Able to view admin dashboard.'
+                    ],
+                ]
+            ],
+            [
+                'module' => 'Dashboard User',
+                'permissions' => [
+                    [
+                        'type' => 'read',
+                        'name' => 'dashboard-user:read',
+                        'description' => 'Able to view user dashboard.'
+                    ],
+                ]
+            ],
+            [
+                'module' => 'Task Management',
+                'permissions' => [
+                    [
+                        'type' => 'create',
+                        'name' => 'task-management:create',
+                        'description' => 'Able to create tasks.'
+                    ],
+                    [
+                        'type' => 'read',
+                        'name' => 'task-management:read',
+                        'description' => 'Able to view tasks.'
+                    ],
+                    [
+                        'type' => 'update',
+                        'name' => 'task-management:update',
+                        'description' => 'Able to edit tasks.'
+                    ],
+                    [
+                        'type' => 'delete',
+                        'name' => 'task-management:delete',
+                        'description' => 'Able to delete tasks.'
+                    ]
+                ]
+            ],
+            [
+                'module' => 'Roles',
+                'permissions' => [
+                    [
+                        'type' => 'create',
+                        'name' => 'roles:create',
+                        'description' => 'Able to create roles.'
+                    ],
+                    [
+                        'type' => 'read',
+                        'name' => 'roles:read',
+                        'description' => 'Able to view roles.'
+                    ],
+                    [
+                        'type' => 'update',
+                        'name' => 'roles:update',
+                        'description' => 'Able to edit roles.'
+                    ],
+                    [
+                        'type' => 'delete',
+                        'name' => 'roles:delete',
+                        'description' => 'Able to delete roles.'
+                    ]
+                ]
+            ],
+            [
+                'module' => 'Activity Logs',
+                'permissions' => [
+                    [
+                        'type' => 'read',
+                        'name' => 'activity-logs:read',
+                        'description' => 'Able to view activity logs.'
+                    ]
+                ]
+            ],
+            [
+                'module' => 'Session History',
+                'permissions' => [
+                    [
+                        'type' => 'read',
+                        'name' => 'session-history:read',
+                        'description' => 'Able to view session history.'
+                    ]
+                ]
+            ]
+        ],
+
+        /* Define Roles and assign Permissions for seeding the database */
+        'roles' => [
+            [
+                'name' => 'User',
+                'permissions' => [
+                    'dashboard-user:read',
+                    'task-management:create',
+                    'task-management:read',
+                    'task-management:update',
+                    'task-management:delete',
+                ]
+            ],
+        ],
+
+        /* Define protected roles that cannot be edited or deleted via Role Management module */
+        'protected' => [
+            'edit' => ['Super Admin'],
+            'delete' => ['Super Admin', 'User']
+        ]
+    ]
 ];
