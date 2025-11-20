@@ -23,7 +23,7 @@
                 <x-input type="text" id="code" name="code" placeholder="{{ __('Enter authentication code') }}" autofocus />
                 <x-input-error :messages="$errors->get('code')" class="mt-2" />
                 <div class="flex justify-end items-center mt-2">
-                    <button type="button" class="font-medium text-neutral-500 hover:dark:text-white hover:text-black focus:dark:text-white focus:text-black visited:text-neutral-700 dark:text-neutral-400 dark:visited:text-neutral-200 text-sm cursor-pointer"
+                    <button type="button" class="font-medium text-neutral-500 hover:text-black focus:text-black visited:text-neutral-700 dark:hover:text-white dark:focus:text-white dark:text-neutral-400 dark:visited:text-neutral-200 text-sm cursor-pointer"
                         x-on:click="showOtp = false"
                     >
                     {{ __('Login using a recovery code') }}
@@ -37,7 +37,7 @@
                 <x-input type="text" id="recovery_code" name="recovery_code" class="w-full" placeholder="{{ __('Enter recovery code') }}" />
                 <x-input-error :messages="$errors->get('recovery_code')" class="mt-2" />
                 <div class="flex justify-end items-center mt-2">
-                    <button type="button" class="font-medium text-neutral-500 hover:dark:text-white hover:text-black focus:dark:text-white focus:text-black visited:text-neutral-700 dark:text-neutral-400 dark:visited:text-neutral-200 text-sm cursor-pointer"
+                    <button type="button" class="font-medium text-neutral-500 hover:text-black focus:text-black visited:text-neutral-700 dark:hover:text-white dark:focus:text-white dark:text-neutral-400 dark:visited:text-neutral-200 text-sm cursor-pointer"
                         x-on:click="showOtp = true"
                     >
                     {{ __('Login using a authentication code') }}

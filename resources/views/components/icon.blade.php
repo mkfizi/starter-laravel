@@ -1,3 +1,3 @@
-<span {{ $attributes->merge(['class' => '[&>svg]:w-5 [&>svg]:h-5 shrink-0']) }}>
+<span {{ $attributes->merge(['class' => '[&_svg]:w-5 [&_svg]:h-5 shrink-0']) }}>
     {{ $slot }}
 </span>

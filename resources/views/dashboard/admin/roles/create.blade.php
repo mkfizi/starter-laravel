@@ -47,7 +47,7 @@
                             <tbody class="divide-y divide-neutral-200 dark:divide-neutral-800">
                                 @foreach (config('permission.role_permission.permissions') as $permission)
                                     <tr>
-                                        <td class="py-2 w-2/3">
+                                        <td class="py-2 w-3/4">
                                             <x-text>{{ $permission['module'] }}</x-text>
                                         </td>
                                         @foreach ($permissionTypes as $type => $label)

@@ -23,7 +23,7 @@
     >
         <span class="flex items-center gap-2">
             @isset ($icon)
-                <span class="stroke-black dark:stroke-white w-5 [&>svg]:w-full h-5 [&>svg]:h-full shrink-0">{!! $icon !!}</span>
+                <span class="stroke-black dark:stroke-white w-5 [&_svg]:w-full h-5 [&_svg]:h-full shrink-0">{!! $icon !!}</span>
             @endisset
             <span>{{ $title }}</span>
         </span>

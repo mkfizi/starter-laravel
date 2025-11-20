@@ -1,3 +1,3 @@
-<a {{ $attributes->class(['font-medium text-neutral-500 hover:dark:text-white hover:text-black focus:dark:text-white focus:text-black visited:text-neutral-700 dark:text-neutral-400 dark:visited:text-neutral-200 text-sm cursor-pointer'])->merge() }}>
+<a {{ $attributes->class(['font-medium text-neutral-500 hover:dark:text-white hover:text-black focus:dark:text-white focus:text-black visited:text-neutral-700 dark:text-neutral-400 dark:visited:text-neutral-200 text-sm cursor-pointer [&_svg]:stroke-neutral-500 hover:dark:[&_svg]:stroke-white hover:[&_svg]:stroke-black focus:dark:[&_svg]:stroke-white focus:[&_svg]:stroke-black visited:[&_svg]:stroke-neutral-700 dark:[&_svg]:stroke-neutral-400 dark:visited:[&_svg]:stroke-neutral-200'])->merge() }}>
     {{ $slot }}
 </a>
