@@ -23,7 +23,7 @@
         >
             @csrf
             <x-input-select name="per_page" x-on:change="$el.form.submit()">
-                @foreach ([10, 50, 100] as $size)
+                @foreach ([10, 25, 50, 100] as $size)
                     <option value="{{ $size }}" @if (request('per_page', $data->perPage()) == $size) selected @endif>{{ $size }}</option>
                 @endforeach
             </x-input-select>
@@ -62,7 +62,10 @@
                     </x-icon>
                 </x-button-link-outline>
             @endif
-            <x-input-select name="current_page" x-on:change="console.log('test'); window.location.href=this.value">
+            <x-input-select name="current_page" 
+                x-data 
+                x-on:change="window.location.href=$el.value"
+            >
                 @for ($i = $start; $i <= $end; $i++)
                     <option value="{{ $data->url($i) }}" @if ($i == $data->currentPage()) selected @endif>{{ $i }}</option>
                 @endfor

@@ -4,7 +4,7 @@
             roleId: null,
             roleName: null,
         }"
-        x-on:set-role-id.window="
+        x-on:set-role.window="
             roleId = $event.detail.id
             roleName = $event.detail.name
         "

@@ -78,7 +78,7 @@
                     <x-button-danger type="button"
                         x-data="{ isModalOpen: false }"
                         x-on:click="
-                            $dispatch('set-role-id', { id: {{ $role->id }}, name: '{{ $role->name }}' });
+                            $dispatch('set-role', { id: {{ $role->id }}, name: '{{ $role->name }}' });
                             $dispatch('open-modal', { id: 'modal-delete-role' });
                         "
                         x-on:modal-delete-role-expanded.window="$event.detail.id === 'modal-delete-role' ? isModalOpen = $event.detail.isModalOpen : null"
