@@ -7,7 +7,7 @@
     ];
 @endphp
 
-<x-layouts.dashboard title="{{ __('Role Management') }}">
+<x-layouts.dashboard title="{{ __('Roles') }}">
     <div class="space-y-4">
         <div class="flex justify-between gap-2">
             <x-button-link-outline href="{{ route('dashboard.admin.roles.index') }}">{{ __('Back' )}}</x-button-link-outline>

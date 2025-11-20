@@ -10,7 +10,7 @@
     }"
 >
     <div class="top-3 left-4 sm:left-8 absolute flex">
-        <x-button-ghost class="!p-2" aria-controls="sidebar" aria-label="Open sidebar."
+    <x-button-ghost class="p-2!" aria-controls="sidebar" aria-label="Open sidebar."
             x-data="{ isSidebarOpen: false }"
             x-on:click="$dispatch('toggle-sidebar', { id: 'sidebar' })"
             x-on:sidebar-expanded.window="$event.detail.id === 'sidebar' ? isSidebarOpen = $event.detail.isSidebarOpen : null"

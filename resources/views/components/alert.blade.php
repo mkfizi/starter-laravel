@@ -8,7 +8,7 @@
     <div class="grow">
         <x-text>{{ $slot }}</x-text>
     </div>
-    <x-button-ghost type="button" class="!p-2" aria-controls="{{ $id }}" aria-label="Close alert."
+    <x-button-ghost type="button" class="p-2!" aria-controls="{{ $id }}" aria-label="Close alert."
         x-on:click="$root.remove()"
     >
         <x-icon>

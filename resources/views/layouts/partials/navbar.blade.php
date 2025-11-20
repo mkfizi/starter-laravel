@@ -28,7 +28,7 @@
                 {{-- Navbar Menu Drawer --}}
                 <div class="top-0 right-0 fixed lg:relative bg-white lg:bg-transparent dark:bg-neutral-950 px-4 sm:px-8 lg:px-0 py-4 lg:py-0 border-neutral-200 lg:border-0 dark:border-neutral-800 border-r w-full sm:w-64 lg:w-auto h-full lg:h-auto overflow-y-auto lg:overflow-y-visible">
                     {{-- Navbar Menu Close --}}
-                    <x-button-ghost type="button" class="lg:hidden lg:invisible top-2 right-4 sm:right-8 absolute !p-2" aria-controls="navbar-menu" aria-label="Close navbar menu."
+                    <x-button-ghost type="button" class="lg:hidden lg:invisible top-2 right-4 sm:right-8 absolute p-2!" aria-controls="navbar-menu" aria-label="Close navbar menu."
                         x-on:click="isNavbarMenuOpen = false"
                         ::aria-expanded="isNavbarMenuOpen"
                     >
@@ -62,7 +62,7 @@
             <x-dark-mode-menu />
             {{-- END Dark Mode Menu --}}
             {{-- Login Button --}}
-            <x-button-link-ghost class="lg:hidden lg:invisible !p-2" href="{{ route('login') }}">
+            <x-button-link-ghost class="lg:hidden lg:invisible p-2!" href="{{ route('login') }}">
                 <x-icon>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icons-tabler-outline icon icon-tabler icon-tabler-login"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" /><path d="M21 12h-13l3 -3" /><path d="M11 15l-3 -3" /></svg>
                 </x-icon>
