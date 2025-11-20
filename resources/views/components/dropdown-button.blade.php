@@ -1,5 +1,5 @@
 <li>
-    <x-button-ghost {{ $attributes->class(['w-full text-left'])->merge() }}>
+    <x-button-ghost {{ $attributes->merge(['class' => 'w-full text-left']) }}>
         {{ $slot }}
     </x-button-ghost>
 </li>
