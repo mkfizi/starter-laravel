@@ -55,7 +55,7 @@
                                                 @php
                                                     $perm = collect($permission['permissions'])->firstWhere('type', $type);
                                                 @endphp
-                                                @if($perm)
+                                                @if ($perm)
                                                     <x-input-checkbox 
                                                         value="{{ $perm['name'] }}" 
                                                         name="permissions[]" 

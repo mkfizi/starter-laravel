@@ -26,11 +26,11 @@
                     </div>
                     <div class="space-y-1">
                         <div class="gap-4 grid grid-cols-1 sm:grid-cols-3 mt-2">
-                            @foreach(config('permission.role_permission.permissions') as $index => $permission)
+                            @foreach (config('permission.role_permission.permissions') as $index => $permission)
                                 <div>
                                     <x-text class="font-bold">{{ $permission['module'] }}</x-text>
                                     <div class="space-y-1 mt-2">
-                                         @foreach($permission['permissions'] as $subindex => $permissionItem)
+                                         @foreach ($permission['permissions'] as $subindex => $permissionItem)
                                             <div class="flex justify-between items-center">
                                                 <x-label for="permission-{{ $index }}-{{ $subindex }}" class="flex items-center gap-1">
                                                     <x-input-checkbox id="permission-{{ $index }}-{{ $subindex }}" name="permissions[]" value="{{ $permissionItem['name'] }}" 
@@ -103,7 +103,7 @@
                                                     $perm = collect($permission['permissions'])->firstWhere('type', $type);
                                                     $isEditable = !in_array($role->name, config('permission.role_permission.protected.edit'));
                                                 @endphp
-                                                @if($perm)
+                                                @if ($perm)
                                                     <x-input-checkbox 
                                                         value="{{ $isEditable ? $perm['name'] : '' }}" 
                                                         name="permissions[]" 

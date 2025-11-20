@@ -1,4 +1,4 @@
-<a href="{{ route('web.index') }}" class="flex items-center gap-2 font-bold text-neutral-800 dark:text-neutral-200 text-sm">
+<a href="{{ route('web.index') }}" class="flex items-center gap-2 font-bold text-neutral-800 dark:text-neutral-200 text-sm" >
     <div class="bg-black dark:bg-white p-2 rounded">
         <span class="[&>svg]:w-5 [&>svg]:h-5 text-white dark:text-black shrink-0">
             <svg height="24" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">

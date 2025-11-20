@@ -1,0 +1,1 @@
+<div class="bg-neutral-200 dark:bg-neutral-800 px-2 py-px rounded w-max text-black dark:text-white text-xs">{{ $slot }}</div>

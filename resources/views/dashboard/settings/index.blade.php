@@ -18,8 +18,8 @@
 <x-layouts.dashboard title="{{ __('Settings') }}">
     <div class="flex sm:flex-row flex-col gap-4 lg:gap-8">
         <div class="flex flex-col gap-1 w-full sm:w-48 sm:shrink-0">
-            @foreach($routes as $route)
-                @if(request()->routeIs($route['route']))
+            @foreach ($routes as $route)
+                @if (request()->routeIs($route['route']))
                     <x-button-link-secondary href="{{ route($route['route']) }}">{{ __($route['title']) }}</x-button-link-secondary>
                 @else
                     <x-button-link-ghost href="{{ route($route['route']) }}">{{ __($route['title']) }}</x-button-link-ghost>

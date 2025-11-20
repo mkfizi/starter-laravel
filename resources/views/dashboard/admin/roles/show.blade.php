@@ -52,7 +52,7 @@
                                                 $perm = collect($permission['permissions'])->firstWhere('type', $type);
                                             @endphp
 
-                                            @if($perm)
+                                            @if ($perm)
                                                 <x-input-checkbox 
                                                     value="{{ $perm['name'] }}" 
                                                     name="permissions[]" 
@@ -71,10 +71,10 @@
                 </div>
             </div>
             <div class="mt-8 flexgap-2">
-                @if(!in_array($role->name, config('permission.role_permission.protected.edit')))
+                @if (!in_array($role->name, config('permission.role_permission.protected.edit')))
                     <x-button-link href="{{ route('dashboard.admin.roles.edit', $role->id) }}">{{ __('Edit' )}}</x-button-link>
                 @endif
-                @if(!in_array($role->name, config('permission.role_permission.protected.delete')))
+                @if (!in_array($role->name, config('permission.role_permission.protected.delete')))
                     <x-button-danger type="button"
                         x-data="{ isModalOpen: false }"
                         x-on:click="

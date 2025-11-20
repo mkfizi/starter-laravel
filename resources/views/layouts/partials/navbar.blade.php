@@ -32,14 +32,14 @@
                         x-on:click="isNavbarMenuOpen = false"
                         ::aria-expanded="isNavbarMenuOpen"
                     >
-                        <span class="stroke-black dark:stroke-white [&>svg]:w-5 [&>svg]:h-5 shrink-0">
+                        <x-icon>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg>
-                        </span>
+                        </x-icon>
                     </x-button-ghost>
                     {{-- END Navbar Menu Close --}}
                     {{-- Navbar Menu Links --}}
                     <ul class="lg:flex lg:items-center lg:gap-8 space-y-1 lg:space-y-0 mt-8 lg:mt-0 leading-0">
-                        @foreach(config('routes.web') as $link)
+                        @foreach (config('routes.web') as $link)
                             <li>
                                 @if (isset($link['route']))
                                     @if (request()->routeIs($link['route']))
@@ -63,9 +63,9 @@
             {{-- END Dark Mode Menu --}}
             {{-- Login Button --}}
             <x-button-link-ghost class="lg:hidden lg:invisible !p-2" href="{{ route('login') }}">
-                <span class="stroke-black dark:stroke-white [&>svg]:w-5 [&>svg]:h-5 shrink-0">
+                <x-icon>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icons-tabler-outline icon icon-tabler icon-tabler-login"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" /><path d="M21 12h-13l3 -3" /><path d="M11 15l-3 -3" /></svg>
-                </span>
+                </x-icon>
             </x-button-link-ghost>
             <x-button-link class="!hidden invisible lg:visible lg:!block" href="{{ route('login') }}">{{ __('Login') }}</x-button-link>
             {{-- END Login Button --}}
@@ -74,7 +74,9 @@
                 x-on:click="isNavbarMenuOpen = true"
                 ::aria-expanded="isNavbarMenuOpen"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-black dark:stroke-white w-5 h-5" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/></svg>
+                <x-icon>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/></svg>
+                </x-icon>
             </x-button-ghost>
             {{-- END Navbar Menu Open --}}
         </div>
