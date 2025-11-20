@@ -13,8 +13,9 @@ class RolesController extends Controller
     /**
      * Display role listing.
      */
-    public function index() : View
+    public function index(Request $request) : View
     {
+        
         $roles = Role::withCount('users')->paginate(10);
         return view('dashboard.admin.roles.index')->with([
             'roles' => $roles

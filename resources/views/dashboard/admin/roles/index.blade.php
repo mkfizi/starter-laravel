@@ -80,7 +80,7 @@
                 </tr>
             @endif
         </x-table>
-        <x-pagination :data="$roles" />
+        <x-pagination :data="$roles" :route="route('dashboard.admin.roles.index')" />
     </div>
     @include('dashboard.admin.roles.partials.modal-delete-role')
 </x-layouts.dashboard>

@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController as Dashboard;
 use App\Http\Controllers\ProfileController as Profile;
 use App\Http\Controllers\SettingsController as Settings;
 use App\Http\Controllers\RolesController as Roles;
+use App\Http\Controllers\SessionHistoryController as SessionHistory;
 use Illuminate\Support\Facades\Route;
 
 Route::name('web.')->group(function () {
@@ -43,7 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 Route::delete('/destroy/{id}', [Roles::class, 'destroy'])->name('destroy');
             });
             Route::get('/activity-logs', fn() => view('dashboard.admin.activity-logs'))->name('activity-logs');
-            Route::get('/session-history', fn() => view('dashboard.admin.session-history'))->name('session-history');
+            Route::get('/session-history', [SessionHistory::class, 'index'])->name('session-history');
         });
 
         Route::prefix('layouts')->name('layouts.')->group(function () {
