@@ -53,7 +53,7 @@
                                 <x-input id="recovery_code_{{ $index }}" name="recovery_code_{{ $index }}" type="text" class="pr-10 w-full" :value="$code" readonly
                                     x-ref="recovery_code_{{ $index }}" 
                                 />
-                                <button type="button" class="top-2 right-2 absolute" aria-label="Copy recovery code to clipboard."
+                                <button type="button" class="top-2 right-2 absolute" aria-label="{{ __('Copy recovery code to clipboard.') }}"
                                     x-on:click="
                                         if (navigator.clipboard) {
                                             isCopied = true;
@@ -65,7 +65,7 @@
                                         }
                                     "
                                 >
-                                    <x-icon class="[&>svg]:stroke-black dark:[&>svg]:stroke-white">
+                                    <x-icon class="[&_svg]:stroke-black dark:[&_svg]:stroke-white">
                                         <svg x-show="!isCopied" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"/><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"/></svg>
                                         <svg x-show="isCopied" x-cloak xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"/><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"/><path d="M9 14l2 2l4 -4"/></svg>
                                     </x-icon>

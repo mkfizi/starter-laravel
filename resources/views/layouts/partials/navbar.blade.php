@@ -28,7 +28,7 @@
                 {{-- Navbar Menu Drawer --}}
                 <div class="top-0 right-0 fixed lg:relative bg-white lg:bg-transparent dark:bg-neutral-950 px-4 sm:px-8 lg:px-0 py-4 lg:py-0 border-neutral-200 lg:border-0 dark:border-neutral-800 border-r w-full sm:w-64 lg:w-auto h-full lg:h-auto overflow-y-auto lg:overflow-y-visible">
                     {{-- Navbar Menu Close --}}
-                    <x-button-ghost type="button" class="lg:hidden lg:invisible top-2 right-4 sm:right-8 absolute p-2!" aria-controls="navbar-menu" aria-label="Close navbar menu."
+                    <x-button-ghost type="button" class="lg:hidden lg:invisible top-2 right-4 sm:right-8 absolute p-2!" aria-controls="navbar-menu" aria-label="{{ __('Close navbar menu.') }}"
                         x-on:click="isNavbarMenuOpen = false"
                         ::aria-expanded="isNavbarMenuOpen"
                     >
@@ -70,7 +70,7 @@
             <x-button-link class="!hidden invisible lg:visible lg:!block" href="{{ route('login') }}">{{ __('Login') }}</x-button-link>
             {{-- END Login Button --}}
             {{-- Navbar Menu Open --}}
-            <x-button-ghost type="button" class="lg:hidden lg:invisible !p-2" aria-controls="navbar-menu" aria-label="Open navbar menu."
+            <x-button-ghost type="button" class="lg:hidden lg:invisible !p-2" aria-controls="navbar-menu" aria-label="{{ __('Open navbar menu.') }}"
                 x-on:click="isNavbarMenuOpen = true"
                 ::aria-expanded="isNavbarMenuOpen"
             >

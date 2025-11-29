@@ -1,7 +1,7 @@
 {{-- Sidebar Drawer --}}
 <div class="top-0 left-0 flex flex-col bg-white dark:bg-neutral-950 border-neutral-200 dark:border-neutral-800 border-r w-full sm:w-64 h-full">
     {{-- Sidebar Close --}}
-    <x-button-ghost type="button" class="lg:hidden lg:invisible top-2 right-2 absolute p-2!" aria-controls="sidebar" aria-label="Close sidebar."
+    <x-button-ghost type="button" class="lg:hidden lg:invisible top-2 right-2 absolute p-2!" aria-controls="sidebar" aria-label="{{ __('Close sidebar.') }}"
         x-on:click="$dispatch('close-sidebar', { id: 'sidebar' })"
         ::aria-expanded="isSidebarOpen"
     >

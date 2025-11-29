@@ -12,7 +12,7 @@
     <div class="flex justify-between lg:justify-end items-center mx-auto px-4 sm:px-8 py-3">
         <div class="lg:hidden lg:invisible flex items-center gap-4">
             {{-- Sidebar Open --}}
-            <x-button-ghost type="button" class="p-2!" aria-controls="sidebar" aria-label="Open sidebar."
+            <x-button-ghost type="button" class="p-2!" aria-controls="sidebar" aria-label="{{ __('Open sidebar.') }}"
                 x-data="{ isSidebarOpen: false }"
                 x-on:click="$dispatch('open-sidebar', { id: 'sidebar' })"
                 x-on:sidebar-expanded.window="$event.detail.id === 'sidebar' ? isSidebarOpen = $event.detail.isSidebarOpen : null"
