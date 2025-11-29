@@ -27,7 +27,7 @@
                 @foreach ($roles as $index => $role)
                     <tr>
                         <x-table-td class="w-1/12">
-                            <x-text>{{ $users->firstItem() + $index }}</x-text>
+                            <x-text>{{ $roles->firstItem() + $index }}</x-text>
                         </x-table-td>
                         <x-table-td>
                             <x-text>{{ $role->name }}</x-text>

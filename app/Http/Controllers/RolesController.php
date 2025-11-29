@@ -15,8 +15,10 @@ class RolesController extends Controller
      */
     public function index(Request $request) : View
     {
+        $perPage = 10;
+        $perPage = $request->input('per_page', $perPage);
         
-        $roles = Role::withCount('users')->paginate(10);
+        $roles = Role::withCount('users')->paginate($perPage);
         return view('dashboard.admin.roles.index')->with([
             'roles' => $roles
         ]);
@@ -74,7 +76,7 @@ class RolesController extends Controller
     {
         if (in_array($id, config('permission.role_permission.protected.edit'))) {
             return redirect()->route('dashboard.admin.roles.index')
-                ->with('status', "This role is protected and cannot be edited.");
+                ->with('status', __("This role is protected and cannot be edited."));
         }
 
         $role = Role::findOrFail($id);
@@ -92,7 +94,7 @@ class RolesController extends Controller
 
         if (in_array($role->name, config('permission.role_permission.protected.delete'))) {
             return redirect()->route('dashboard.admin.roles.index')
-                ->with('status', "This role is protected and cannot be deleted.");
+                ->with('status', __("This role is protected and cannot be edited."));
         }
 
         $request->validate([
@@ -118,7 +120,7 @@ class RolesController extends Controller
 
         if (in_array($role->name, config('permission.role_permission.protected.delete'))) {
             return redirect()->route('dashboard.admin.roles.index')
-                ->with('status', "This role is protected and cannot be deleted.");
+                ->with('status', __("This role is protected and cannot be deleted."));
         }
 
         $roleName = $role->name;
