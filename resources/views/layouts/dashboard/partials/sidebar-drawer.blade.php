@@ -1,13 +1,13 @@
 {{-- Sidebar Drawer --}}
 <div class="top-0 left-0 flex flex-col bg-white dark:bg-neutral-950 border-neutral-200 dark:border-neutral-800 border-r w-full sm:w-64 h-full">
     {{-- Sidebar Close --}}
-    <x-button-ghost type="button" class="lg:hidden lg:invisible top-2 right-2 absolute p-2!" aria-controls="sidebar" aria-label="{{ __('Close sidebar.') }}"
+    <x-button-ghost type="button" class="lg:hidden lg:invisible top-2 right-2 absolute !p-2" aria-controls="sidebar" aria-label="Close sidebar."
         x-on:click="$dispatch('close-sidebar', { id: 'sidebar' })"
         ::aria-expanded="isSidebarOpen"
     >
-        <x-icon>
+        <span class="stroke-black dark:stroke-white [&>svg]:w-5 [&>svg]:h-5 shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg>
-        </x-icon>
+        </span>
     </x-button-ghost>
     {{-- END Sidebar Close --}}
     <div class="px-4 sm:px-8 py-4">
@@ -18,10 +18,10 @@
             @if (isset($link['route']) && !isset($link['links']))
                 <li>
                     <x-sidebar-nav-link
-                        :active="request()->routeIs($link['active'] ?? $link['route'])"
+                        :active="isset($link['route']) ? request()->routeIs($link['route']) : false"
                         :icon="isset($link['icon']) ? $link['icon'] : null"
-                        :title="$link['title']"
-                        :route="route($link['route'])"
+                        :title="isset($link['title']) ? $link['title'] : null"
+                        :route="isset($link['route']) ? route($link['route']) : null"
                     />
                 </li>
             @elseif(isset($link['href']))
@@ -38,7 +38,7 @@
                         :icon="isset($link['icon']) ? $link['icon'] : null"
                         :links="$link['links']"
                         :title="$link['title']"
-                        :route="$link['route']"
+                        :route="$link['route'] ?? null"
                     />
                 </li>
             @else

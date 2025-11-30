@@ -2,11 +2,11 @@
     'icon' => null,
     'links' => [],
     'title',
-    'route'
+    'route' => null,
 ])
 
 @php
-    $isActive = request()->routeIs($route.'*');
+    isset($route) ? $isActive = request()->routeIs($route.'*') : $isActive = false;
     $component = $isActive ? 'button-secondary' : 'button-ghost';
 @endphp
 
@@ -23,13 +23,13 @@
     >
         <span class="flex items-center gap-2">
             @isset ($icon)
-                <span class="stroke-black dark:stroke-white w-5 [&_svg]:w-full h-5 [&_svg]:h-full shrink-0">{!! $icon !!}</span>
+                <span class="stroke-black dark:stroke-white w-4 [&>svg]:w-full h-4 [&>svg]:h-full shrink-0">{!! $icon !!}</span>
             @endisset
             <span>{{ $title }}</span>
         </span>
-        <x-icon>
+        <span class="stroke-black dark:stroke-white w-4 [&>svg]:w-full h-4 [&>svg]:h-full shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 9l4 -4l4 4"/><path d="M16 15l-4 4l-4 -4"/></svg>
-        </x-icon>
+        </span>
     </x-dynamic-component>
     
     <div class="overflow-hidden"
@@ -38,11 +38,12 @@
         :inert="!isCollapseOpen"
     >
         <ul class="space-y-1 leading-0">
-            @foreach ($links as $sublink)
+            @foreach ($links as $sublink)\
                 <x-sidebar-nav-link
-                    :route="route($sublink['route'])"
-                    :active="request()->routeIs($sublink['route'])"
-                    :title="$sublink['title']"
+                    :active="isset($sublink['route']) ? request()->routeIs($sublink['route']) : false"
+                    :route="isset($sublink['route']) ? route($sublink['route']) : null"
+                    :icon="isset($sublink['icon']) ? $sublink['icon'] : null"
+                    :title="isset($sublink['title']) ? $sublink['title'] : null"
                 />
             @endforeach
         </ul>
