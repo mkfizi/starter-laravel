@@ -1,0 +1,1 @@
+<option {{ $attributes->class(['dark:bg-transparent'])->merge() }}>{{ $slot }}</option>

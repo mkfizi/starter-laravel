@@ -2,7 +2,7 @@
     <x-card>
         <div class="max-w-screen-sm">
             <div class="space-y-4">
-                <x-title>{{ __('Profile Information') }}</x-text-title>
+                <x-title>{{ __('Profile Information') }}</x-title>
                 <div class="space-y-1">
                     <x-label for="name">{{ __('Name') }}</x-label>
                     <x-input id="name" name="name" type="text" class="w-full" :value="$user->name" disabled />

@@ -1,7 +1,7 @@
 <x-layouts.dashboard title="{{ __('Styleguide') }}">
     <div class="space-y-8 max-w-screen-sm">
         <x-card>
-            <x-title>{{ __('Typography') }}</x-text-title>
+            <x-title>{{ __('Typography') }}</x-title>
             <div class="space-y-4 mt-4">
                 <x-h1>{{ __('This is Heading 1') }}</x-h1>
                 <x-h2>{{ __('This is Heading 2') }}</x-h2>
@@ -9,11 +9,11 @@
                 <x-h4>{{ __('This is Heading 4') }}</x-h4>
                 <x-link href="#" class="block">{{ __('This is a link.') }}</x-link>
                 <x-text>{{ __('This is a text sentence.') }}</x-text>
-                <x-title>{{ __('This is title text.') }}</x-text-title>
+                <x-title>{{ __('This is title text.') }}</x-title>
             </div>
         </x-card>
         <x-card>
-            <x-title>{{ __('Elements') }}</x-text-title>
+            <x-title>{{ __('Elements') }}</x-title>
             <div class="space-y-4 mt-4">
                 <div class="flex flex-wrap gap-2">
                     <x-button>{{ __('Button Primary') }}</x-button>
@@ -35,7 +35,7 @@
             </div>
         </x-card>
         <x-card>
-            <x-title>{{ __('Forms') }}</x-text-title>
+            <x-title>{{ __('Forms') }}</x-title>
             <div class="space-y-4 mt-4">
                 <div class="space-y-1">
                     <x-label for="input_example">{{ __('Input Label') }}</x-label>

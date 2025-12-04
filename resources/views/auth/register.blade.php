@@ -2,7 +2,7 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
         <div class="space-y-1">
-            <x-title class="text-center">{{ __('Create an account') }}</x-text-title>
+            <x-title class="text-center">{{ __('Create an account') }}</x-title>
             <x-text class="text-center">{{ __('Enter your details below to create your account') }}</x-text>
         </div>
         <div class="space-y-4 mt-8">

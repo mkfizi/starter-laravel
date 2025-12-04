@@ -14,7 +14,7 @@
     @endphp
     <x-card>
         <div class="max-w-screen-sm">
-            <x-title>{{ __('Two-Factor Authentication') }}</x-text-title>
+            <x-title>{{ __('Two-Factor Authentication') }}</x-title>
             @if (!auth()->user()->two_factor_secret)
                 <div class="space-y-4 mt-4">
                     <x-text>{{ __('When you enable two-factor authentication, you will be prompted for a secure pin during login. This pin can be retrieved from a TOTP-supported application on your phone.') }}</x-text>
