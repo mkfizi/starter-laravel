@@ -12,12 +12,12 @@
                         <div class="space-y-1">
                             <x-label for="name">{{ __('Name') }}</x-label>
                             <x-input id="name" name="name" type="text" class="w-full" :value="old('name', $user->name)" required autofocus />
-                            <x-input-error :messages="$errors->get('name')" class="mt-1" />
+                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
                         <div class="space-y-1">
                             <x-label for="email">{{ __('Email') }}</x-label>
                             <x-input id="email" name="email" type="email" class="w-full" :value="old('email', $user->email)" required />
-                            <x-input-error :messages="$errors->get('email')" class="mt-1" />
+                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
                     </div>
                     <div class="flex gap-2 mt-8">

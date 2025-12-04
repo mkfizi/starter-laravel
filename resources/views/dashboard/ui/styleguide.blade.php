@@ -40,7 +40,7 @@
                 <div class="space-y-1">
                     <x-label for="input_example">{{ __('Input Label') }}</x-label>
                     <x-input id="input_example" name="input_example" type="text" class="w-full" placeholder="{{ __('Input placeholder') }}" />
-                    <x-input-error :messages="['This is an error message.']" class="mt-1" />
+                    <x-input-error :messages="['This is an error message.']" class="mt-2" />
                 </div>
                 <div class="space-y-1">
                     <x-label for="textarea_example">{{ __('Textarea Label') }}</x-label>

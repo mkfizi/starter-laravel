@@ -34,7 +34,7 @@
                         <div class="space-y-1 mt-4">
                             <x-label for="code">{{ __('Authentication Code') }}</x-label>
                             <x-input id="code" name="code" type="text" class="w-full" required autofocus />
-                            <x-input-error :messages="$errors->getBag('confirmTwoFactorAuthentication')->get('code')" class="mt-1" />
+                            <x-input-error :messages="$errors->getBag('confirmTwoFactorAuthentication')->get('code')" class="mt-2" />
                         </div>
                         <div class="mt-4">
                             <x-button-success type="submit">{{ __('Confirm') }}</x-button-success>
