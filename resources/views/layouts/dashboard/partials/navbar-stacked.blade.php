@@ -26,7 +26,7 @@
                 </span>
             </button>
             {{-- END Navbar Menu Open --}}
-            <x-nav-title />
+            <x-nav-title route="dashboard"/>
             {{-- Navbar Menu --}}
             <div id="navbar-menu" class="hidden invisible lg:visible lg:block top-0 lg:top-auto left-0 lg:left-auto !z-20 z-10 lg:z-auto fixed lg:relative bg-black/80 lg:bg-transparent lg:ml-8 w-dvw lg:w-auto h-dvh lg:h-auto"
                 x-trap.noautofocus.noscroll="isNavbarMenuOpen && window.innerWidth < breakpoint"

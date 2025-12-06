@@ -23,7 +23,7 @@
                 </x-icon>
             </x-button-ghost>
             {{-- END Sidebar Open --}}
-            <x-nav-title />
+            <x-nav-title route="dashboard"/>
         </div>
         @include('layouts.dashboard.partials.navbar-buttons')
     </div>

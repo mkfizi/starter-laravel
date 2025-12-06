@@ -23,7 +23,7 @@
     </div>
     <div class="flex justify-between lg:justify-end items-center mx-auto px-4 sm:px-8 py-3">
         <div class="lg:hidden lg:invisible pl-13">
-            <x-nav-title />
+            <x-nav-title route="dashboard"/>
         </div>
         @include('layouts.dashboard.partials.navbar-buttons')
     </div>
