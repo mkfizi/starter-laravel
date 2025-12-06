@@ -11,7 +11,7 @@
     </x-button-ghost>
     {{-- END Sidebar Close --}}
     <div class="px-4 sm:px-8 py-4">
-        <x-nav-title />
+        <x-nav-title route="dashboard" />
     </div>
     <ul class="space-y-1 px-4 sm:px-8 pb-4 overflow-y-auto">
         @foreach (config('routes.dashboard') as $link)
