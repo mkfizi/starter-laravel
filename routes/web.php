@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController as Profile;
 use App\Http\Controllers\SettingsController as Settings;
 use App\Http\Controllers\RolesController as Roles;
 use App\Http\Controllers\SessionHistoryController as SessionHistory;
+use App\Http\Controllers\UsersController as Users;
 use Illuminate\Support\Facades\Route;
 
 Route::name('web.')->group(function () {
@@ -33,16 +34,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
 
         Route::prefix('admin')->name('admin.')->group(function () {
-            Route::get('/user', fn() => view('dashboard.admin.user'))->name('user');
-            Route::prefix('roles')->name('roles.')->group(function () {
-                Route::get('/', [Roles::class, 'index'])->name('index');
-                Route::get('/show/{id}', [Roles::class, 'show'])->name('show');
-                Route::get('/create', [Roles::class, 'create'])->name('create');
-                Route::post('/store', [Roles::class, 'store'])->name('store');
-                Route::get('/edit/{id}', [Roles::class, 'edit'])->name('edit');
-                Route::put('/update/{id}', [Roles::class, 'update'])->name('update');
-                Route::delete('/destroy/{id}', [Roles::class, 'destroy'])->name('destroy');
-            });
+            Route::resource('users', Users::class);
+            Route::resource('roles', Roles::class);
             Route::get('/activity-logs', fn() => view('dashboard.admin.activity-logs'))->name('activity-logs');
             Route::get('/session-history', [SessionHistory::class, 'index'])->name('session-history');
         });

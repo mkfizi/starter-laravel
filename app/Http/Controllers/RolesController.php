@@ -57,12 +57,14 @@ class RolesController extends Controller
      */
     public function show(string $id) : View
     {
+        
+        $role = Role::findOrFail($id);
+
         // Get roles and sort where super admin is first and then by name
         $roles = Role::all()->sortByDesc(function ($role) {
             return $role->name === 'Super Admin' ? 1 : 0;
         })->sortBy('name');
         
-        $role = Role::findOrFail($id);
         return view('dashboard.admin.roles.show')->with([
             'roles' => $roles,
             'role' => $role,

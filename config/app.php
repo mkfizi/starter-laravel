@@ -1,6 +1,18 @@
 <?php
 
 return [
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Super Admin Email Address
+    |--------------------------------------------------------------------------
+    |
+    | This value is the email address of your application's super administrator.
+    | The super admin has unrestricted access to all features and settings.
+    | You may set this in your ".env" file. Use with care.
+    |
+    */
+    'super_admin' => env('APP_SUPER_ADMIN', 'admin@email.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -120,7 +132,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Maintenance Mode Driver
+        'super_admin' => env('APP_SUPER_ADMIN', 'admin@email.com'),
     |--------------------------------------------------------------------------
     |
     | These configuration options determine the driver used to determine and

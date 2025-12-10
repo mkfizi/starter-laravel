@@ -20,7 +20,13 @@ class UserSeeder extends Seeder
                 'email' => 'admin@email.com',
                 'password' => 'admin123',
                 'role' => 'Super Admin',
-            ]
+            ],
+            [
+                'name' => 'User',
+                'email' => 'user@email.com',
+                'password' => 'admin123',
+                'role' => 'User',
+            ],
         ];
 
         foreach ($users as $userData) {
@@ -28,6 +34,7 @@ class UserSeeder extends Seeder
                 'name' => $userData['name'],
                 'email' => $userData['email'],
                 'password' => Hash::make($userData['password']),
+                'email_verified_at' => now(),
             ]);
             $user->assignRole($userData['role']);
         }
