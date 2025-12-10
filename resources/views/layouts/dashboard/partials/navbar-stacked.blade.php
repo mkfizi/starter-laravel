@@ -70,8 +70,8 @@
                                                 isset($route) ? $isActive = request()->routeIs($route.'*') : $isActive = false;
                                                 $component = $isActive ? 'button-secondary' : 'button-ghost';
                                             @endphp
-                                            <x-dynamic-component :component="$component" type="button" class="flex items-center gap-2" aria-controls="dark-mode-menu" aria-label="Toggle dark mode menu.">
-                                                <span>{{ $title }}</span>
+                                            <x-dynamic-component :component="$component" type="button" class="flex items-center gap-2" aria-controls="dark-mode-menu" aria-label="Toggle collapse menu.">
+                                                <span>{{ $link['title'] }}</span>
                                                 <span class="stroke-black dark:stroke-white [&>svg]:w-5 [&>svg]:h-5 shrink-0">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6"/></svg>
                                                 </span>
