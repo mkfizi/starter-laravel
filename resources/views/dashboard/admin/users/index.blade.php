@@ -64,7 +64,7 @@
                 @endforeach
             @else
                 <tr>
-                    <x-table-td ::colspan="5" class="text-center">
+                    <x-table-td :colspan="5" class="text-center">
                         <x-text>{{ __('No data available.') }}</x-text>
                     </x-table-td>
                 </tr>

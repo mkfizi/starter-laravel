@@ -17,8 +17,12 @@ class RolesController extends Controller
     {
         $perPage = 10;
         $perPage = $request->input('per_page', $perPage);
-        
-        $roles = Role::withCount('users')->paginate($perPage);
+
+        $query = Role::withCount('users');
+        if ($search = $request->input('search')) {
+            $query->where('name', 'like', "%$search%");
+        }
+        $roles = $query->paginate($perPage)->appends(['search' => $search]);
         return view('dashboard.admin.roles.index')->with([
             'roles' => $roles
         ]);

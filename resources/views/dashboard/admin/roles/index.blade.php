@@ -2,7 +2,7 @@
     <div class="space-y-4">
         <div class="flex sm:flex-row flex-col justify-between gap-4">
             <div class="flex gap-2">
-                <x-input-search route="{{ route('dashboard.admin.roles.index') }}" />
+                <x-input-search route="{{ route('dashboard.admin.roles.index') }}" searchText="{{ __('Search Roles...') }}" />
             </div>
             <x-button-link href="{{ route('dashboard.admin.roles.create') }}" class="text-center">{{ __('Create New') }}</x-button-link>
         </div>
@@ -77,7 +77,7 @@
                 @endforeach
             @else
                 <tr>
-                    <x-table-td ::colspan="5" class="text-center">
+                    <x-table-td :colspan="5" class="text-center">
                         <x-text>{{ __('No data available.') }}</x-text>
                     </x-table-td>
                 </tr>

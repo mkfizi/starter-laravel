@@ -18,13 +18,13 @@
             <span class="font-medium">{{ $data->total() }}</span>
             {{ __('results') }}
         </x-text>
-        <form action="{{ $route }}" method="POST" class="flex items-center gap-2"
-            x-data
-        >
-            @csrf
+        <form action="{{ $route }}" method="GET" class="flex items-center gap-2" x-data>
+            @if(request('search'))
+                <input type="hidden" name="search" value="{{ request('search') }}">
+            @endif
             <x-input-select name="per_page" x-on:change="$el.form.submit()">
                 @foreach ([10, 25, 50, 100] as $size)
-                    <option value="{{ $size }}" @if (request('per_page', $data->perPage()) == $size) selected @endif>{{ $size }}</option>
+                    <x-input-select-option value="{{ $size }}" :selected="request('per_page', $data->perPage()) == $size">{{ $size }}</x-input-select-option>
                 @endforeach
             </x-input-select>
             <x-text>{{ __('per page') }}</x-text>
