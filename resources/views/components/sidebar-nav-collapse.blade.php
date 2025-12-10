@@ -37,8 +37,8 @@
         x-cloak
         :inert="!isCollapseOpen"
     >
-        <ul class="space-y-1 leading-0">
-            @foreach ($links as $sublink)\
+        <ul class="space-y-1 pl-1 border-neutral-200 dark:border-neutral-800 border-l leading-0">
+            @foreach ($links as $sublink)
                 <x-sidebar-nav-link
                     :active="isset($sublink['route']) ? request()->routeIs($sublink['route']) : false"
                     :route="isset($sublink['route']) ? route($sublink['route']) : null"
