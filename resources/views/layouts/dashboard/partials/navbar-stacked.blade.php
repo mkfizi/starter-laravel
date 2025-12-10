@@ -16,7 +16,6 @@
 >
     <div class="flex justify-between items-center mx-auto px-4 sm:px-8 py-3 max-w-screen-xl">
         <div class="flex items-center gap-4">
-            {{-- Navbar Menu Open --}}
             <button type="button" class="lg:hidden lg:invisible hover:bg-neutral-100 focus:bg-neutral-100 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 disabled:opacity-60 p-2 rounded font-medium text-black dark:text-white text-sm cursor-pointer disabled:pointer-events-none" aria-controls="navbar-menu" aria-label="Open navbar menu."
                 x-on:click="isNavbarMenuOpen = true"
                 :aria-expanded="isNavbarMenuOpen"
@@ -25,9 +24,9 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/></svg>
                 </span>
             </button>
-            {{-- END Navbar Menu Open --}}
             <x-nav-title route="dashboard"/>
-            {{-- Navbar Menu --}}
+        </div>
+        <div class="flex items-center gap-4">
             <div id="navbar-menu" class="hidden invisible lg:visible lg:block top-0 lg:top-auto left-0 lg:left-auto !z-20 z-10 lg:z-auto fixed lg:relative bg-black/80 lg:bg-transparent lg:ml-8 w-dvw lg:w-auto h-dvh lg:h-auto"
                 x-trap.noautofocus.noscroll="isNavbarMenuOpen && window.innerWidth < breakpoint"
                 x-on:click.self="isNavbarMenuOpen = false"
@@ -35,9 +34,7 @@
                 :class="{ 'hidden invisible' : !isNavbarMenuOpen || window.innerWidth >= breakpoint }"
                 :inert="!isNavbarMenuOpen && window.innerWidth < breakpoint"
             >
-                {{-- Navbar Menu Drawer --}}
                 <div class="top-0 left-0 fixed lg:relative bg-white lg:bg-transparent dark:bg-neutral-950 px-4 sm:px-8 lg:px-0 py-4 lg:py-0 border-neutral-200 lg:border-0 dark:border-neutral-800 border-r w-full sm:w-64 lg:w-auto h-full lg:h-auto overflow-y-auto lg:overflow-y-visible">
-                    {{-- Navbar Menu Close --}}
                     <button type="button" class="lg:hidden lg:invisible top-2 right-2 absolute hover:bg-neutral-100 focus:bg-neutral-100 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 disabled:opacity-60 p-2 rounded font-medium text-black dark:text-white text-sm cursor-pointer disabled:pointer-events-none" aria-controls="navbar-menu" aria-label="Close navbar menu."
                         x-on:click="isNavbarMenuOpen = false"
                         :aria-expanded="isNavbarMenuOpen"
@@ -46,8 +43,6 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg>
                         </span>
                     </button>
-                    {{-- END Navbar Menu Close --}}
-                    {{-- Navbar Menu Links --}}
                     <ul class="lg:flex lg:items-center lg:gap-2 space-y-1 lg:space-y-0 mt-8 lg:mt-0 leading-0">
                         @foreach (config('routes.dashboard') as $link)
                             @if (isset($link['route']) && !isset($link['links']))
@@ -61,8 +56,11 @@
                             @elseif(isset($link['href']))
                                 <li>
                                     <x-button-link-ghost href="{{ $link['href'] }}" class="inline-block w-full" target="_blank" rel="noopener noreferrer">{{ $link['title'] }}</x-button-link-ghost>
-                                </li>              
-                            @elseif(isset($link['links']))
+                                </li>    
+                            {{-- Dashboard stack menu is intended for application with less menu items, 
+                                therefore we are hiding menu routes with sub-links. If you still want
+                                to show them, uncomment the following block. --}}      
+                            {{-- @elseif(isset($link['links']))
                                 <li class="hidden invisible lg:visible lg:block">
                                     <x-dropdown>
                                         <x-slot name="trigger">
@@ -89,21 +87,14 @@
                                         :title="isset($link['title']) ? $link['title'] : null"
                                         :route="isset($link['route']) ? $link['route'] : null"
                                     />
-                                </li>
-                            @else
-                                <li>
-                                    <p class="lg:hidden lg:invisible mt-4 py-2 font-semibold text-black dark:text-white text-xs uppercase tracking-wide">{{ $link['title'] }}</p>
-                                    <div class="hidden invisible lg:visible lg:block bg-neutral-300 dark:bg-neutral-700 w-px h-6"></div>
-                                </li>
+                                </li> 
+                            --}}
                             @endif
                         @endforeach
                     </ul>
-                    {{-- END Navbar Menu Links --}}
                 </div>
-                {{-- END Navbar Menu Drawer --}}
             </div>  
-            {{-- END Navbar Menu --}}
+            @include('layouts.dashboard.partials.navbar-buttons')
         </div>
-        @include('layouts.dashboard.partials.navbar-buttons')
     </div>
 </nav>

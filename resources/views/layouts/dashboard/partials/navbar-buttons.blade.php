@@ -1,8 +1,5 @@
 <div class="flex gap-2">
-    {{-- Dark Mode Menu --}}
     <x-dark-mode-menu position="!-right-11 mt-2" />
-    {{-- END Dark Mode Menu --}}
-    {{-- Settings Menu --}}
     <x-dropdown 
         id="settings-menu"
         position="right-0 mt-2"
@@ -21,6 +18,5 @@
             @csrf
             <x-dropdown-button>{{ __('Logout') }}</x-dropdown-button>
         </form>
-    </x-dropdown>
-    {{-- END Settings Menu --}}     
+    </x-dropdown>   
 </div>

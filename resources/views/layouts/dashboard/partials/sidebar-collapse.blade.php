@@ -34,7 +34,6 @@
     :inert="!isSidebarOpen && window.innerWidth < breakpoint"
 >
     @include('layouts.dashboard.partials.sidebar-drawer')
-    {{-- END Sidebar Drawer --}}
 </aside>
 {{-- Prevent FOUC when sidebar is closed on desktop --}}
 <script>

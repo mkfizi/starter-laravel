@@ -11,7 +11,6 @@
 >
     <div class="flex justify-between lg:justify-end items-center mx-auto px-4 sm:px-8 py-3">
         <div class="lg:hidden lg:invisible flex items-center gap-4">
-            {{-- Sidebar Open --}}
             <x-button-ghost type="button" class="p-2!" aria-controls="sidebar" aria-label="{{ __('Open sidebar.') }}"
                 x-data="{ isSidebarOpen: false }"
                 x-on:click="$dispatch('open-sidebar', { id: 'sidebar' })"
@@ -22,7 +21,6 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l16 0"/><path d="M4 12l16 0"/><path d="M4 18l16 0"/></svg>
                 </x-icon>
             </x-button-ghost>
-            {{-- END Sidebar Open --}}
             <x-nav-title route="dashboard"/>
         </div>
         @include('layouts.dashboard.partials.navbar-buttons')
