@@ -2,7 +2,7 @@
     <div class="space-y-4">
         <div class="flex sm:flex-row flex-col justify-between gap-4">
             <div class="flex gap-2">
-                <x-input-search route="{{ route('dashboard.admin.users.index') }}" />
+                <x-input-search route="{{ route('dashboard.admin.users.index') }}" :searchText="__('Search user\'s name/email')"/>
             </div>
             <x-button-link href="{{ route('dashboard.admin.users.create') }}" class="text-center">{{ __('Create New') }}</x-button-link>
         </div>

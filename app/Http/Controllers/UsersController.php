@@ -7,10 +7,17 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // List users
-        $users = User::with('roles')->paginate();
+        $perPage = $request->input('per_page', 10);
+        $query = User::with('roles');
+        if ($search = $request->input('search')) {
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'like', "%$search%")
+                  ->orWhere('email', 'like', "%$search%");
+            });
+        }
+        $users = $query->paginate($perPage)->appends($request->only(['search', 'per_page']));
         return view('dashboard.admin.users.index', compact('users'));
     }
 
