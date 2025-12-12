@@ -2,7 +2,7 @@
     <div class="space-y-4">
         <div class="flex sm:flex-row flex-col justify-between gap-4">
             <div class="flex gap-2">
-                <x-input-search route="{{ route('dashboard.admin.users.index') }}" :searchText="__('Search user\'s name/email')"/>
+                <x-input-search route="{{ route('dashboard.admin.users.index') }}" :searchText="__('Search user\'s name/email')" class="sm:w-72"/>
             </div>
             <x-button-link href="{{ route('dashboard.admin.users.create') }}" class="text-center">{{ __('Create New') }}</x-button-link>
         </div>
@@ -27,7 +27,7 @@
                             <div class="flex gap-2">
                                 <x-link href="{{ route('dashboard.admin.users.show', $user->id) }}" aria-label="{{ __('View user.') }}">
                                     <x-icon>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icons-tabler-outline icon icon-tabler icon-tabler-note"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 20l7 -7" /><path d="M13 20v-6a1 1 0 0 1 1 -1h6v-7a2 2 0 0 0 -2 -2h-12a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7" /></svg>
                                     </x-icon>
                                 </x-link>
                                 @php

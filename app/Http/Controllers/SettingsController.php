@@ -73,6 +73,7 @@ class SettingsController extends Controller
     {
         $user = $request->user();
         $user->password = Hash::make($request->validated()['password']);
+        $user->must_change_password = false;
         $user->save();
 
         return Redirect::route('dashboard.settings.password')->with('status', __('Password updated successfully.'));

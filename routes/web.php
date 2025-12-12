@@ -18,7 +18,7 @@ Route::name('web.')->group(function () {
     })->name('readme');
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'password.changed'])->group(function () {
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
     
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
@@ -26,10 +26,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::prefix('settings')->name('settings.')->group(function () {
             Route::get('/account', [Settings::class, 'account'])->name('account');
-            Route::get('/password', [Settings::class, 'password'])->name('password');
+            Route::get('/password', [Settings::class, 'password'])->name('password')->withoutMiddleware('password.changed');
             Route::get('/two-factor', [Settings::class, 'twoFactor'])->name('two-factor');
             Route::put('/update-profile', [Settings::class, 'updateProfile'])->name('update-profile')->middleware('password.confirm');
-            Route::put('/update-password', [Settings::class, 'updatePassword'])->name('update-password');
+            Route::put('/update-password', [Settings::class, 'updatePassword'])->name('update-password')->withoutMiddleware('password.changed');
             Route::delete('/destroy', [Settings::class, 'destroy'])->name('destroy');
         });
 

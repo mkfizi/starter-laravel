@@ -18,12 +18,12 @@
             </div>
             <div class="space-y-1">
                 <x-label for="password">{{ __('Password') }}</x-label>
-                <x-input type="password" id="password" name="password" value="" placeholder="{{ __('Enter password') }}" required />
+                <x-input-password id="password" name="password" value="" placeholder="{{ __('Enter password') }}" required />
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
             <div class="space-y-1">
                 <x-label for="password_confirmation">{{ __('Confirm Password') }}</x-label>
-                <x-input type="password" id="password_confirmation" name="password_confirmation" value="" placeholder="{{ __('Confirm password') }}" required />
+                <x-input-password id="password_confirmation" name="password_confirmation" value="" placeholder="{{ __('Confirm password') }}" required />
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
             </div>
         </div>

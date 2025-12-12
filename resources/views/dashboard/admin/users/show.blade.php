@@ -15,10 +15,40 @@
                     <x-input id="email" name="email" type="email" class="w-full" value="{{ $user->email }}" disabled />
                 </div>
                 <div class="space-y-1">
-                    <x-label for="roles">{{ __('Roles') }}</x-label>
-                    <x-input id="roles" name="roles" type="text" class="w-full" value="{{ $user->roles->pluck('name')->join(', ') }}" disabled />
+                    <x-label>{{ __('Roles') }}</x-label>
+                    @if($user->roles->count() > 0)
+                        <x-list type="disc">
+                            @foreach($user->roles as $role)
+                                <x-list-item>{{ $role->name }}</x-list-item>
+                            @endforeach
+                        </x-list>
+                    @else
+                        <x-text class="text-neutral-500">{{ __('No roles assigned') }}</x-text>
+                    @endif
                 </div>
+            </div>
+            <div class="flex gap-2 mt-8">
+                @php
+                    $superAdminEmail = config('app.super_admin');
+                    $isUserSuperAdmin = $user->email === $superAdminEmail;
+                @endphp
+                @if(!$isUserSuperAdmin)
+                    <x-button-link href="{{ route('dashboard.admin.users.edit', $user->id) }}">{{ __('Edit' )}}</x-button-link>
+                    <x-button-danger type="button"
+                        x-data="{ isModalOpen: false }"
+                        x-on:click="
+                            $dispatch('set-user', { id: '{{ $user->id }}', name: '{{ addslashes($user->name) }}' });
+                            $dispatch('open-modal', { id: 'modal-delete-user' });
+                        "
+                        x-on:modal-delete-user-expanded.window="$event.detail.id === 'modal-delete-user' ? isModalOpen = $event.detail.isModalOpen : null"
+                        ::aria-expanded="isModalOpen"
+                        aria-controls="modal-delete-user"
+                    >
+                        {{ __('Delete' )}}
+                    </x-button-danger>
+                @endif
             </div>
         </x-card>
     </div>
+    @include('dashboard.admin.users.partials.modal-delete-user')
 </x-layouts.dashboard>

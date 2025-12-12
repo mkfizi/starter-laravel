@@ -10,7 +10,7 @@
     $buttonComponent = 'button-ghost';
     
     if ($type === 'error') {
-        $alertClass = 'bg-red-50 dark:bg-red-900 border-red-200 dark:border-red-800';
+        $alertClass = 'bg-red-50 dark:bg-red-100 border-red-600 dark:border-red-400';
         $textClass = 'text-red-600! dark:text-red-400!';
         $iconClass = 'stroke-red-600! dark:stroke-red-400!';
         $buttonComponent = 'button-ghost-danger';

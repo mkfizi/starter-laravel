@@ -6,7 +6,7 @@
         </div>
     </nav>
     <main class="mx-auto px-4 sm:px-8 py-16 w-full max-w-screen-xl">
-        <div class="mx-auto pt-32 max-w-sm">
+        <div class="mx-auto py-32 max-w-sm">
             <a href="{{ route('web.index') }}" class="block mx-auto w-fit text-center" aria-label="{{ __('Navigate to Home.') }}"> 
                 <span class="[&_svg]:w-12 [&_svg]:h-12 text-black dark:text-white shrink-0">
                     <svg height="24" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
