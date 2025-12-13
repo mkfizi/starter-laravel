@@ -27,7 +27,10 @@ class RolePermissionSeeder extends Seeder
 
         // create super admin role and assign all permissions
         $role = Role::create(['name' => 'Super Admin']);
-        $role->givePermissionTo(Permission::all());
+
+        // By default, we already handle this in the AppServiceProvider's Gate::before method, 
+        // but in case we need it explicitly:
+        // $role->givePermissionTo(Permission::all());
 
         // Create predefined roles with permissions
         $roles = [

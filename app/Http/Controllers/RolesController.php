@@ -18,7 +18,8 @@ class RolesController extends Controller
         $perPage = 10;
         $perPage = $request->input('per_page', $perPage);
 
-        $query = Role::withCount('users');
+        // Exclude Super Admin from listing.
+        $query = Role::whereNot('name', 'Super Admin')->withCount('users');
         if ($search = $request->input('search')) {
             $query->where('name', 'like', "%$search%");
         }
