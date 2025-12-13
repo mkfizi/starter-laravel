@@ -40,36 +40,43 @@
                         </x-table-td>
                         <x-table-td class="w-16">
                             <div class="flex gap-2">
-                                <x-link href="{{ route('dashboard.admin.roles.show', $role->id) }}" aria-label="{{ __('View role.') }}">
-                                    <x-icon>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icons-tabler-outline icon icon-tabler icon-tabler-note"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 20l7 -7" /><path d="M13 20v-6a1 1 0 0 1 1 -1h6v-7a2 2 0 0 0 -2 -2h-12a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7" /></svg>
-                                    </x-icon>
-                                </x-link>
-                                @if (!in_array($role->name, config('permission.role_permission.protected.edit')))
-                                    <x-link href="{{ route('dashboard.admin.roles.edit', $role->id) }}" aria-label="{{ __('Edit role.') }}">
+                                <x-tooltip text="{{ __('View Role') }}">
+                                    <x-link href="{{ route('dashboard.admin.roles.show', $role->id) }}" aria-label="{{ __('View role.') }}">
                                         <x-icon>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"/><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"/><path d="M16 5l3 3"/></svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icons-tabler-outline icon icon-tabler icon-tabler-note"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 20l7 -7" /><path d="M13 20v-6a1 1 0 0 1 1 -1h6v-7a2 2 0 0 0 -2 -2h-12a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7" /></svg>
                                         </x-icon>
                                     </x-link>
+                                </x-tooltip>
+                                @if (!in_array($role->name, config('permission.role_permission.protected.edit')))
+                                    <x-tooltip text="{{ __('Edit Role') }}">
+                                        <x-link href="{{ route('dashboard.admin.roles.edit', $role->id) }}" aria-label="{{ __('Edit role.') }}">
+                                            <x-icon>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"/><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"/><path d="M16 5l3 3"/></svg>
+                                            </x-icon>
+                                        </x-link>
+                                    </x-tooltip>
                                 @endif
                                 @if (!in_array($role->name, config('permission.role_permission.protected.delete')))
-                                    <x-link href="#" aria-label="{{ __('Delete role.') }}"
-                                        x-data="{ isModalOpen: false }"
-                                        x-on:click.prevent="
-                                            $dispatch('set-role', {
-                                                id: '{{ addslashes($role->id) }}',
-                                                name: '{{ addslashes($role->name) }}'
-                                            });
-                                            $dispatch('open-modal', { id: 'modal-delete-role' });
-                                        "
-                                        x-on:modal-delete-role-expanded.window="$event.detail.id === 'modal-delete-role' ? isModalOpen = $event.detail.isModalOpen : null"
-                                        ::aria-expanded="isModalOpen"
-                                        aria-controls="modal-delete-role"
-                                    >
-                                        <x-icon>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z"/><path d="M9 9l6 6m0 -6l-6 6"/></svg>
-                                        </x-icon>
-                                    </x-link>
+                                    <span x-data="{ isModalOpen: false }">
+                                        <x-tooltip text="{{ __('Delete Role') }}">
+                                            <x-link href="#" aria-label="{{ __('Delete role.') }}"
+                                                x-on:click.prevent="
+                                                    $dispatch('set-role', {
+                                                        id: '{{ addslashes($role->id) }}',
+                                                        name: '{{ addslashes($role->name) }}'
+                                                    });
+                                                    $dispatch('open-modal', { id: 'modal-delete-role' });
+                                                "
+                                                x-on:modal-delete-role-expanded.window="$event.detail.id === 'modal-delete-role' ? isModalOpen = $event.detail.isModalOpen : null"
+                                                ::aria-expanded="isModalOpen"
+                                                aria-controls="modal-delete-role"
+                                            >
+                                                <x-icon>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z"/><path d="M9 9l6 6m0 -6l-6 6"/></svg>
+                                                </x-icon>
+                                            </x-link>
+                                        </x-tooltip>
+                                    </span>
                                 @endif
                             </div>
                         </x-table-td>
