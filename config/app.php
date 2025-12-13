@@ -16,6 +16,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Error Email Addresses
+    |--------------------------------------------------------------------------
+    |
+    | This value is an array of email addresses that will receive error
+    | notifications from the application. You may set this in your ".env" file.
+    |
+    */
+    'error_email' => env('APP_ERROR_EMAILS', 'admin@email.com'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Name
     |--------------------------------------------------------------------------
     |
