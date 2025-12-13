@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Notifications\NewUserCredentials;
+use App\Notifications\PasswordUpdated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -67,18 +68,80 @@ class UsersController extends Controller
 
     public function edit($id)
     {
-        // $user = User::with('roles')->findOrFail($id);
-        // $roles = Role::all();
-        // return view('dashboard.admin.users.edit', compact('user', 'roles'));
+        $user = User::with('roles')->findOrFail($id);
+        
+        if ($user->email === config('app.super_admin')) {
+            return redirect()->route('dashboard.admin.users.index')
+                ->with('error', 'Super admin cannot be edited.');
+        }
+        
+        $roles = Role::all();
+        return view('dashboard.admin.users.edit', compact('user', 'roles'));
     }
 
     public function update(Request $request, $id)
     {
-        // Handle user update
+        $user = User::findOrFail($id);
+
+        if ($user->email === config('app.super_admin')) {
+            return redirect()->route('dashboard.admin.users.index')
+                ->with('error', 'Super admin cannot be updated.');
+        }
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:8|confirmed',
+            'roles' => 'array',
+            'roles.*' => 'exists:roles,id'
+        ]);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->must_change_password = $request->has('must_change_password');
+
+        if ($request->filled('password')) {
+            $newPassword = $request->input('password');
+            $user->password = Hash::make($newPassword);
+            $passwordChanged = true;
+        } else {
+            $passwordChanged = false;
+        }
+
+        $user->save();
+
+        if ($request->has('roles')) {
+            $user->syncRoles($request->input('roles'));
+        } else {
+            $user->syncRoles([]);
+        }
+
+        if ($passwordChanged) {
+            $user->notify(new PasswordUpdated($newPassword));
+        }
+
+        return redirect()->route('dashboard.admin.users.index')
+            ->with('status', "User {$user->name} updated successfully.");
     }
 
     public function destroy($id)
     {
-        // Handle user deletion
+        $user = User::findOrFail($id);
+        
+        if ($user->email === config('app.super_admin')) {
+            return redirect()->route('dashboard.admin.users.index')
+                ->with('error', 'Super admin cannot be deleted.');
+        }
+        
+        if ($user->id === auth()->id()) {
+            return redirect()->route('dashboard.admin.users.index')
+                ->with('error', 'You cannot delete your own account.');
+        }
+        
+        $userName = $user->name;
+        $user->delete();
+        
+        return redirect()->route('dashboard.admin.users.index')
+            ->with('status', "User {$userName} deleted successfully.");
     }
 }

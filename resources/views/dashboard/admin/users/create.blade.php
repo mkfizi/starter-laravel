@@ -31,7 +31,7 @@
                     </div>
                     <div class="space-y-1">
                         <x-label for="must_change_password" class="flex items-center gap-1">
-                            <x-input-checkbox id="must_change_password" name="must_change_password" />
+                            <x-input-checkbox id="must_change_password" name="must_change_password" checked />
                             <span>{{ __('Force password change') }}</span>
                         </x-label>
                     </div>
