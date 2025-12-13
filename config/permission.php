@@ -302,20 +302,6 @@ return [
             ]
         ],
 
-        /* Define Roles and assign Permissions for seeding the database */
-        'roles' => [
-            [
-                'name' => 'User',
-                'permissions' => [
-                    'dashboard-user:read',
-                    'task-management:create',
-                    'task-management:read',
-                    'task-management:update',
-                    'task-management:delete',
-                ]
-            ],
-        ],
-
         /* Define protected roles that cannot be edited or deleted via Role Management module */
         'protected' => [
             'edit' => ['Super Admin'],

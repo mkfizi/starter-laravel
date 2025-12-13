@@ -33,7 +33,7 @@ Route::middleware(['auth', 'verified', 'password.changed'])->group(function () {
             Route::delete('/destroy', [Settings::class, 'destroy'])->name('destroy');
         });
 
-        Route::prefix('admin')->name('admin.')->group(function () {
+        Route::prefix('admin')->name('admin.')->middleware('can:dashboard-admin:read')->group(function () {
             Route::resource('users', Users::class);
             Route::resource('roles', Roles::class);
             Route::get('/activity-logs', fn() => view('dashboard.admin.activity-logs'))->name('activity-logs');

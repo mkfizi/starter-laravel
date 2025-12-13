@@ -38,7 +38,7 @@
                             <li>
                                 @if (isset($link['route']))
                                     @if (request()->routeIs($link['route']))
-                                        <a href="{{ route($link['route']) }}" class="inline-block font-medium text-black hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-neutral-200 dark:focus:text-neutral-200 dark:text-white text-sm cursor-pointer">{{ $link['title'] }}</a>
+                                        <a href="{{ route($link['route']) }}" class="inline-block bg-neutral-100 lg:bg-transparent lg:hover:bg-transparent lg:dark:bg-transparent lg:dark:hover:bg-transparent hover:bg-neutral-100 dark:bg-neutral-800 dark:hover:bg-neutral-800 lg:p-0 px-3 lg:px-0 py-2 lg:py-0 rounded w-full font-medium lg:hover:text-neutral-700 lg:focus:text-neutral-700 lg:dark:hover:text-neutral-200 lg:dark:focus:text-neutral-200 dark:text-white text-sm text-left cursor-pointer">{{ $link['title'] }}</a>
                                     @else
                                         <a href="{{ route($link['route']) }}" class="inline-block lg:hover:bg-transparent hover:bg-neutral-100 dark:lg:hover:bg-transparent dark:hover:bg-neutral-800 lg:p-0 px-3 py-2 rounded w-full font-medium text-black lg:hover:text-black lg:focus:text-black lg:text-neutral-500 lg:visited:text-neutral-700 dark:lg:hover:text-white dark:lg:focus:text-white dark:lg:text-neutral-400 dark:lg:visited:text-neutral-200 dark:text-white text-sm text-left cursor-pointer">{{ $link['title'] }}</a>
                                     @endif

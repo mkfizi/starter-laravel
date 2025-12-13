@@ -29,8 +29,17 @@ class RolePermissionSeeder extends Seeder
         $role = Role::create(['name' => 'Super Admin']);
         $role->givePermissionTo(Permission::all());
 
+        // Create predefined roles with permissions
+        $roles = [
+            [
+                'name' => 'User',
+                'permissions' => [
+                    'dashboard-user:read',
+                ]
+            ],
+        ];
 
-        foreach( config('permission.role_permission.roles') as $roleData) {
+        foreach($roles as $roleData) {
             $role = Role::create(['name' => $roleData['name']]);
             foreach ($roleData['permissions'] as $permission) {
                 $role->givePermissionTo($permission);

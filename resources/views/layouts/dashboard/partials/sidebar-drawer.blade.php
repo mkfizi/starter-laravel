@@ -12,6 +12,9 @@
     </div>
     <ul class="space-y-1 px-4 sm:px-8 pb-4 overflow-y-auto">
         @foreach (config('routes.dashboard') as $link)
+            @if (isset($link['permission']) && !auth()->user()->can($link['permission']))
+                @continue
+            @endif
             @if (isset($link['route']) && !isset($link['links']))
                 <li>
                     <x-sidebar-nav-link

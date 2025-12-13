@@ -45,6 +45,9 @@
                     </button>
                     <ul class="lg:flex lg:items-center lg:gap-2 space-y-1 lg:space-y-0 mt-8 lg:mt-0 leading-0">
                         @foreach (config('routes.dashboard') as $link)
+                            @if (isset($link['permission']) && !auth()->user()->can($link['permission']))
+                                @continue
+                            @endif
                             @if (isset($link['route']) && !isset($link['links']))
                                 <li>
                                     @if (request()->routeIs($link['route']))
