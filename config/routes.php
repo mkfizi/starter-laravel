@@ -49,27 +49,27 @@ return [
             'route' => 'dashboard.admin.users.index',
             'active' => 'dashboard.admin.users.*',
             'title' => 'Users',
-            'permission' => 'dashboard-admin:read'
+            'permission' => 'user-management:read'
         ],
         [
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icons-tabler-outline icon icon-tabler icon-tabler-topology-star"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 18a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M20 6a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M8 6a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M20 18a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M14 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0z" /><path d="M7.5 7.5l3 3" /><path d="M7.5 16.5l3 -3" /><path d="M13.5 13.5l3 3" /><path d="M16.5 7.5l-3 3" /></svg>',
             'route' => 'dashboard.admin.roles.index',
             'active' => 'dashboard.admin.roles.*',
             'title' => 'Roles',
-            'permission' => 'dashboard-admin:read'
+            'permission' => 'roles:read'
         ],
         [
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icons-tabler-outline icon icon-tabler icon-tabler-run"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 4m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 17l5 1l.75 -1.5" /><path d="M15 21l0 -4l-4 -3l1 -6" /><path d="M7 12l0 -3l5 -1l3 3l3 1" /></svg>',
-            'route' => 'dashboard.admin.activity-logs',
-            'active' => 'dashboard.admin.activity-logs.*',
+            'route' => 'dashboard.admin.activity-log.index',
+            'active' => 'dashboard.admin.activity-log.*',
             'title' => 'Activity Log',
-            'permission' => 'dashboard-admin:read'
+            'permission' => 'activity-logs:read'
         ],
         [
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icons-tabler-outline icon icon-tabler icon-tabler-stopwatch"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 13a7 7 0 1 0 14 0a7 7 0 0 0 -14 0z" /><path d="M14.5 10.5l-2.5 2.5" /><path d="M17 8l1 -1" /><path d="M14 3h-4" /></svg>',
             'route' => 'dashboard.admin.session-history',
             'title' => 'Session History',
-            'permission' => 'dashboard-admin:read'
+            'permission' => 'session-history:read'
         ],
         [
             'title' => 'UI'

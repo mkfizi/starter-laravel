@@ -6,6 +6,7 @@ use App\Http\Controllers\SettingsController as Settings;
 use App\Http\Controllers\RolesController as Roles;
 use App\Http\Controllers\SessionHistoryController as SessionHistory;
 use App\Http\Controllers\UsersController as Users;
+use App\Http\Controllers\ActivityLogController as ActivityLog;
 use Illuminate\Support\Facades\Route;
 
 Route::name('web.')->group(function () {
@@ -33,12 +34,31 @@ Route::middleware(['auth', 'verified', 'password.changed'])->group(function () {
             Route::delete('/destroy', [Settings::class, 'destroy'])->name('destroy');
         });
 
-        Route::prefix('admin')->name('admin.')->middleware('can:dashboard-admin:read')->group(function () {
-            Route::resource('users', Users::class);
-            Route::resource('roles', Roles::class);
-            Route::get('/activity-logs', fn() => view('dashboard.admin.activity-logs'))->name('activity-logs');
-            Route::get('/session-history', [SessionHistory::class, 'index'])->name('session-history');
+        Route::prefix('admin')->name('admin.')->group(function () {
+            // Users resource routes with specific permissions
+            Route::resource('users', Users::class)->only(['index', 'show'])->middleware('can:user-management:read');
+            Route::resource('users', Users::class)->only(['create', 'store'])->middleware('can:user-management:create');
+            Route::resource('users', Users::class)->only(['edit', 'update'])->middleware('can:user-management:update');
+            Route::resource('users', Users::class)->only(['destroy'])->middleware('can:user-management:delete');
+
+            // Roles resource routes with specific permissions
+            Route::resource('roles', Roles::class)->only(['index', 'show'])->middleware('can:roles:read');
+            Route::resource('roles', Roles::class)->only(['create', 'store'])->middleware('can:roles:create');
+            Route::resource('roles', Roles::class)->only(['edit', 'update'])->middleware('can:roles:update');
+            Route::resource('roles', Roles::class)->only(['destroy'])->middleware('can:roles:delete');
+
+            Route::get('/session-history', [SessionHistory::class, 'index'])->name('session-history')->middleware('can:session-history:read');
+            
+            Route::prefix('activity-log')->name('activity-log.')->middleware('can:activity-logs:read')->group(function () {
+                Route::get('/', [ActivityLog::class, 'index'])->name('index');
+                Route::get('/{activity}', [ActivityLog::class, 'show'])->name('show');
+            }); 
         });
+
+        // Route::prefix('activity-log')->name('activity-log.')->middleware('can:dashboard-admin:read')->group(function () {
+        //     Route::get('/', [ActivityLog::class, 'index'])->name('index');
+        //     Route::get('/{activity}', [ActivityLog::class, 'show'])->name('show');
+        // });
 
         Route::prefix('layouts')->name('layouts.')->group(function () {
             Route::get('/collapse', fn() => view('dashboard.layouts.collapse'))->name('collapse');

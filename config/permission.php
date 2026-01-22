@@ -231,27 +231,27 @@ return [
                 ]
             ],
             [
-                'module' => 'Task Management',
+                'module' => 'User Management',
                 'permissions' => [
                     [
                         'type' => 'create',
-                        'name' => 'task-management:create',
-                        'description' => 'Able to create tasks.'
+                        'name' => 'user-management:create',
+                        'description' => 'Able to create users.'
                     ],
                     [
                         'type' => 'read',
-                        'name' => 'task-management:read',
-                        'description' => 'Able to view tasks.'
+                        'name' => 'user-management:read',
+                        'description' => 'Able to view users.'
                     ],
                     [
                         'type' => 'update',
-                        'name' => 'task-management:update',
-                        'description' => 'Able to edit tasks.'
+                        'name' => 'user-management:update',
+                        'description' => 'Able to edit users.'
                     ],
                     [
                         'type' => 'delete',
-                        'name' => 'task-management:delete',
-                        'description' => 'Able to delete tasks.'
+                        'name' => 'user-management:delete',
+                        'description' => 'Able to delete users.'
                     ]
                 ]
             ],

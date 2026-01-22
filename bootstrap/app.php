@@ -17,6 +17,15 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        // Handle authorization exceptions
+        $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException $e, $request) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Unauthorized access.'], 403);
+            }
+
+            return redirect()->back()->with('error', 'You do not have permission to access requested resource.');
+        });
+
         $exceptions->report(function (Throwable $e) {
             if (app()->environment('production')) {
                 try {
