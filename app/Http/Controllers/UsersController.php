@@ -51,7 +51,8 @@ class UsersController extends Controller
         ]);
 
         if ($request->has('roles')) {
-            $user->syncRoles($request->input('roles'));
+            $roles = Role::whereIn('id', $request->input('roles'))->get();
+            $user->syncRoles($roles);
         }
 
         $user->notify(new NewUserCredentials($password));
@@ -111,7 +112,8 @@ class UsersController extends Controller
         $user->save();
 
         if ($request->has('roles')) {
-            $user->syncRoles($request->input('roles'));
+            $roles = Role::whereIn('id', $request->input('roles'))->get();
+            $user->syncRoles($roles);
         } else {
             $user->syncRoles([]);
         }
