@@ -3,7 +3,7 @@
     'searchText' => __('Search...'),
 ])
 
-<form action="{{ $route }}" method="GET" {{ $attributes->merge(['class' => 'flex items-center gap-2 grow sm:grow-0']) }}>
+<form action="{{ $route }}" method="GET" {{ $attributes->merge(['class' => 'flex items-center gap-2 grow sm:grow-0 min-w-72']) }}>
     @if(request('per_page'))
         <input type="hidden" name="per_page" value="{{ request('per_page') }}">
     @endif
