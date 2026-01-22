@@ -2,7 +2,7 @@
     <div class="space-y-4">
         <div class="flex sm:flex-row flex-col justify-between gap-4">
             <div class="flex gap-2">
-                <x-input-search route="{{ route('dashboard.admin.roles.index') }}" searchText="{{ __('Search Roles...') }}" />
+                <x-input-search route="{{ route('dashboard.admin.roles.index') }}" searchText="{{ __('Search role name') }}" />
             </div>
             <x-button-link href="{{ route('dashboard.admin.roles.create') }}" class="text-center">{{ __('Create New') }}</x-button-link>
         </div>
