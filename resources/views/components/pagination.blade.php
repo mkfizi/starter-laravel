@@ -67,7 +67,7 @@
                 x-on:change="window.location.href=$el.value"
             >
                 @for ($i = $start; $i <= $end; $i++)
-                    <option value="{{ $data->url($i) }}" @if ($i == $data->currentPage()) selected @endif>{{ $i }}</option>
+                    <x-input-select-option value="{{ $data->url($i) }}" :selected="$i == $data->currentPage()">{{ $i }}</x-input-select-option>
                 @endfor
             </x-input-select>
             @if ($data->onLastPage())

@@ -24,14 +24,23 @@ class UsersController extends Controller
     {
         $perPage = $request->input('per_page', 10);
         $query = User::with('roles');
+        
         if ($search = $request->input('search')) {
             $query->where(function($q) use ($search) {
                 $q->where('name', 'like', "%$search%")
                   ->orWhere('email', 'like', "%$search%");
             });
         }
-        $users = $query->paginate($perPage)->appends($request->only(['search', 'per_page']));
-        return view('dashboard.admin.users.index', compact('users'));
+        
+        if ($roles = $request->input('roles')) {
+            $query->whereHas('roles', function($q) use ($roles) {
+                $q->whereIn('name', $roles);
+            });
+        }
+        
+        $users = $query->paginate($perPage)->appends($request->only(['search', 'per_page', 'roles']));
+        $roles = Role::all();
+        return view('dashboard.admin.users.index', compact('users', 'roles'));
     }
 
     public function create()
