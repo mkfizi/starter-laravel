@@ -19,9 +19,15 @@
             {{ __('results') }}
         </x-text>
         <form action="{{ $route }}" method="GET" class="flex items-center gap-2" x-data>
-            @if(request('search'))
-                <input type="hidden" name="search" value="{{ request('search') }}">
-            @endif
+            @foreach(request()->except(['per_page', 'page']) as $key => $value)
+                @if(is_array($value))
+                    @foreach($value as $arrayValue)
+                        <input type="hidden" name="{{ $key }}[]" value="{{ $arrayValue }}">
+                    @endforeach
+                @else
+                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                @endif
+            @endforeach
             <x-input-select name="per_page" x-on:change="$el.form.submit()">
                 @foreach ([10, 25, 50, 100] as $size)
                     <x-input-select-option value="{{ $size }}" :selected="request('per_page', $data->perPage()) == $size">{{ $size }}</x-input-select-option>

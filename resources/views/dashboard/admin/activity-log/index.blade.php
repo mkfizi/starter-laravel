@@ -1,15 +1,14 @@
-
-    @php
-        $activeFilters = collect(request('actions', []))->count() + (request('date_from') ? 1 : 0) + (request('date_to') ? 1 : 0);
-        $hasFilters = $activeFilters > 0;
-    @endphp
+@php
+    $activeFilters = collect(request('actions', []))->count() + (request('date_from') ? 1 : 0) + (request('date_to') ? 1 : 0);
+    $hasFilters = $activeFilters > 0;
+@endphp
 
 <x-layouts.dashboard title="{{ __('Activity Log') }}">
     <div class="space-y-4">
         <div class="flex sm:flex-row flex-col justify-between gap-4">
             <div class="flex gap-2">
                 <x-input-search route="{{ route('dashboard.admin.activity-log.index') }}" :searchText="__('Search user')" class="sm:w-72"/>
-                <x-button class="p-2! relative {{ $hasFilters ? 'bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700' : '' }}" aria-label="{{ __('Filter activity log.') }}"
+                <x-button class="p-2!" aria-label="{{ __('Filter activity log.') }}"
                     x-data="{ isOffcanvasOpen: false }"
                     x-on:click="$dispatch('open-offcanvas', { id: 'offcanvas-filter-activity-log' })"
                     x-on:offcanvas-filter-activity-log-expanded.window="$event.detail.id === 'offcanvas-filter-activity-log' ? isOffcanvasOpen = $event.detail.isOffcanvasOpen : null"
@@ -19,45 +18,37 @@
                     <x-icon>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"/></svg>
                     </x-icon>
-                    @if($hasFilters)
-                        <span class="top-0 right-0 absolute bg-white dark:bg-neutral-950 -mt-1 -mr-1 px-1.5 rounded-full font-semibold text-blue-600 dark:text-blue-400 text-xs">
-                            {{ $activeFilters }}
-                        </span>
-                    @endif
                 </x-button>
             </div>
         </div>
         @if($hasFilters)
             <div class="flex flex-wrap items-center gap-2">
-                <x-text class="text-neutral-600 dark:text-neutral-400 text-sm">{{ __('Active filters:') }}</x-text>
+                <x-text>{{ __('Active filters:') }}</x-text>
                 @foreach(request('actions', []) as $action)
-                    <span class="inline-flex items-center gap-1 bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full text-blue-800 dark:text-blue-200 text-xs">
+                    <x-badge class="inline-flex items-center gap-1">
                         <span class="capitalize">{{ $action }}</span>
-                        <a href="{{ route('dashboard.admin.activity-log.index', array_merge(request()->except('actions'), ['actions' => array_diff(request('actions', []), [$action])])) }}" 
-                           class="hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full">
+                        <x-link href="{{ route('dashboard.admin.activity-log.index', array_merge(request()->except('actions'), ['actions' => array_diff(request('actions', []), [$action])])) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                        </a>
-                    </span>
+                        </x-link>
+                    </x-badge>
                 @endforeach
                 @if(request('date_from'))
-                    <span class="inline-flex items-center gap-1 bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full text-blue-800 dark:text-blue-200 text-xs">
+                    <x-badge class="inline-flex items-center gap-1">
                         <span>{{ __('From:') }} {{ request('date_from') }}</span>
-                        <a href="{{ route('dashboard.admin.activity-log.index', request()->except('date_from')) }}" 
-                           class="hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full">
+                        <x-link href="{{ route('dashboard.admin.activity-log.index', request()->except('date_from')) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                        </a>
-                    </span>
+                        </x-link>
+                    </x-badge>
                 @endif
                 @if(request('date_to'))
-                    <span class="inline-flex items-center gap-1 bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full text-blue-800 dark:text-blue-200 text-xs">
+                    <x-badge class="inline-flex items-center gap-1">
                         <span>{{ __('To:') }} {{ request('date_to') }}</span>
-                        <a href="{{ route('dashboard.admin.activity-log.index', request()->except('date_to')) }}" 
-                           class="hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full">
+                        <x-link href="{{ route('dashboard.admin.activity-log.index', request()->except('date_to')) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                        </a>
-                    </span>
+                        </x-link>
+                    </x-badge>
                 @endif
-                <x-link href="{{ route('dashboard.admin.activity-log.index') }}" class="text-blue-600 dark:text-blue-400 text-xs hover:underline">
+                <x-link href="{{ route('dashboard.admin.activity-log.index', request()->only(['search', 'per_page'])) }}" class="text-xs hover:underline">
                     {{ __('Clear all') }}
                 </x-link>
             </div>
@@ -88,18 +79,20 @@
                             @endif
                         </x-table-td>
                         <x-table-td>
+                            @php
+                                $badgeColor = match(true) {
+                                    str_contains($activity->description, 'created') => '!bg-green-100 !text-green-800 !dark:bg-green-900 !dark:text-green-200',
+                                    str_contains($activity->description, 'updated') => '!bg-blue-100 !text-blue-800 !dark:bg-blue-900 !dark:text-blue-200',
+                                    str_contains($activity->description, 'deleted') => '!bg-red-100 !text-red-800 !dark:bg-red-900 !dark:text-red-200',
+                                    str_contains($activity->description, 'failed') => '!bg-orange-100 !text-orange-800 !dark:bg-orange-900 !dark:text-orange-200',
+                                    str_contains($activity->description, 'login') => '!bg-purple-100 !text-purple-800 !dark:bg-purple-900 !dark:text-purple-200',
+                                    str_contains($activity->description, 'logout') => '!bg-gray-100 !text-gray-800 !dark:bg-gray-900 !dark:text-gray-200',
+                                };
+                            @endphp
                             <x-text>
-                                <span class="inline-flex px-2 py-1 rounded text-xs font-medium capitalize
-                                    @if(str_contains($activity->description, 'created')) bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200
-                                    @elseif(str_contains($activity->description, 'updated')) bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200
-                                    @elseif(str_contains($activity->description, 'deleted')) bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200
-                                    @elseif(str_contains($activity->description, 'failed')) bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200
-                                    @elseif(str_contains($activity->description, 'login')) bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200
-                                    @elseif(str_contains($activity->description, 'logout')) bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200
-                                    @else bg-neutral-100 text-neutral-800 dark:bg-neutral-900 dark:text-neutral-200
-                                    @endif">
+                                <x-badge class="capitalize {{ $badgeColor }}">
                                     {{ $activity->description }}
-                                </span>
+                                </x-badge>
                             </x-text>
                         </x-table-td>
                         <x-table-td>
@@ -132,5 +125,5 @@
         </x-table>
         <x-pagination :data="$activities" :route="route('dashboard.admin.activity-log.index')" />
     </div>
-    @include('activity-log.partials.offcanvas-filter-activity-log')
+    @include('dashboard.admin.activity-log.partials.offcanvas-filter-activity-log')
 </x-layouts.dashboard>

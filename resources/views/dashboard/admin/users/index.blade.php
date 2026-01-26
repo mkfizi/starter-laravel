@@ -1,3 +1,8 @@
+@php
+    $activeFilters = collect(request('roles', []))->count();
+    $hasFilters = $activeFilters > 0;
+@endphp
+
 <x-layouts.dashboard title="{{ __('Users') }}">
     <div class="space-y-4">
         <div class="flex sm:flex-row flex-col justify-between gap-4">
@@ -13,10 +18,31 @@
                     <x-icon>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"/></svg>
                     </x-icon>
+                    @if($hasFilters)
+                        <span class="top-0 right-0 absolute bg-neutral-300 dark:bg-neutral-600 -mt-1 -mr-1 px-1.5 rounded-full font-semibold text-neutral-800 dark:text-neutral-200 text-xs">
+                            {{ $activeFilters }}
+                        </span>
+                    @endif
                 </x-button>
             </div>
             <x-button-link href="{{ route('dashboard.admin.users.create') }}" class="text-center">{{ __('Create New') }}</x-button-link>
         </div>
+        @if($hasFilters)
+            <div class="flex flex-wrap items-center gap-2">
+                <x-text>{{ __('Active filters:') }}</x-text>
+                @foreach(request('roles', []) as $role)
+                    <x-badge class="inline-flex items-center gap-1">
+                        <span>{{ ucfirst($role) }}</span>
+                        <x-link href="{{ route('dashboard.admin.users.index', array_merge(request()->except('roles'), ['roles' => array_diff(request('roles', []), [$role])])) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                        </x-link>
+                    </x-badge>
+                @endforeach
+                <x-link href="{{ route('dashboard.admin.users.index', request()->only(['search', 'per_page'])) }}" class="text-xs hover:underline">
+                    {{ __('Clear all') }}
+                </x-link>
+            </div>
+        @endif
         <x-table>
             <x-slot name="header">
                 <x-table-th><x-text>{{ __('No') }}</x-text></x-table-th>

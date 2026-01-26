@@ -4,9 +4,15 @@
 ])
 
 <form action="{{ $route }}" method="GET" {{ $attributes->merge(['class' => 'flex items-center gap-2 grow sm:grow-0 min-w-72']) }}>
-    @if(request('per_page'))
-        <input type="hidden" name="per_page" value="{{ request('per_page') }}">
-    @endif
+    @foreach(request()->except(['search', 'page']) as $key => $value)
+        @if(is_array($value))
+            @foreach($value as $arrayValue)
+                <input type="hidden" name="{{ $key }}[]" value="{{ $arrayValue }}">
+            @endforeach
+        @else
+            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+        @endif
+    @endforeach
     <input type="text" id="search" name="search" value="{{ request('search') }}" class="inset-ring inset-ring-neutral-400 dark:inset-ring-neutral-600 bg-transparent disabled:opacity-60 px-3 py-2 rounded w-full text-neutral-800 dark:text-neutral-200 text-sm appearance-none cursor-text disabled:pointer-events-none" placeholder="{{ $searchText }}"/>
     <x-button type="submit" class="p-2!" aria-label="{{ __('Search.') }}">
         <x-icon>

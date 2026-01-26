@@ -12,22 +12,29 @@ class ActivityLogController extends Controller
      */
     public function index(Request $request)
     {
+        $perPage = $request->input('per_page', 10);
         $query = Activity::with(['causer', 'subject'])
             ->latest();
 
-        // Filter by causer (user who performed the action)
-        if ($request->filled('causer_id')) {
-            $query->where('causer_id', $request->causer_id);
+        // Search by user email/name or "system"
+        if ($search = $request->input('search')) {
+            $query->where(function ($q) use ($search) {
+                // Search for users by email or name
+                $q->whereHas('causer', function ($subQuery) use ($search) {
+                    $subQuery->where('email', 'like', "%$search%")
+                             ->orWhere('name', 'like', "%$search%");
+                });
+                
+                // If searching for "system", include activities without a causer
+                if (stripos('system', strtolower($search)) !== false) {
+                    $q->orWhereNull('causer_id');
+                }
+            });
         }
 
-        // Filter by log name
-        if ($request->filled('log_name')) {
-            $query->where('log_name', $request->log_name);
-        }
-
-        // Filter by description (e.g., created, updated, deleted)
-        if ($request->filled('description')) {
-            $query->where('description', 'like', '%' . $request->description . '%');
+        // Filter by actions (multiple)
+        if ($actions = $request->input('actions')) {
+            $query->whereIn('description', $actions);
         }
 
         // Filter by date range
@@ -38,9 +45,9 @@ class ActivityLogController extends Controller
             $query->whereDate('created_at', '<=', $request->date_to);
         }
 
-        $activities = $query->paginate(20)->withQueryString();
+        $activities = $query->paginate($perPage)->appends($request->only(['search', 'per_page', 'actions', 'date_from', 'date_to']));
 
-        return view('activity-log.index', compact('activities'));
+        return view('dashboard.admin.activity-log.index', compact('activities'));
     }
 
     /**
@@ -48,6 +55,6 @@ class ActivityLogController extends Controller
      */
     public function show(Activity $activity)
     {
-        return view('activity-log.show', compact('activity'));
+        return view('dashboard.admin.activity-log.show', compact('activity'));
     }
 }
