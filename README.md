@@ -4,10 +4,29 @@ Starter Kit for Laravel projects.
 ## Description
 This Laravel starter kit serves as starting point when developing web applications or sites. It comes with built-in Authentication, Notification, Role Permissions and User Management modules.
 
-### Preconfigured Library
+## Preconfigured Library
 |Modules |Library |
 |--------|--------|
 |Authentication | [Laravel Fortify](https://laravel.com/docs/12.x/fortify) |
+|Roles & Permission | [Spatie Laravel Permissions](https://spatie.be/docs/laravel-permission/v6/introduction)|
+|Activity Log | [Spatie Laravel Activity Log](https://spatie.be/docs/laravel-activitylog/v4/introduction) |
+
+## Features
+
+### Config
+- Routes config
+
+### Modules
+- Users Management
+- Roles and Permission
+  > roles use custom role ulid
+- Session History
+- Application Error Notification
+- Current ctive User Tracking
+
+### UI
+- Layouts
+- Components
 
 ## Installation
 Clone this repository to get started.

@@ -34,9 +34,6 @@ class Role extends SpatieRole
         return LogOptions::defaults()
             ->logOnly(['name', 'guard_name'])
             ->logOnlyDirty()
-            ->dontSubmitEmptyLogs()
-            ->setDescriptionForEvent(fn(string $eventName) => 
-                auth()->check() ? __(ucfirst($eventName)) : __(ucfirst($eventName) . ' by system')
-            );
+            ->dontSubmitEmptyLogs();
     }
 }

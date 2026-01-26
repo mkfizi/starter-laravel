@@ -12,17 +12,20 @@ return [
     | You may set this in your ".env" file. Use with care.
     |
     */
+
     'super_admin' => env('APP_SUPER_ADMIN', 'admin@email.com'),
 
     /*
     |--------------------------------------------------------------------------
-    | Error Email Addresses
+    | Error Send to Email Addresses
     |--------------------------------------------------------------------------
     |
-    | This value is an array of email addresses that will receive error
-    | notifications from the application. You may set this in your ".env" file.
+    | These values determine if application error should be sent to specified
+    | email addresses. You may set these in your ".env" file.
     |
     */
+
+    'error_send' => env('APP_ERROR_EMAILS', false),
     'error_email' => env('APP_ERROR_EMAILS', 'admin@email.com'),
 
     /*

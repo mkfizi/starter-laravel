@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Cache;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -27,25 +28,38 @@ return Application::configure(basePath: dirname(__DIR__))
         });
 
         $exceptions->report(function (Throwable $e) {
-            if (app()->environment('production')) {
+            // Send error details via email
+            if (config('app.error_send')) {
+                
+            // if (app()->environment('production')) {
                 try {
                     $errorEmail = config('app.error_email');
                     
                     if ($errorEmail) {
-                        Mail::raw(
-                            "Exception: " . $e->getMessage() . "\n\n" .
-                            "File: " . $e->getFile() . "\n" .
-                            "Line: " . $e->getLine() . "\n\n" .
-                            "Stack Trace:\n" . $e->getTraceAsString(),
-                            function ($message) use ($errorEmail) {
-                                $message->to($errorEmail)
-                                        ->subject('[' . config('app.name') . '] Error Occurred - ' . date('Y-m-d H:i:s'));
-                            }
-                        );
+                        // Create unique cache key based on error type and message
+                        $cacheKey = 'error_email_sent_' . md5(get_class($e) . $e->getMessage() . $e->getFile() . $e->getLine());
+                        
+                        // Only send email if not sent in the last 60 minutes
+                        if (!Cache::has($cacheKey)) {
+                            Mail::raw(
+                                "Exception: " . $e->getMessage() . "\n\n" .
+                                "File: " . $e->getFile() . "\n" .
+                                "Line: " . $e->getLine() . "\n\n" .
+                                "Stack Trace:\n" . $e->getTraceAsString(),
+                                function ($message) use ($errorEmail) {
+                                    $message->to($errorEmail)
+                                            ->subject('[' . config('app.name') . '] Error Occurred - ' . date('Y-m-d H:i:s'));
+                                }
+                            );
+                            
+                            // Cache for 60 minutes to prevent duplicate emails
+                            Cache::put($cacheKey, true, now()->addMinutes(60));
+                        }
                     }
                 } catch (\Exception $mailException) {
                     // Prevent infinite loop if mail fails
                 }
+            // }
             }
         });
     })->create();
