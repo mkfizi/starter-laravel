@@ -256,26 +256,26 @@ return [
                 ]
             ],
             [
-                'module' => 'Roles',
+                'module' => 'Role Management',
                 'permissions' => [
                     [
                         'type' => 'create',
-                        'name' => 'roles:create',
+                        'name' => 'role-management:create',
                         'description' => 'Able to create roles.'
                     ],
                     [
                         'type' => 'read',
-                        'name' => 'roles:read',
+                        'name' => 'role-management:read',
                         'description' => 'Able to view roles.'
                     ],
                     [
                         'type' => 'update',
-                        'name' => 'roles:update',
+                        'name' => 'role-management:update',
                         'description' => 'Able to edit roles.'
                     ],
                     [
                         'type' => 'delete',
-                        'name' => 'roles:delete',
+                        'name' => 'role-management:delete',
                         'description' => 'Able to delete roles.'
                     ]
                 ]

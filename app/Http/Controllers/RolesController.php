@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -10,6 +10,14 @@ use Illuminate\View\View;
 
 class RolesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:roles:read')->only(['index', 'show']);
+        $this->middleware('can:roles:create')->only(['create', 'store']);
+        $this->middleware('can:roles:update')->only(['edit', 'update']);
+        $this->middleware('can:roles:delete')->only(['destroy']);
+    }
+
     /**
      * Display role listing.
      */
@@ -18,8 +26,7 @@ class RolesController extends Controller
         $perPage = 10;
         $perPage = $request->input('per_page', $perPage);
 
-        // Exclude Super Admin from listing.
-        $query = Role::whereNot('name', 'Super Admin')->withCount('users');
+        $query = Role::withCount('users');
         if ($search = $request->input('search')) {
             $query->where('name', 'like', "%$search%");
         }
