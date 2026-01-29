@@ -58,6 +58,6 @@
                 </tr>
             @endif
         </x-table>
-        <x-pagination :data="$sessions" :route="route('dashboard.admin.session-history')" />
+        <x-pagination :data="$sessions" :route="route('dashboard.admin.audit.session-history')" />
     </div>
 </x-layouts.dashboard>

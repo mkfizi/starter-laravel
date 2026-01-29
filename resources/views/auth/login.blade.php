@@ -8,12 +8,14 @@
         <div class="space-y-4 mt-8">
             <div class="space-y-1">
                 <x-label for="email">{{ __('Email') }}</x-label>
-                <x-input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="{{ __('Enter email') }}" required autofocus autocomplete="username" />
+                <x-input type="email" id="email" name="email" value="admin@email.com" placeholder="{{ __('Enter email') }}" required autofocus autocomplete="username" />
+                {{-- <x-input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="{{ __('Enter email') }}" required autofocus autocomplete="username" /> --}}
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
             <div class="space-y-1">
                 <x-label for="password">{{ __('Password') }}</x-label>
-                <x-input-password id="password" name="password" value="" placeholder="{{ __('Enter password') }}" required autocomplete="current-password" />
+                <x-input-password id="password" name="password" value="admin123" placeholder="{{ __('Enter password') }}" required autocomplete="current-password" />
+                {{-- <x-input-password id="password" name="password" value="" placeholder="{{ __('Enter password') }}" required autocomplete="current-password" /> --}}
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 <div class="flex justify-between items-center mt-2">
                     <x-label for="remember_me" class="flex items-center gap-1">

@@ -1,7 +1,7 @@
 <x-layouts.dashboard title="{{ __('Activity Log') }}">
     <div class="space-y-4">
         <div class="flex justify-between gap-2">
-            <x-button-link-outline href="{{ route('dashboard.admin.activity-log.index') }}">{{ __('Back') }}</x-button-link-outline>
+            <x-button-link-outline href="{{ route('dashboard.admin.audit.activity-log.index') }}">{{ __('Back') }}</x-button-link-outline>
         </div>
         <x-card>
             <div class="space-y-4 max-w-screen-sm">

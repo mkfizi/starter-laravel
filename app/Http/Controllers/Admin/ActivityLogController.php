@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Activitylog\Models\Activity;
 
@@ -47,7 +48,7 @@ class ActivityLogController extends Controller
 
         $activities = $query->paginate($perPage)->appends($request->only(['search', 'per_page', 'actions', 'date_from', 'date_to']));
 
-        return view('dashboard.admin.activity-log.index', compact('activities'));
+        return view('dashboard.admin.audit.activity-log.index', compact('activities'));
     }
 
     /**
@@ -55,6 +56,6 @@ class ActivityLogController extends Controller
      */
     public function show(Activity $activity)
     {
-        return view('dashboard.admin.activity-log.show', compact('activity'));
+        return view('dashboard.admin.audit.activity-log.show', compact('activity'));
     }
 }

@@ -8,7 +8,7 @@
     <div class="space-y-4">
         <div class="flex sm:flex-row flex-col justify-between gap-4">
             <div class="flex gap-2">
-                <x-input-search route="{{ route('dashboard.admin.activity-log.index') }}" :searchText="__('Search user')" class="sm:w-72"/>
+                <x-input-search route="{{ route('dashboard.admin.audit.activity-log.index') }}" :searchText="__('Search user')" class="sm:w-72"/>
                 <x-button class="p-2! relative {{ $hasFilters ? 'bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700' : '' }}" aria-label="{{ __('Filter activity log.') }}"
                     x-data="{ isOffcanvasOpen: false }"
                     x-on:click="$dispatch('open-offcanvas', { id: 'offcanvas-filter-activity-log' })"
@@ -33,7 +33,7 @@
                 @foreach(request('actions', []) as $action)
                     <span class="inline-flex items-center gap-1 bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full text-blue-800 dark:text-blue-200 text-xs">
                         <span class="capitalize">{{ $action }}</span>
-                        <a href="{{ route('dashboard.admin.activity-log.index', array_merge(request()->except('actions'), ['actions' => array_diff(request('actions', []), [$action])])) }}" 
+                        <a href="{{ route('dashboard.admin.audit.activity-log.index', array_merge(request()->except('actions'), ['actions' => array_diff(request('actions', []), [$action])])) }}" 
                            class="hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
                         </a>
@@ -42,7 +42,7 @@
                 @if(request('date_from'))
                     <span class="inline-flex items-center gap-1 bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full text-blue-800 dark:text-blue-200 text-xs">
                         <span>{{ __('From:') }} {{ request('date_from') }}</span>
-                        <a href="{{ route('dashboard.admin.activity-log.index', request()->except('date_from')) }}" 
+                        <a href="{{ route('dashboard.admin.audit.activity-log.index', request()->except('date_from')) }}" 
                            class="hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
                         </a>
@@ -51,13 +51,13 @@
                 @if(request('date_to'))
                     <span class="inline-flex items-center gap-1 bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded-full text-blue-800 dark:text-blue-200 text-xs">
                         <span>{{ __('To:') }} {{ request('date_to') }}</span>
-                        <a href="{{ route('dashboard.admin.activity-log.index', request()->except('date_to')) }}" 
+                        <a href="{{ route('dashboard.admin.audit.activity-log.index', request()->except('date_to')) }}" 
                            class="hover:bg-blue-200 dark:hover:bg-blue-800 rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
                         </a>
                     </span>
                 @endif
-                <x-link href="{{ route('dashboard.admin.activity-log.index') }}" class="text-blue-600 dark:text-blue-400 text-xs hover:underline">
+                <x-link href="{{ route('dashboard.admin.audit.activity-log.index') }}" class="text-blue-600 dark:text-blue-400 text-xs hover:underline">
                     {{ __('Clear all') }}
                 </x-link>
             </div>
@@ -112,7 +112,7 @@
                         <x-table-td class="w-16">
                             <div class="flex gap-2">
                                 <x-tooltip text="{{ __('View Details') }}">
-                                    <x-link href="{{ route('dashboard.admin.activity-log.show', $activity) }}" aria-label="{{ __('View activity details.') }}">
+                                    <x-link href="{{ route('dashboard.admin.audit.activity-log.show', $activity) }}" aria-label="{{ __('View activity details.') }}">
                                         <x-icon>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icons-tabler-outline icon icon-tabler icon-tabler-note"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 20l7 -7" /><path d="M13 20v-6a1 1 0 0 1 1 -1h6v-7a2 2 0 0 0 -2 -2h-12a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7" /></svg>
                                         </x-icon>
@@ -130,7 +130,7 @@
                 </tr>
             @endif
         </x-table>
-        <x-pagination :data="$activities" :route="route('dashboard.admin.activity-log.index')" />
+        <x-pagination :data="$activities" :route="route('dashboard.admin.audit.activity-log.index')" />
     </div>
     @include('activity-log.partials.offcanvas-filter-activity-log')
 </x-layouts.dashboard>

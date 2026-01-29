@@ -1,5 +1,5 @@
 <x-offcanvas id="offcanvas-filter-activity-log" position="right" width="sm">
-    <form method="GET" action="{{ route('dashboard.admin.activity-log.index') }}" class="space-y-8">
+    <form method="GET" action="{{ route('dashboard.admin.audit.activity-log.index') }}" class="space-y-8">
         @if(request('search'))
             <input type="hidden" name="search" value="{{ request('search') }}">
         @endif
@@ -50,7 +50,7 @@
         <hr class="border-neutral-200 dark:border-neutral-800"/>
         <div class="flex flex-col gap-2">
             <x-button-secondary type="button" class="flex-auto"
-                x-on:click="window.location.href='{{ route('dashboard.admin.activity-log.index', request()->only(['search', 'per_page'])) }}'"
+                x-on:click="window.location.href='{{ route('dashboard.admin.audit.activity-log.index', request()->only(['search', 'per_page'])) }}'"
             >
                 <span>{{ __('Clear') }}</span>
             </x-button-secondary>

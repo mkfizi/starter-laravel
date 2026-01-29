@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Helpers\UserAgentHelper;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class SessionHistoryController extends Controller
             return $session;
         });
 
-        return view('dashboard.admin.session-history')->with([
+        return view('dashboard.admin.audit.session-history')->with([
             'sessions' => $sessions
         ]);
     }

@@ -7,7 +7,7 @@
     <div class="space-y-4">
         <div class="flex sm:flex-row flex-col justify-between gap-4">
             <div class="flex gap-2">
-                <x-input-search route="{{ route('dashboard.admin.activity-log.index') }}" :searchText="__('Search user')" class="sm:w-72"/>
+                <x-input-search route="{{ route('dashboard.admin.audit.activity-log.index') }}" :searchText="__('Search user')" class="sm:w-72"/>
                 <x-button class="p-2!" aria-label="{{ __('Filter activity log.') }}"
                     x-data="{ isOffcanvasOpen: false }"
                     x-on:click="$dispatch('open-offcanvas', { id: 'offcanvas-filter-activity-log' })"
@@ -27,7 +27,7 @@
                 @foreach(request('actions', []) as $action)
                     <x-badge class="inline-flex items-center gap-1">
                         <span class="capitalize">{{ $action }}</span>
-                        <x-link href="{{ route('dashboard.admin.activity-log.index', array_merge(request()->except('actions'), ['actions' => array_diff(request('actions', []), [$action])])) }}">
+                        <x-link href="{{ route('dashboard.admin.audit.activity-log.index', array_merge(request()->except('actions'), ['actions' => array_diff(request('actions', []), [$action])])) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
                         </x-link>
                     </x-badge>
@@ -35,7 +35,7 @@
                 @if(request('date_from'))
                     <x-badge class="inline-flex items-center gap-1">
                         <span>{{ __('From:') }} {{ request('date_from') }}</span>
-                        <x-link href="{{ route('dashboard.admin.activity-log.index', request()->except('date_from')) }}">
+                        <x-link href="{{ route('dashboard.admin.audit.activity-log.index', request()->except('date_from')) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
                         </x-link>
                     </x-badge>
@@ -43,12 +43,12 @@
                 @if(request('date_to'))
                     <x-badge class="inline-flex items-center gap-1">
                         <span>{{ __('To:') }} {{ request('date_to') }}</span>
-                        <x-link href="{{ route('dashboard.admin.activity-log.index', request()->except('date_to')) }}">
+                        <x-link href="{{ route('dashboard.admin.audit.activity-log.index', request()->except('date_to')) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
                         </x-link>
                     </x-badge>
                 @endif
-                <x-link href="{{ route('dashboard.admin.activity-log.index', request()->only(['search', 'per_page'])) }}" class="text-xs hover:underline">
+                <x-link href="{{ route('dashboard.admin.audit.activity-log.index', request()->only(['search', 'per_page'])) }}" class="text-xs hover:underline">
                     {{ __('Clear all') }}
                 </x-link>
             </div>
@@ -105,7 +105,7 @@
                         <x-table-td class="w-16">
                             <div class="flex gap-2">
                                 <x-tooltip text="{{ __('View Details') }}">
-                                    <x-link href="{{ route('dashboard.admin.activity-log.show', $activity) }}" aria-label="{{ __('View activity details.') }}">
+                                    <x-link href="{{ route('dashboard.admin.audit.activity-log.show', $activity) }}" aria-label="{{ __('View activity details.') }}">
                                         <x-icon>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icons-tabler-outline icon icon-tabler icon-tabler-note"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 20l7 -7" /><path d="M13 20v-6a1 1 0 0 1 1 -1h6v-7a2 2 0 0 0 -2 -2h-12a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7" /></svg>
                                         </x-icon>
@@ -123,7 +123,7 @@
                 </tr>
             @endif
         </x-table>
-        <x-pagination :data="$activities" :route="route('dashboard.admin.activity-log.index')" />
+        <x-pagination :data="$activities" :route="route('dashboard.admin.audit.activity-log.index')" />
     </div>
-    @include('dashboard.admin.activity-log.partials.offcanvas-filter-activity-log')
+    @include('dashboard.admin.audit.activity-log.partials.offcanvas-filter-activity-log')
 </x-layouts.dashboard>
