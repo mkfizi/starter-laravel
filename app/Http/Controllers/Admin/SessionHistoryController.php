@@ -14,10 +14,24 @@ class SessionHistoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() : View
+    public function index(Request $request) : View
     {
         // Get session histories from database table 'sessions'
-        $sessions = DB::table('sessions')->paginate(10);
+        $query = DB::table('sessions');
+
+        // Search by user email
+        if ($search = $request->input('search')) {
+            $userIds = User::where('email', 'like', "%{$search}%")->pluck('id');
+            $query->where(function ($q) use ($userIds, $search) {
+                $q->whereIn('user_id', $userIds);
+                // Include guest sessions if searching for "guest"
+                if (stripos('guest', strtolower($search)) !== false) {
+                    $q->orWhereNull('user_id');
+                }
+            });
+        }
+
+        $sessions = $query->paginate(10);
 
         $sessions->getCollection()->transform(function ($session) {
             $session->user_email = User::where('id', $session->user_id)->value('email') ?? 'Guest';

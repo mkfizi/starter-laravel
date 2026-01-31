@@ -1,5 +1,8 @@
 <x-layouts.dashboard title="{{ __('Session History') }}">
     <div class="space-y-4">
+        <div class="flex sm:flex-row flex-col justify-between gap-4">
+            <x-input-search route="{{ route('dashboard.admin.audit.session-history') }}" :searchText="__('Search user email.')" class="sm:w-72"/>
+        </div>
         <x-table>
             <x-slot name="header">
                 <x-table-th>
@@ -53,7 +56,7 @@
             @else
                 <tr>
                     <x-table-td colspan="7" class="text-center">
-                        <x-text>{{ __('No session history found.') }}</x-text>
+                        <x-text>{{ __('No data available.') }}</x-text>
                     </x-table-td>
                 </tr>
             @endif

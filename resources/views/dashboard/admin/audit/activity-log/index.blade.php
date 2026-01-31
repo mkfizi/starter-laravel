@@ -7,7 +7,7 @@
     <div class="space-y-4">
         <div class="flex sm:flex-row flex-col justify-between gap-4">
             <div class="flex gap-2">
-                <x-input-search route="{{ route('dashboard.admin.audit.activity-log.index') }}" :searchText="__('Search user')" class="sm:w-72"/>
+                <x-input-search route="{{ route('dashboard.admin.audit.activity-log.index') }}" :searchText="__('Search user email')" class="sm:w-72"/>
                 <x-button class="p-2!" aria-label="{{ __('Filter activity log.') }}"
                     x-data="{ isOffcanvasOpen: false }"
                     x-on:click="$dispatch('open-offcanvas', { id: 'offcanvas-filter-activity-log' })"
