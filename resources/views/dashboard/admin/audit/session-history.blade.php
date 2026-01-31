@@ -31,7 +31,7 @@
                             <x-text>{{ $index + 1 }}</x-text>
                         </x-table-td>
                         <x-table-td>
-                            <x-text>{{ $session->user_name }}</x-text>
+                            <x-text>{{ $session->user_email }}</x-text>
                         </x-table-td>
                         <x-table-td>
                             <x-text>{{ $session->ip_address }}</x-text>

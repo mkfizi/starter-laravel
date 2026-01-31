@@ -63,7 +63,7 @@
                             {{-- Dashboard stack menu is intended for application with less menu items, 
                                 therefore we are hiding menu routes with sub-links. If you still want
                                 to show them, uncomment the following block. --}}      
-                            {{-- @elseif(isset($link['links']))
+                            @elseif(isset($link['links']))
                                 <li class="hidden invisible lg:visible lg:block">
                                     <x-dropdown>
                                         <x-slot name="trigger">
@@ -91,7 +91,7 @@
                                         :route="isset($link['route']) ? $link['route'] : null"
                                     />
                                 </li> 
-                            --}}
+                           
                             @endif
                         @endforeach
                     </ul>

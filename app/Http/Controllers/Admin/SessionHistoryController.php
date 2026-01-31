@@ -20,7 +20,7 @@ class SessionHistoryController extends Controller
         $sessions = DB::table('sessions')->paginate(10);
 
         $sessions->getCollection()->transform(function ($session) {
-            $session->user_name = User::where('id', $session->user_id)->value('name') ?? 'Guest';
+            $session->user_email = User::where('id', $session->user_id)->value('email') ?? 'Guest';
             $session->browser = (UserAgentHelper::browser($session->user_agent). ' '. UserAgentHelper::browserVersion($session->user_agent)) ?? 'Unknown';
             $session->os = (UserAgentHelper::os($session->user_agent). ' '. UserAgentHelper::osVersion($session->user_agent)) ?? 'Unknown';
             $session->device = UserAgentHelper::device($session->user_agent) ?? 'Unknown';
