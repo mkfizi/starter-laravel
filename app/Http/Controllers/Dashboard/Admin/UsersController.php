@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use App\Notifications\NewUserCredentials;
 use App\Notifications\PasswordUpdated;
@@ -50,16 +51,8 @@ class UsersController extends Controller
         return view('dashboard.admin.users.create', compact('roles'));
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'roles' => 'array',
-            'roles.*' => 'exists:roles,id'
-        ]);
-
         $password = $request->input('password');
         
         $user = User::create([
@@ -99,7 +92,7 @@ class UsersController extends Controller
         return view('dashboard.admin.users.edit', compact('user', 'roles'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         $user = User::findOrFail($id);
 
@@ -107,14 +100,6 @@ class UsersController extends Controller
             return redirect()->route('dashboard.admin.users.index')
                 ->with('error', 'Super admin cannot be updated.');
         }
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:8|confirmed',
-            'roles' => 'array',
-            'roles.*' => 'exists:roles,id'
-        ]);
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');

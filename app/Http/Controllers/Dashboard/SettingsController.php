@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProfileUpdateRequest;
-use App\Http\Requests\PasswordUpdateRequest;
+use App\Http\Requests\PasswordRequest;
+use App\Http\Requests\ProfileRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +54,7 @@ class SettingsController extends Controller
     /**
      * Update the user's profile information (email, name, etc).
      */
-    public function updateProfile(ProfileUpdateRequest $request): RedirectResponse
+    public function updateProfile(ProfileRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());
 
@@ -70,7 +70,7 @@ class SettingsController extends Controller
     /**
      * Update the user's password.
      */
-    public function updatePassword(PasswordUpdateRequest $request): RedirectResponse
+    public function updatePassword(PasswordRequest $request): RedirectResponse
     {
         $user = $request->user();
         $user->password = Hash::make($request->validated()['password']);

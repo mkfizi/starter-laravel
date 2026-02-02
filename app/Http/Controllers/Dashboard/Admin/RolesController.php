@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RoleRequest;
 use App\Models\Role;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -48,14 +49,8 @@ class RolesController extends Controller
     /**
      * Store a newly created role in the storage.
      */
-    public function store(Request $request) : RedirectResponse
+    public function store(RoleRequest $request) : RedirectResponse
     {
-        $request->validate([
-            'name' => 'required|string|unique:roles,name',
-            'permissions' => 'array',
-            'permissions.*' => 'string|distinct|exists:permissions,name'
-        ]);
-
         $role = Role::create([
             'name' => $request->input('name')
         ]);
@@ -103,7 +98,7 @@ class RolesController extends Controller
     /**
      * Update the specified role in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(RoleRequest $request, string $id)
     {
         $role = Role::findOrFail($id);
 
@@ -111,12 +106,6 @@ class RolesController extends Controller
             return redirect()->route('dashboard.admin.roles.index')
                 ->with('status', __("This role is protected and cannot be edited."));
         }
-
-        $request->validate([
-            'name' => 'required|string|unique:roles,name,' . $role->id,
-            'permissions' => 'array',
-            'permissions.*' => 'string|distinct|exists:permissions,name'
-        ]);
 
         $role->name = $request->input('name');
         $role->save();
