@@ -49,7 +49,7 @@
                         <x-label>{{ __('Changes') }}</x-label>
                         @if($activity->properties->has('old'))
                             <div class="space-y-2">
-                                <x-text class="font-semibold text-xs">{{ __('Old Values:') }}</x-text>
+                                <x-text>{{ __('Old Values:') }}</x-text>
                                 <div class="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-lg">
                                     <pre class="overflow-x-auto text-neutral-800 dark:text-neutral-200 text-xs">{{ json_encode($activity->properties->get('old'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</pre>
                                 </div>
@@ -57,7 +57,7 @@
                         @endif
                         @if($activity->properties->has('attributes'))
                             <div class="space-y-2">
-                                <x-text class="font-semibold text-xs">{{ __('New Values:') }}</x-text>
+                                <x-text>{{ __('New Values:') }}</x-text>
                                 <div class="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-lg">
                                     <pre class="overflow-x-auto text-neutral-800 dark:text-neutral-200 text-xs">{{ json_encode($activity->properties->get('attributes'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</pre>
                                 </div>
