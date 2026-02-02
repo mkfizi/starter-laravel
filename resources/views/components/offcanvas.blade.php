@@ -12,8 +12,8 @@
     ];
 
     $positionClass = [
-        'left' => 'left-0',
-        'right' => 'right-0',
+        'left' => 'left-0 border-r',
+        'right' => 'right-0 border-l',
     ];
 @endphp
 
@@ -29,7 +29,7 @@
     x-on:close-offcanvas.window="$event.detail.id === '{{ $id }}' ? isOffcanvasOpen = false : null"
     :inert="!isOffcanvasOpen"
 >
-    <div class="top-0 {{ $positionClass[$position] ?? 'right-0' }} fixed bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 border-r w-full {{ $widthClass[$width] ?? 'sm:w-64' }} h-full">
+    <div class="top-0 {{ $positionClass[$position] ?? 'right-0' }} fixed bg-white dark:bg-neutral-950 border-neutral-200 dark:border-neutral-800 w-full {{ $widthClass[$width] ?? 'sm:w-64' }} h-full">
         <button type="button" class="top-2 right-2 absolute hover:bg-neutral-100 focus:bg-neutral-100 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800 disabled:opacity-60 [&_svg]:stroke-black dark:[&_svg]:stroke-white p-2 rounded font-medium text-black dark:text-white text-sm cursor-pointer disabled:pointer-events-none" aria-label="{{ __('Close offcanvas.') }}"
             x-on:click="$dispatch('close-offcanvas', { id: '{{ $id }}' })"
             :aria-expanded="isOffcanvasOpen"
