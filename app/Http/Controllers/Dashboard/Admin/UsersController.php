@@ -70,7 +70,7 @@ class UsersController extends Controller
         $user->notify(new NewUserCredentials($password));
 
         return redirect()->route('dashboard.admin.users.index')
-            ->with('status', "User {$user->name} created successfully.");
+            ->with('status', "User {$user->name} record created successfully.");
     }
 
     public function show($id)
@@ -126,8 +126,8 @@ class UsersController extends Controller
             $user->notify(new PasswordUpdated($newPassword));
         }
 
-        return redirect()->route('dashboard.admin.users.index')
-            ->with('status', "User {$user->name} updated successfully.");
+        return redirect()->back()
+            ->with('status', "User record updated successfully.");
     }
 
     public function destroy($id)
@@ -148,6 +148,6 @@ class UsersController extends Controller
         $user->delete();
         
         return redirect()->route('dashboard.admin.users.index')
-            ->with('status', "User {$userName} deleted successfully.");
+            ->with('status', "User {$userName} record deleted successfully.");
     }
 }

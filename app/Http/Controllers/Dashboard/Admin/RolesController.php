@@ -7,7 +7,6 @@ use App\Http\Requests\RoleRequest;
 use App\Models\Role;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class RolesController extends Controller
@@ -23,10 +22,9 @@ class RolesController extends Controller
     /**
      * Display role listing.
      */
-    public function index(Request $request) : View
+    public function index(Request $request): View
     {
-        $perPage = 10;
-        $perPage = $request->input('per_page', $perPage);
+        $perPage = $request->input('per_page', 10);
 
         $query = Role::withCount('users');
         if ($search = $request->input('search')) {
@@ -41,7 +39,7 @@ class RolesController extends Controller
     /**
      * Show create new role form.
      */
-    public function create() : View
+    public function create(): View
     {
         return view('dashboard.admin.roles.create');
     }
@@ -49,7 +47,7 @@ class RolesController extends Controller
     /**
      * Store a newly created role in the storage.
      */
-    public function store(RoleRequest $request) : RedirectResponse
+    public function store(RoleRequest $request): RedirectResponse
     {
         $role = Role::create([
             'name' => $request->input('name')
@@ -57,15 +55,14 @@ class RolesController extends Controller
         $role->syncPermissions($request->input('permissions', []));
 
         return redirect()->route('dashboard.admin.roles.index')
-            ->with('status', "Role $role->name created successfully.");
+            ->with('status', "Role $role->name record created successfully.");
     }
 
     /**
      * Display the specified roles.
      */
-    public function show(string $id) : View
+    public function show(string $id): View
     {
-        
         $role = Role::findOrFail($id);
 
         // Get roles and sort where super admin is first and then by name
@@ -82,14 +79,15 @@ class RolesController extends Controller
     /**
      * Show the form for editing the specified roles.
      */
-    public function edit(string $id) : View
+    public function edit(string $id): View|RedirectResponse
     {
-        if (in_array($id, config('permission.role_permission.protected.edit'))) {
+        $role = Role::findOrFail($id);
+
+        if ($this->isProtectedFromEdit($role)) {
             return redirect()->route('dashboard.admin.roles.index')
                 ->with('status', __("This role is protected and cannot be edited."));
         }
 
-        $role = Role::findOrFail($id);
         return view('dashboard.admin.roles.edit')->with([
             'role' => $role
         ]);
@@ -98,11 +96,11 @@ class RolesController extends Controller
     /**
      * Update the specified role in storage.
      */
-    public function update(RoleRequest $request, string $id)
+    public function update(RoleRequest $request, string $id): RedirectResponse
     {
         $role = Role::findOrFail($id);
 
-        if (in_array($role->name, config('permission.role_permission.protected.delete'))) {
+        if ($this->isProtectedFromEdit($role)) {
             return redirect()->route('dashboard.admin.roles.index')
                 ->with('status', __("This role is protected and cannot be edited."));
         }
@@ -111,18 +109,18 @@ class RolesController extends Controller
         $role->save();
         $role->syncPermissions($request->input('permissions', []));
 
-        return redirect()->route('dashboard.admin.roles.index')
-            ->with('status', "Role $role->name updated successfully.");
+        return redirect()->back()
+            ->with('status', "Role record updated successfully.");
     }
 
     /**
      * Remove the specified role from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
         $role = Role::findOrFail($id);
 
-        if (in_array($role->name, config('permission.role_permission.protected.delete'))) {
+        if ($this->isProtectedFromDelete($role)) {
             return redirect()->route('dashboard.admin.roles.index')
                 ->with('status', __("This role is protected and cannot be deleted."));
         }
@@ -131,6 +129,22 @@ class RolesController extends Controller
         $role->delete();
 
         return redirect()->route('dashboard.admin.roles.index')
-            ->with('status', "Role $roleName deleted successfully.");
+            ->with('status', "Role $roleName record deleted successfully.");
+    }
+
+    /**
+     * Check if role is protected from editing.
+     */
+    private function isProtectedFromEdit(Role $role): bool
+    {
+        return in_array($role->name, config('permission.role_permission.protected.edit', []));
+    }
+
+    /**
+     * Check if role is protected from deletion.
+     */
+    private function isProtectedFromDelete(Role $role): bool
+    {
+        return in_array($role->name, config('permission.role_permission.protected.delete', []));
     }
 }
