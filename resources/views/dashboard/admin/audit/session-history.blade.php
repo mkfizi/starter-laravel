@@ -24,14 +24,17 @@
                     <x-text>{{ __('Device') }}</x-text>
                 </x-table-th>
                 <x-table-th>
-                    <x-text>{{ __('Last Activity') }}</x-text>
+                    <x-text>{{ __('Login At') }}</x-text>
+                </x-table-th>
+                <x-table-th>
+                    <x-text>{{ __('Status') }}</x-text>
                 </x-table-th>
             </x-slot>
             @if (count($sessions) > 0)
                 @foreach ($sessions as $index => $session)
                     <tr>
                         <x-table-td>
-                            <x-text>{{ $index + 1 }}</x-text>
+                            <x-text>{{ $sessions->firstItem() + $index }}</x-text>
                         </x-table-td>
                         <x-table-td>
                             <x-text>{{ $session->user_email }}</x-text>
@@ -49,13 +52,16 @@
                             <x-text>{{ $session->device }}</x-text>
                         </x-table-td>
                         <x-table-td>
-                            <x-text>{{ $session->last_activity }}</x-text>
+                            <x-text>{{ $session->login_at->format('Y-m-d H:i:s') }}</x-text>
+                        </x-table-td>
+                        <x-table-td>
+                            <x-text>{{ $session->status }}</x-text>
                         </x-table-td>
                     </tr>
                 @endforeach
             @else
                 <tr>
-                    <x-table-td colspan="7" class="text-center">
+                    <x-table-td colspan="8" class="text-center">
                         <x-text>{{ __('No data available.') }}</x-text>
                     </x-table-td>
                 </tr>

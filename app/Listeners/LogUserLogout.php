@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Models\SessionHistory;
 use Illuminate\Auth\Events\Logout;
 
 class LogUserLogout
@@ -15,5 +16,13 @@ class LogUserLogout
             ->causedBy($event->user)
             ->event('logout')
             ->log(__('logout'));
+
+        SessionHistory::where('user_id', $event->user->id)
+            ->where('session_id', session()->getId())
+            ->whereNull('logout_at')
+            ->update([
+                'logout_at' => now(),
+                'logout_type' => 'manual',
+            ]);
     }
 }
