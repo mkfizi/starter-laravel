@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Dashboard\Admin\Audit;
 
 use App\Http\Controllers\Controller;
 use App\Helpers\UserAgentHelper;

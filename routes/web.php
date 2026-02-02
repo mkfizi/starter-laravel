@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\DashboardController as Dashboard;
-use App\Http\Controllers\ProfileController as Profile;
-use App\Http\Controllers\SettingsController as Settings;
-use App\Http\Controllers\Admin\UsersController as Users;
-use App\Http\Controllers\Admin\RolesController as Roles;
-use App\Http\Controllers\Admin\ActivityLogController as ActivityLog;
-use App\Http\Controllers\Admin\SessionHistoryController as SessionHistory;
+use App\Http\Controllers\Dashboard\DashboardController as Dashboard;
+use App\Http\Controllers\Dashboard\ProfileController as Profile;
+use App\Http\Controllers\Dashboard\SettingsController as Settings;
+use App\Http\Controllers\Dashboard\Admin\UsersController as Users;
+use App\Http\Controllers\Dashboard\Admin\RolesController as Roles;
+use App\Http\Controllers\Dashboard\Admin\Audit\ActivityLogController as ActivityLog;
+use App\Http\Controllers\Dashboard\Admin\Audit\SessionHistoryController as SessionHistory;
 use Illuminate\Support\Facades\Route;
 
 Route::name('web.')->group(function () {
