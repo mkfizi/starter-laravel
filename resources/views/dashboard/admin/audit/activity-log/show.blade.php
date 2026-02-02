@@ -14,7 +14,7 @@
                 <div class="space-y-1">
                     <x-label>{{ __('Action') }}</x-label>
                     <div>
-                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium
+                        <span class="inline-flex px-2 py-1 rounded text-xs font-medium capitalize
                             @if(str_contains($activity->description, 'created')) bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200
                             @elseif(str_contains($activity->description, 'updated')) bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200
                             @elseif(str_contains($activity->description, 'deleted')) bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200
@@ -51,7 +51,7 @@
                             <div class="space-y-2">
                                 <x-text class="font-semibold text-xs">{{ __('Old Values:') }}</x-text>
                                 <div class="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-lg">
-                                    <pre class="overflow-x-auto text-xs">{{ json_encode($activity->properties->get('old'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</pre>
+                                    <pre class="overflow-x-auto text-neutral-800 dark:text-neutral-200 text-xs">{{ json_encode($activity->properties->get('old'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</pre>
                                 </div>
                             </div>
                         @endif
@@ -59,13 +59,13 @@
                             <div class="space-y-2">
                                 <x-text class="font-semibold text-xs">{{ __('New Values:') }}</x-text>
                                 <div class="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-lg">
-                                    <pre class="overflow-x-auto text-xs">{{ json_encode($activity->properties->get('attributes'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</pre>
+                                    <pre class="overflow-x-auto text-neutral-800 dark:text-neutral-200 text-xs">{{ json_encode($activity->properties->get('attributes'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</pre>
                                 </div>
                             </div>
                         @endif
                         @if(!$activity->properties->has('old') && !$activity->properties->has('attributes'))
                             <div class="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-lg">
-                                <pre class="overflow-x-auto text-xs">{{ json_encode($activity->properties, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</pre>
+                                <pre class="overflow-x-auto text-neutral-800 dark:text-neutral-200 text-xs">{{ json_encode($activity->properties, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</pre>
                             </div>
                         @endif
                     </div>

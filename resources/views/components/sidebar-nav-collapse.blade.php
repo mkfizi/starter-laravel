@@ -40,7 +40,7 @@
         <ul class="space-y-1 pl-1 border-neutral-200 dark:border-neutral-800 border-l leading-0">
             @foreach ($links as $sublink)
                 <x-sidebar-nav-link
-                    :active="isset($sublink['route']) ? request()->routeIs($sublink['route']) : false"
+                    :active="isset($sublink['active']) ? request()->routeIs($sublink['active']) : false"
                     :route="isset($sublink['route']) ? route($sublink['route']) : null"
                     :icon="isset($sublink['icon']) ? $sublink['icon'] : null"
                     :title="isset($sublink['title']) ? $sublink['title'] : null"
