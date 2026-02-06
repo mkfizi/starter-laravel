@@ -20,7 +20,7 @@
                     <x-sidebar-nav-link
                         :active="isset($link['active']) ? request()->routeIs($link['active']) : false"
                         :icon="isset($link['icon']) ? $link['icon'] : null"
-                        :title="isset($link['title']) ? $link['title'] : null"
+                        :title="isset($link['title']) ? __($link['title']) : null"
                         :route="isset($link['route']) ? route($link['route']) : null"
                     />
                 </li>
@@ -29,7 +29,7 @@
                     <x-sidebar-nav-external
                         :href="$link['href']"
                         :icon="isset($link['icon']) ? $link['icon'] : null"
-                        :title="$link['title']"
+                        :title="__($link['title'])"
                     />
                 </li>
             @elseif(isset($link['links']))
@@ -37,13 +37,13 @@
                     <x-sidebar-nav-collapse
                         :icon="isset($link['icon']) ? $link['icon'] : null"
                         :links="$link['links']"
-                        :title="$link['title']"
+                        :title="__($link['title'])"
                         :route="$link['route'] ?? null"
                     />
                 </li>
             @else
                 <li>
-                    <x-sidebar-nav-title :title="$link['title']" />
+                    <x-sidebar-nav-title :title="__($link['title'])" />
                 </li>
             @endif
         @endforeach

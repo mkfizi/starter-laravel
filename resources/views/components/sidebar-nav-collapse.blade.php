@@ -43,7 +43,7 @@
                     :active="isset($sublink['active']) ? request()->routeIs($sublink['active']) : false"
                     :route="isset($sublink['route']) ? route($sublink['route']) : null"
                     :icon="isset($sublink['icon']) ? $sublink['icon'] : null"
-                    :title="isset($sublink['title']) ? $sublink['title'] : null"
+                    :title="isset($sublink['title']) ? __($sublink['title']) : null"
                 />
             @endforeach
         </ul>

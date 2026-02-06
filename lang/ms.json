@@ -273,5 +273,16 @@
     "All rights reserved.": "Hak cipta terpelihara.",
 
     "_comment_misc": "========== Misc ==========",
-    "Save": "Simpan"
+    "Save": "Simpan",
+
+    "_comment_config_routes": "========== Config - routes.php ==========",
+    "Home": "Laman Utama",
+    "Admin": "Pentadbir",
+    "Audit": "Audit",
+    "Layouts": "Susun Atur",
+    "Collapse": "Collapse",
+    "Stacked": "Stacked",
+    "External": "Pautan Luar",
+    "Github": "Github",
+    "Readme": "Readme"
 }
