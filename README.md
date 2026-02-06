@@ -62,6 +62,17 @@ This Laravel starter kit serves as starting point when developing web applicatio
   - `app.error_send` - Toggle for sending error notifications via email
   - `app.error_email` - Email address to receive error notifications
 
+### Localization
+- **Multi-Language Support** - Built-in support for English (en) and Malay (ms) languages
+- **Hybrid Storage Approach** - Guest preferences stored in session, authenticated users in database for cross-device persistence
+- **SetLocale Middleware** - Automatically detects and sets user locale with priority: URL parameter > Session/User preference > Browser language > Default
+- **Centralized Translations** - Organized translation files in `lang/` directory:
+  - `lang/ms.json` - JSON translation file with 220+ keys organized by file/folder structure
+  - `lang/ms/*.php` - Standard Laravel translation files (auth, passwords, pagination, validation)
+- **Language Switcher Component** - Form-based language menu with SSR support and preference persistence
+- **Database Integration** - User locale stored in `users` table and automatically synced on language change
+- **All User-Facing Text Localized** - Controllers, views, components, and navigation menus fully localized
+
 ### UI Components & Layouts
 - **Responsive Layouts** - Multiple dashboard layouts (collapse, stacked)
 - **Reusable Components** - 60+ pre-built Blade components including:
