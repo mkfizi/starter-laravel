@@ -17,7 +17,7 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Priority: URL parameter > User preference > Session > Browser > Default
+        // Priority: URL parameter > Session/User preference > Browser > Default
         if ($request->has('lang')) {
             $locale = $request->get('lang');
             session(['locale' => $locale]);
@@ -25,8 +25,20 @@ class SetLocale
             if (Auth::check()) {
                 Auth::user()->update(['locale' => $locale]);
             }
-        } elseif (Auth::check() && Auth::user()->locale) {
-            $locale = Auth::user()->locale;
+        } elseif (Auth::check()) {
+            // For authenticated users, prefer session over DB (for recent changes)
+            // Then sync session to DB for persistence
+            if (session()->has('locale')) {
+                $locale = session('locale');
+                // Update user's DB preference to match session
+                if (Auth::user()->locale !== $locale) {
+                    Auth::user()->update(['locale' => $locale]);
+                }
+            } else {
+                // Use user's saved preference
+                $locale = Auth::user()->locale ?? 'en';
+                session(['locale' => $locale]);
+            }
         } elseif (session()->has('locale')) {
             $locale = session('locale');
         } else {
