@@ -56,6 +56,11 @@ This Laravel starter kit serves as starting point when developing web applicatio
 - **Custom Routes Config** - Centralized `config/routes.php` file for managing navigation menus with support for icons, active states, and nested items
 - **Separate Route Groups** - Organized web and dashboard routes with dedicated navigation structures for public and authenticated areas
 - **Permission-Based Navigation** - Automatic menu visibility control based on user permissions defined in route configuration
+- **Custom App Config** - Extended `config/app.php` with additional settings:
+  - `app.metadata` - Application metadata including description for SEO
+  - `app.super_admin` - Super admin email address with unrestricted access
+  - `app.error_send` - Toggle for sending error notifications via email
+  - `app.error_email` - Email address to receive error notifications
 
 ### UI Components & Layouts
 - **Responsive Layouts** - Multiple dashboard layouts (collapse, stacked)

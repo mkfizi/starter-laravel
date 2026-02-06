@@ -55,7 +55,7 @@ class RolesController extends Controller
         $role->syncPermissions($request->input('permissions', []));
 
         return redirect()->route('dashboard.admin.roles.index')
-            ->with('status', "Role $role->name record created successfully.");
+            ->with('status', __("Role :name record created successfully.", ['name' => $role->name]));
     }
 
     /**
@@ -110,7 +110,7 @@ class RolesController extends Controller
         $role->syncPermissions($request->input('permissions', []));
 
         return redirect()->back()
-            ->with('status', "Role record updated successfully.");
+            ->with('status', __('Role record updated successfully.'));
     }
 
     /**
@@ -129,7 +129,7 @@ class RolesController extends Controller
         $role->delete();
 
         return redirect()->route('dashboard.admin.roles.index')
-            ->with('status', "Role $roleName record deleted successfully.");
+            ->with('status', __("Role :name record deleted successfully.", ['name' => $roleName]));
     }
 
     /**

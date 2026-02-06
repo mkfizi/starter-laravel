@@ -1,5 +1,6 @@
 <div class="flex gap-2">
-    <x-dark-mode-menu position="!-right-11 mt-2" />
+    <x-dark-mode-menu position="!-right-22 mt-2" />
+    <x-language-menu position="!-right-11 mt-2" />
     <x-dropdown 
         id="settings-menu"
         position="right-0 mt-2"

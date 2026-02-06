@@ -4,32 +4,6 @@ return [
     
     /*
     |--------------------------------------------------------------------------
-    | Super Admin Email Address
-    |--------------------------------------------------------------------------
-    |
-    | This value is the email address of your application's super administrator.
-    | The super admin has unrestricted access to all features and settings.
-    | You may set this in your ".env" file. Use with care.
-    |
-    */
-
-    'super_admin' => env('APP_SUPER_ADMIN', 'admin@email.com'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Error Send to Email Addresses
-    |--------------------------------------------------------------------------
-    |
-    | These values determine if application error should be sent to specified
-    | email addresses. You may set these in your ".env" file.
-    |
-    */
-
-    'error_send' => env('APP_ERROR_EMAILS', false),
-    'error_email' => env('APP_ERROR_EMAILS', 'admin@email.com'),
-
-    /*
-    |--------------------------------------------------------------------------
     | Application Name
     |--------------------------------------------------------------------------
     |
@@ -40,19 +14,6 @@ return [
     */
 
     'name' => env('APP_NAME', 'Starter Laravel'),
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Application Metadata
-    |--------------------------------------------------------------------------
-    |
-    | This value is the description of your application, which can be used
-    | for SEO purposes or general metadata about the application.
-    |
-    */
-    'metadata' => [
-        'description' => 'Starter kit for Laravel projects.',
-    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -161,5 +122,44 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Metadata
+    |--------------------------------------------------------------------------
+    |
+    | This value is the description of your application, which can be used
+    | for SEO purposes or general metadata about the application.
+    |
+    */
+    'metadata' => [
+        'description' => 'Starter kit for Laravel projects.',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Super Admin Email Address
+    |--------------------------------------------------------------------------
+    |
+    | This value is the email address of your application's super administrator.
+    | The super admin has unrestricted access to all features and settings.
+    | You may set this in your ".env" file. Use with care.
+    |
+    */
+
+    'super_admin' => env('APP_SUPER_ADMIN', 'admin@email.com'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Error Send to Email Addresses
+    |--------------------------------------------------------------------------
+    |
+    | These values determine if application error should be sent to specified
+    | email addresses. You may set these in your ".env" file.
+    |
+    */
+
+    'error_send' => env('APP_ERROR_EMAILS', false),
+    'error_email' => env('APP_ERROR_EMAILS', 'admin@email.com'),
 
 ];

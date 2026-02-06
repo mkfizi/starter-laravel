@@ -28,10 +28,10 @@ class SessionHistoryController extends Controller
         $sessions = $query->paginate(10);
 
         $sessions->getCollection()->transform(function ($session) {
-            $session->user_email = $session->user->email ?? 'Unknown';
-            $session->browser = (UserAgentHelper::browser($session->user_agent) . ' ' . UserAgentHelper::browserVersion($session->user_agent)) ?: 'Unknown';
-            $session->os = (UserAgentHelper::os($session->user_agent) . ' ' . UserAgentHelper::osVersion($session->user_agent)) ?: 'Unknown';
-            $session->device = UserAgentHelper::device($session->user_agent) ?: 'Unknown';
+            $session->user_email = $session->user->email ?? __('Unknown');
+            $session->browser = (UserAgentHelper::browser($session->user_agent) . ' ' . UserAgentHelper::browserVersion($session->user_agent)) ?: __('Unknown');
+            $session->os = (UserAgentHelper::os($session->user_agent) . ' ' . UserAgentHelper::osVersion($session->user_agent)) ?: __('Unknown');
+            $session->device = UserAgentHelper::device($session->user_agent) ?: __('Unknown');
             return $session;
         });
 

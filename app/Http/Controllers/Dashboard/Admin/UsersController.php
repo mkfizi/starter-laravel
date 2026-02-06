@@ -70,7 +70,7 @@ class UsersController extends Controller
         $user->notify(new NewUserCredentials($password));
 
         return redirect()->route('dashboard.admin.users.index')
-            ->with('status', "User {$user->name} record created successfully.");
+            ->with('status', __("User :name record created successfully.", ['name' => $user->name]));
     }
 
     public function show($id)
@@ -85,7 +85,7 @@ class UsersController extends Controller
         
         if ($user->email === config('app.super_admin')) {
             return redirect()->route('dashboard.admin.users.index')
-                ->with('error', 'Super admin cannot be edited.');
+                ->with('error', __('Super admin cannot be edited.'));
         }
         
         $roles = Role::all();
@@ -98,7 +98,7 @@ class UsersController extends Controller
 
         if ($user->email === config('app.super_admin')) {
             return redirect()->route('dashboard.admin.users.index')
-                ->with('error', 'Super admin cannot be updated.');
+                ->with('error', __('Super admin cannot be updated.'));
         }
 
         $user->name = $request->input('name');
@@ -127,7 +127,7 @@ class UsersController extends Controller
         }
 
         return redirect()->back()
-            ->with('status', "User record updated successfully.");
+            ->with('status', __('User record updated successfully.'));
     }
 
     public function destroy($id)
@@ -136,18 +136,18 @@ class UsersController extends Controller
         
         if ($user->email === config('app.super_admin')) {
             return redirect()->route('dashboard.admin.users.index')
-                ->with('error', 'Super admin cannot be deleted.');
+                ->with('error', __('Super admin cannot be deleted.'));
         }
         
         if ($user->id === auth()->id()) {
             return redirect()->route('dashboard.admin.users.index')
-                ->with('error', 'You cannot delete your own account.');
+                ->with('error', __('You cannot delete your own account.'));
         }
         
         $userName = $user->name;
         $user->delete();
         
         return redirect()->route('dashboard.admin.users.index')
-            ->with('status', "User {$userName} record deleted successfully.");
+            ->with('status', __("User :name record deleted successfully.", ['name' => $userName]));
     }
 }
