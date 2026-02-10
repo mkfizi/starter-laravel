@@ -48,6 +48,22 @@
                             @if (isset($link['permission']) && !auth()->user()->can($link['permission']))
                                 @continue
                             @endif
+                            
+                            @if (isset($link['links']))
+                                @php
+                                    $hasAccessToAnyChild = false;
+                                    foreach ($link['links'] as $childLink) {
+                                        if (!isset($childLink['permission']) || auth()->user()->can($childLink['permission'])) {
+                                            $hasAccessToAnyChild = true;
+                                            break;
+                                        }
+                                    }
+                                @endphp
+                                @if (!$hasAccessToAnyChild)
+                                    @continue
+                                @endif
+                            @endif
+                            
                             @if (isset($link['route']) && !isset($link['links']))
                                 <li>
                                     @if (request()->routeIs($link['route']))

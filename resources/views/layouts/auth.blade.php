@@ -2,8 +2,10 @@
     <nav class="w-full">
         <div class="flex justify-between items-center mx-auto px-4 sm:px-8 py-3 max-w-screen-xl">
             <x-nav-title />
-            <x-dark-mode-menu />
-            <x-language-menu />
+            <div class="flex items-center gap-2">
+                <x-dark-mode-menu />
+                <x-language-menu />
+            </div>
         </div>
     </nav>
     <main class="mx-auto px-4 sm:px-8 py-16 w-full max-w-screen-xl">

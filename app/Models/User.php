@@ -12,6 +12,28 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Permission\Traits\HasRoles;
 
+/**
+ * User Model
+ * 
+ * Represents an authenticated user in the application with support for:
+ * - Email verification (MustVerifyEmail)
+ * - ULID-based primary keys for better distributed systems support
+ * - Role-based permissions using Spatie Permission package
+ * - Two-factor authentication via Laravel Fortify
+ * - Activity logging for audit trails
+ * - Notifications
+ * 
+ * @property string $id ULID primary key
+ * @property string $name User's full name
+ * @property string $email User's email address (unique)
+ * @property string $locale User's preferred language locale (default: 'en')
+ * @property \Illuminate\Support\Carbon|null $email_verified_at Email verification timestamp
+ * @property bool $must_change_password Flag indicating if user must change password on next login
+ * @property string $password Hashed password
+ * @property string|null $remember_token Token for "remember me" functionality
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ */
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */

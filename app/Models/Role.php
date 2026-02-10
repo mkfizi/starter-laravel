@@ -8,6 +8,19 @@ use Spatie\Permission\Models\Role as SpatieRole;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 
+/**
+ * Role Model
+ * 
+ * Extends Spatie's Role model to provide role-based access control.
+ * Uses ULID instead of auto-incrementing integers for primary keys.
+ * All role changes are logged for audit purposes.
+ * 
+ * @property string $id ULID primary key
+ * @property string $name Role name (e.g., 'Super Admin', 'User')
+ * @property string $guard_name Guard name (default: 'web')
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ */
 class Role extends SpatieRole
 {
     use HasUlids, LogsActivity;
