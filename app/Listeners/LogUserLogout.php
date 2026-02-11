@@ -28,7 +28,7 @@ class LogUserLogout
         activity()
             ->causedBy($event->user)
             ->event('logout')
-            ->log(__('logout'));
+            ->log('logout');
 
         SessionHistory::where('user_id', $event->user->id)
             ->where('session_id', session()->getId())

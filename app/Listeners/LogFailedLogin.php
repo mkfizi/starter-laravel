@@ -34,6 +34,6 @@ class LogFailedLogin
                 'email' => $event->credentials['email'] ?? null,
                 'guard' => $event->guard,
             ])
-            ->log(__('failed login attempt'));
+            ->log('failed login attempt');
     }
 }
