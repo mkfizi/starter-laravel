@@ -12,19 +12,23 @@
                     <x-text class="text-neutral-500 dark:text-neutral-400 text-xs">{{ $activity->created_at->diffForHumans() }}</x-text>
                 </div>
                 <div class="space-y-1">
-                    <x-label>{{ __('Action') }}</x-label>
+                    <x-label>{{ __('Event') }}</x-label>
                     <div>
                         <span class="inline-flex px-2 py-1 rounded text-xs font-medium capitalize
-                            @if(str_contains($activity->description, 'created')) bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200
-                            @elseif(str_contains($activity->description, 'updated')) bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200
-                            @elseif(str_contains($activity->description, 'deleted')) bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200
-                            @elseif(str_contains($activity->description, 'login')) bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200
-                            @elseif(str_contains($activity->description, 'logout')) bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200
+                            @if(str_contains($activity->event, 'created')) bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200
+                            @elseif(str_contains($activity->event, 'updated')) bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200
+                            @elseif(str_contains($activity->event, 'deleted')) bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200
+                            @elseif(str_contains($activity->event, 'login')) bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200
+                            @elseif(str_contains($activity->event, 'logout')) bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200
                             @else bg-neutral-100 text-neutral-800 dark:bg-neutral-900 dark:text-neutral-200
                             @endif">
-                            {{ $activity->description }}
+                            {{ $activity->event }}
                         </span>
                     </div>
+                </div>
+                <div class="space-y-1">
+                    <x-label>{{ __('Description') }}</x-label>
+                    <x-input type="text" class="w-full" value="{{ $activity->description }}" disabled />
                 </div>
                 <div class="space-y-1">
                     <x-label>{{ __('User') }}</x-label>

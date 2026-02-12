@@ -58,8 +58,9 @@
                 <x-table-th><x-text>{{ __('No') }}</x-text></x-table-th>
                 <x-table-th><x-text>{{ __('Date & Time') }}</x-text></x-table-th>
                 <x-table-th><x-text>{{ __('User') }}</x-text></x-table-th>
-                <x-table-th><x-text>{{ __('Action') }}</x-text></x-table-th>
+                <x-table-th><x-text>{{ __('Event') }}</x-text></x-table-th>
                 <x-table-th><x-text>{{ __('Subject') }}</x-text></x-table-th>
+                <x-table-th><x-text>{{ __('Description') }}</x-text></x-table-th>
                 <x-table-th></x-table-th>
             </x-slot>
             @if (count($activities) > 0)
@@ -81,18 +82,18 @@
                         <x-table-td>
                             @php
                                 $badgeColor = match(true) {
-                                    str_contains($activity->description, 'created') => 'success',
-                                    str_contains($activity->description, 'updated') => 'info',
-                                    str_contains($activity->description, 'deleted') => 'danger',
-                                    str_contains($activity->description, 'failed') => 'warning',
-                                    str_contains($activity->description, 'login') => 'purple',
-                                    str_contains($activity->description, 'logout') => 'neutral',
+                                    str_contains($activity->event, 'created') => 'success',
+                                    str_contains($activity->event, 'updated') => 'info',
+                                    str_contains($activity->event, 'deleted') => 'danger',
+                                    str_contains($activity->event, 'failed') => 'warning',
+                                    str_contains($activity->event, 'login') => 'purple',
+                                    str_contains($activity->event, 'logout') => 'neutral',
                                     default => null,
                                 };
                             @endphp
                             <x-text>
                                 <x-badge color="{{ $badgeColor }}" class="capitalize">
-                                    {{ $activity->description }}
+                                    {{ $activity->event }}
                                 </x-badge>
                             </x-text>
                         </x-table-td>
@@ -100,8 +101,11 @@
                             @if($activity->subject)
                                 <x-text>{{ class_basename($activity->subject_type) }}</x-text>
                             @else
-                                <x-text class="text-neutral-400 dark:text-neutral-500">-</x-text>
+                                <x-text>-</x-text>
                             @endif
+                        </x-table-td>
+                        <x-table-td>
+                            <x-text>{{ $activity->description }}</x-text>
                         </x-table-td>
                         <x-table-td class="w-16">
                             <div class="flex gap-2">

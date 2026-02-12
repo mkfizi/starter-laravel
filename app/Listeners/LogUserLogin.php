@@ -28,7 +28,7 @@ class LogUserLogin
         activity()
             ->causedBy($event->user)
             ->event('login')
-            ->log('login');
+            ->log("User '{$event->user->name}' ({$event->user->email}) logged in");
 
         SessionHistory::create([
             'user_id' => $event->user->id,

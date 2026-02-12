@@ -47,6 +47,13 @@ class Role extends SpatieRole
         return LogOptions::defaults()
             ->logOnly(['name', 'guard_name'])
             ->logOnlyDirty()
-            ->dontSubmitEmptyLogs();
+            ->dontSubmitEmptyLogs()
+            ->useLogName('role')
+            ->setDescriptionForEvent(fn(string $eventName) => match($eventName) {
+                'created' => "Role '{$this->name}' was created",
+                'updated' => "Role '{$this->name}' was updated",
+                'deleted' => "Role '{$this->name}' was deleted",
+                default => "{$eventName} on role '{$this->name}'",
+            });
     }
 }
