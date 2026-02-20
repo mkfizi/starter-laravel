@@ -50,7 +50,7 @@
                 </li>
             @elseif(isset($link['links']))
                 <li>
-                    <x-sidebar-nav-collapse
+                    <x-sidebar-nav-sublink
                         :icon="isset($link['icon']) ? $link['icon'] : null"
                         :links="$link['links']"
                         :title="__($link['title'])"
